@@ -1,0 +1,1200 @@
+disp ('Grupo 5')
+Grupo 5
+disp('NRC:7543')
+NRC:7543
+date
+
+ans =
+
+    '28-Oct-2021'
+
+clock
+
+ans =
+
+   1.0e+03 *
+
+    2.0210    0.0100    0.0280    0.0100    0.0430    0.0046
+
+clc
+help ischar
+ischar - Determine if input is character array
+
+    This MATLAB function returns logical 1 (true) if A is a character array and
+    logical 0 (false) otherwise.
+
+    tf = ischar(A)
+
+    See also <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/cellstr.html">cellstr</a>, <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/char.html">char</a>, <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/is.html">is*</a>, <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/isa.html">isa</a>, <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/iscellstr.html">iscellstr</a>, <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/isletter.html">isletter</a>, <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/isnumeric.html">isnumeric</a>, <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/isspace.html">isspace</a>, 
+        <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/isstring.html">isstring</a>, <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/isstrprop.html">isstrprop</a>, <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/string.html">string</a>
+
+    <a href="matlab:doc ischar">Documentation for ischar</a>
+
+a= ischar('z')
+
+a =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+a = 5
+
+a =
+
+     5
+
+b = 'z';
+c = 3.15
+
+c =
+
+    3.1500
+
+d = [0:0.5:5]
+
+d =
+
+  Columns 1 through 6
+
+         0    0.5000    1.0000    1.5000    2.0000    2.5000
+
+  Columns 7 through 11
+
+    3.0000    3.5000    4.0000    4.5000    5.0000
+
+whos
+  Name      Size            Bytes  Class     Attributes
+
+  a         1x1                 8  double              
+  ans       1x6                48  double              
+  b         1x1                 2  char                
+  c         1x1                 8  double              
+  d         1x11               88  double              
+
+ischar(b)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+ischar(a)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   0
+
+help isempy
+--- <strong>isempy</strong> not found. Showing help for <strong>isempty</strong> instead. ---
+
+isempty - Determine whether array is empty
+
+    This MATLAB function returns logical 1 (true) if A is empty, and logical 0
+    (false) otherwise.
+
+    TF = isempty(A)
+
+    See also <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/eq.html">eq</a>, <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/ismissing.html">ismissing</a>
+
+    <a href="matlab:doc isempty">Documentation for isempty</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('isempty')">Other functions named isempty</a>
+
+help isempty
+isempty - Determine whether array is empty
+
+    This MATLAB function returns logical 1 (true) if A is empty, and logical 0
+    (false) otherwise.
+
+    TF = isempty(A)
+
+    See also <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/eq.html">eq</a>, <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/ismissing.html">ismissing</a>
+
+    <a href="matlab:doc isempty">Documentation for isempty</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('isempty')">Other functions named isempty</a>
+
+e = []
+
+e =
+
+     []
+
+isempty(d)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   0
+
+isempty(3)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   0
+
+isempty(e)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+help isequal
+isequal - Determine array equality
+
+    This MATLAB function returns logical 1 (true) if A and B are equivalent;
+    otherwise, it returns logical 0 (false).
+
+    tf = isequal(A,B)
+    tf = isequal(A1,A2,...,An)
+
+    See also <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/eq.html">eq</a>, <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/is.html">is*</a>, <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/isa.html">isa</a>, <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/isequaln.html">isequaln</a>, <a href="https://www.mathworks.com/help/releases/R2020a/matlab/ref/strcmp.html">strcmp</a>
+
+    <a href="matlab:doc isequal">Documentation for isequal</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('isequal')">Other functions named isequal</a>
+
+isequal(1,d)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   0
+
+isequal(d,d)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+whos
+  Name      Size            Bytes  Class      Attributes
+
+  a         1x1                 8  double               
+  ans       1x1                 1  logical              
+  b         1x1                 2  char                 
+  c         1x1                 8  double               
+  d         1x11               88  double               
+  e         0x0                 0  double               
+
+help isfloat
+isfloat - Determine if input is floating-point array
+
+    This MATLAB function returns true if A is a floating-point array and false
+    otherwise.
+
+    tf = isfloat(A)
+
+    See also <a href="https://localhost:31515/static/help/matlab/ref/double.html">double</a>, <a href="https://localhost:31515/static/help/matlab/ref/isa.html">isa</a>, <a href="https://localhost:31515/static/help/matlab/ref/isinteger.html">isinteger</a>, <a href="https://localhost:31515/static/help/matlab/ref/isnumeric.html">isnumeric</a>, <a href="https://localhost:31515/static/help/matlab/ref/single.html">single</a>
+
+    <a href="matlab:doc isfloat">Documentation for isfloat</a>
+
+isfloat(a);
+isfloat(a)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+a
+
+a =
+
+     5
+
+isfloat(c)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+isfloat(b)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   0
+
+help isinteger
+ <strong>isinteger</strong> True for arrays of integer data type.
+    <strong>isinteger</strong>(A) returns true if A is an array of integer data type and false
+    otherwise.
+ 
+    The 8 integer data types in MATLAB are int8, uint8, int16, uint16,
+    int32, uint32, int64 and uint64.
+ 
+    Example:
+       isinteger(int8(3))
+       returns true because int8 is a valid integer data type but
+       isinteger (3)
+       returns false since the constant 3 is actually a double as is shown by
+       class(3)
+ 
+    See also <a href="matlab:help isa">isa</a>, <a href="matlab:help isnumeric">isnumeric</a>, <a href="matlab:help isfloat">isfloat</a>.
+
+    <a href="matlab:doc isinteger">Documentation for isinteger</a>
+
+a
+
+a =
+
+     5
+
+isinteger(a)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   0
+
+doc isinteger
+f = int8(a)
+
+f =
+
+  <a href="matlab:helpPopup int8" style="font-weight:bold">int8</a>
+
+   5
+
+isinteger(a)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   0
+
+isinteger(f)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+g = true
+
+g =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+help islogical
+ <strong>islogical</strong> True for logical array.
+    <strong>islogical</strong>(X) returns true if X is a logical array and false otherwise.
+    Logical arrays must be used to perform logical 0-1 indexing.
+    The result of calling <strong>islogical</strong>(X) is the same as calling ISA(X, 'logical').
+
+    <a href="matlab:doc islogical">Documentation for islogical</a>
+
+h = [true false true true false];
+whos
+  Name      Size            Bytes  Class      Attributes
+
+  a         1x1                 8  double               
+  ans       1x1                 1  logical              
+  b         1x1                 2  char                 
+  c         1x1                 8  double               
+  d         1x11               88  double               
+  e         0x0                 0  double               
+  f         1x1                 1  int8                 
+  g         1x1                 1  logical              
+  h         1x5                 5  logical              
+
+islogical(g)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+islogical(h)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+i = [true false 3 4]
+
+i =
+
+     1     0     3     4
+
+islogical(i)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   0
+
+help isnumeric
+ <strong>isnumeric</strong> True for numeric arrays.
+    <strong>isnumeric</strong>(A) returns true if A is a numeric array and false otherwise. 
+ 
+    For example, integer and float (single and double) arrays are numeric,
+    while logical, character, string, cell, and structure arrays are not.
+ 
+    Example:
+       isnumeric(pi)
+       returns true since pi has class double while
+       isnumeric(true)
+       returns false since true has data class logical.
+ 
+    See also <a href="matlab:help isa">isa</a>, <a href="matlab:help double">double</a>, <a href="matlab:help single">single</a>, <a href="matlab:help isfloat">isfloat</a>, <a href="matlab:help isinteger">isinteger</a>, <a href="matlab:help issparse">issparse</a>, <a href="matlab:help islogical">islogical</a>, <a href="matlab:help ischar">ischar</a>.
+
+    <a href="matlab:doc isnumeric">Documentation for isnumeric</a>
+
+whos
+  Name      Size            Bytes  Class      Attributes
+
+  a         1x1                 8  double               
+  ans       1x1                 1  logical              
+  b         1x1                 2  char                 
+  c         1x1                 8  double               
+  d         1x11               88  double               
+  e         0x0                 0  double               
+  f         1x1                 1  int8                 
+  g         1x1                 1  logical              
+  h         1x5                 5  logical              
+  i         1x4                32  double               
+
+isnumeric(b)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   0
+
+isnumeric(h)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   0
+
+isnumeric(a)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+isnumeric(i)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+i
+
+i =
+
+     1     0     3     4
+
+whos
+  Name      Size            Bytes  Class      Attributes
+
+  a         1x1                 8  double               
+  ans       1x1                 1  logical              
+  b         1x1                 2  char                 
+  c         1x1                 8  double               
+  d         1x11               88  double               
+  e         0x0                 0  double               
+  f         1x1                 1  int8                 
+  g         1x1                 1  logical              
+  h         1x5                 5  logical              
+  i         1x4                32  double               
+
+g
+
+g =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+true
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+help integer
+--- <strong>integer</strong> not found. Showing help for <strong>isinteger</strong> instead. ---
+
+ <strong>isinteger</strong> True for arrays of integer data type.
+    <strong>isinteger</strong>(A) returns true if A is an array of integer data type and false
+    otherwise.
+ 
+    The 8 integer data types in MATLAB are int8, uint8, int16, uint16,
+    int32, uint32, int64 and uint64.
+ 
+    Example:
+       isinteger(int8(3))
+       returns true because int8 is a valid integer data type but
+       isinteger (3)
+       returns false since the constant 3 is actually a double as is shown by
+       class(3)
+ 
+    See also <a href="matlab:help isa">isa</a>, <a href="matlab:help isnumeric">isnumeric</a>, <a href="matlab:help isfloat">isfloat</a>.
+
+    <a href="matlab:doc isinteger">Documentation for isinteger</a>
+
+help isprime
+ <strong>isprime</strong> True for prime numbers.
+    <strong>isprime</strong>(X) is 1 for the elements of X that are prime, 0 otherwise.
+ 
+    Class support for input X:
+       float: double, single
+       integer: uint8, int8, uint16, int16, uint32, int32, uint64, int64
+ 
+    See also <a href="matlab:help factor">factor</a>, <a href="matlab:help primes">primes</a>.
+
+    <a href="matlab:doc isprime">Documentation for isprime</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('isprime')">Other functions named isprime</a>
+
+whos
+  Name      Size            Bytes  Class      Attributes
+
+  a         1x1                 8  double               
+  ans       1x1                 1  logical              
+  b         1x1                 2  char                 
+  c         1x1                 8  double               
+  d         1x11               88  double               
+  e         0x0                 0  double               
+  f         1x1                 1  int8                 
+  g         1x1                 1  logical              
+  h         1x5                 5  logical              
+  i         1x4                32  double               
+
+prime = 13
+
+prime =
+
+    13
+
+whos
+  Name       Size            Bytes  Class      Attributes
+
+  a          1x1                 8  double               
+  ans        1x1                 1  logical              
+  b          1x1                 2  char                 
+  c          1x1                 8  double               
+  d          1x11               88  double               
+  e          0x0                 0  double               
+  f          1x1                 1  int8                 
+  g          1x1                 1  logical              
+  h          1x5                 5  logical              
+  i          1x4                32  double               
+  prime      1x1                 8  double               
+
+isprime(prime)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+isprime(4)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   0
+
+help isreal
+ <strong>isreal</strong> True for real array.
+    <strong>isreal</strong>(X) returns 1 if X does not have an imaginary part
+    and 0 otherwise.
+ 
+    ~<strong>isreal</strong>(X) detects arrays that have an imaginary part even if
+    it is all zero.
+    ~ANY(IMAG(X(:))) detects strictly real arrays, whether X has
+    an all zero imaginary part allocated or not.
+ 
+    Example:
+       x = magic(3);
+       y = complex(x);
+    In this example, isreal(x) returns true. isreal(y) returns
+    false, because COMPLEX returns y with an all zero imaginary
+    part. 
+ 
+    See also <a href="matlab:help real">real</a>, <a href="matlab:help imag">imag</a>, <a href="matlab:help complex">complex</a>, <a href="matlab:help i">i</a>, <a href="matlab:help j">j</a>.
+
+    <a href="matlab:doc isreal">Documentation for isreal</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('isreal')">Other functions named isreal</a>
+
+cm = 3 + 4i
+
+cm =
+
+   3.0000 + 4.0000i
+
+whos
+  Name       Size            Bytes  Class      Attributes
+
+  a          1x1                 8  double               
+  ans        1x1                 1  logical              
+  b          1x1                 2  char                 
+  c          1x1                 8  double               
+  cm         1x1                16  double     complex   
+  d          1x11               88  double               
+  e          0x0                 0  double               
+  f          1x1                 1  int8                 
+  g          1x1                 1  logical              
+  h          1x5                 5  logical              
+  i          1x4                32  double               
+  prime      1x1                 8  double               
+
+isreal(cm)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   0
+
+isreal(a)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+help issscalar
+--- <strong>issscalar</strong> not found. Showing help for <strong>isscalar</strong> instead. ---
+
+ <strong>isscalar</strong> True if input is a scalar.
+    <strong>isscalar</strong>(S) returns logical 1 (true) if S is a 1-by-1 scalar, and
+    logical 0 (false) otherwise.
+ 
+    See also <a href="matlab:help isvector">isvector</a>, <a href="matlab:help isrow">isrow</a>, <a href="matlab:help iscolumn">iscolumn</a>, <a href="matlab:help ismatrix">ismatrix</a>, <a href="matlab:help isnumeric">isnumeric</a>, <a href="matlab:help islogical">islogical</a>,
+             <a href="matlab:help ischar">ischar</a>, <a href="matlab:help isempty">isempty</a>, <a href="matlab:help size">size</a>.
+
+    <a href="matlab:doc isscalar">Documentation for isscalar</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('isscalar')">Other functions named isscalar</a>
+
+help isscalar
+ <strong>isscalar</strong> True if input is a scalar.
+    <strong>isscalar</strong>(S) returns logical 1 (true) if S is a 1-by-1 scalar, and
+    logical 0 (false) otherwise.
+ 
+    See also <a href="matlab:help isvector">isvector</a>, <a href="matlab:help isrow">isrow</a>, <a href="matlab:help iscolumn">iscolumn</a>, <a href="matlab:help ismatrix">ismatrix</a>, <a href="matlab:help isnumeric">isnumeric</a>, <a href="matlab:help islogical">islogical</a>,
+             <a href="matlab:help ischar">ischar</a>, <a href="matlab:help isempty">isempty</a>, <a href="matlab:help size">size</a>.
+
+    <a href="matlab:doc isscalar">Documentation for isscalar</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('isscalar')">Other functions named isscalar</a>
+
+doc isscalar
+whos
+  Name       Size            Bytes  Class      Attributes
+
+  a          1x1                 8  double               
+  ans        1x1                 1  logical              
+  b          1x1                 2  char                 
+  c          1x1                 8  double               
+  cm         1x1                16  double     complex   
+  d          1x11               88  double               
+  e          0x0                 0  double               
+  f          1x1                 1  int8                 
+  g          1x1                 1  logical              
+  h          1x5                 5  logical              
+  i          1x4                32  double               
+  prime      1x1                 8  double               
+
+isscalar(a)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   1
+
+isscalar(d)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   0
+
+clc
+help isspace
+ <strong>isspace</strong> True for whitespace characters
+    For a character vector or string scalar CHR, <strong>isspace</strong>(CHR) is 1 for 
+    Unicode-represented whitespace characters and 0 otherwise.
+    Whitespace characters for which <strong>isspace</strong> returns TRUE include tab, line
+    feed, vertical tab, form feed, carriage return, and space, in addition
+    to a number of other Unicode characters. 
+ 
+    Example
+       isspace('  Find spa ces ')
+       Columns 1 through 13 
+          1   1   0   0   0   0   1   0   0   0   1   0   0
+       Columns 14 through 15 
+          0   1
+      
+    See also <a href="matlab:help isletter">isletter</a>, <a href="matlab:help isstrprop">isstrprop</a>.
+
+    <a href="matlab:doc isspace">Documentation for isspace</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('isspace')">Other functions named isspace</a>
+
+doc isspace
+str = 'hola como estas'
+
+str =
+
+    'hola como estas'
+
+whos
+  Name       Size            Bytes  Class      Attributes
+
+  a          1x1                 8  double               
+  ans        1x1                 1  logical              
+  b          1x1                 2  char                 
+  c          1x1                 8  double               
+  cm         1x1                16  double     complex   
+  d          1x11               88  double               
+  e          0x0                 0  double               
+  f          1x1                 1  int8                 
+  g          1x1                 1  logical              
+  h          1x5                 5  logical              
+  i          1x4                32  double               
+  prime      1x1                 8  double               
+  str        1x15               30  char                 
+
+isspace(str)
+
+ans =
+
+  1×15 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   0   0   0   0   1   0   0   0   0   1   0   0   0   0   0
+
+str
+
+str =
+
+    'hola como estas'
+
+whos
+  Name       Size            Bytes  Class      Attributes
+
+  a          1x1                 8  double               
+  ans        1x15               15  logical              
+  b          1x1                 2  char                 
+  c          1x1                 8  double               
+  cm         1x1                16  double     complex   
+  d          1x11               88  double               
+  e          0x0                 0  double               
+  f          1x1                 1  int8                 
+  g          1x1                 1  logical              
+  h          1x5                 5  logical              
+  i          1x4                32  double               
+  prime      1x1                 8  double               
+  str        1x15               30  char                 
+
+str1 = 'h has qwe asd wqe'
+
+str1 =
+
+    'h has qwe asd wqe'
+
+isspace(str)
+
+ans =
+
+  1×15 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   0   0   0   0   1   0   0   0   0   1   0   0   0   0   0
+
+isspace(str1)
+
+ans =
+
+  1×17 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+  Columns 1 through 16
+
+   0   1   0   0   0   1   0   0   0   1   0   0   0   1   0   0
+
+  Column 17
+
+   0
+
+str1
+
+str1 =
+
+    'h has qwe asd wqe'
+
+help xor
+ <strong>xor</strong> Logical EXCLUSIVE OR.
+    <strong>xor</strong>(S,T) is the logical symmetric difference of elements S and T. The
+    result is logical 1 (TRUE) where either S or T, but not both, is
+    nonzero. The result is logical 0 (FALSE) where S and T are both zero or
+    nonzero. S and T must have compatible sizes. In the simplest cases,
+    they can be the same size or one can be a scalar. Two inputs have
+    compatible sizes if, for every dimension, the dimension sizes of the
+    inputs are either the same or one of them is 1.
+ 
+    See also <a href="matlab:help or">or</a>, RELOP.
+
+    <a href="matlab:doc xor">Documentation for xor</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('xor')">Other functions named xor</a>
+
+doc xor
+j = [true false]
+
+j =
+
+  1×2 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   1   0
+
+k = [false true];
+k = [false;true]
+
+k =
+
+  2×1 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   0
+   1
+
+L = xor(j,k)
+
+L =
+
+  2×2 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   1   0
+   0   1
+
+j = [true false false]
+
+j =
+
+  1×3 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   1   0   0
+
+k = [false;true;true]
+
+k =
+
+  3×1 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   0
+   1
+   1
+
+L = xor(j,k)
+
+L =
+
+  3×3 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   1   0   0
+   0   1   1
+   0   1   1
+
+help any
+ <strong>any</strong>    True if any element of a vector is a nonzero number or is
+    logical 1 (TRUE).  <strong>any</strong> ignores entries that are NaN (Not a Number).
+ 
+    For vectors, <strong>any</strong>(V) returns logical 1 (TRUE) if any of the 
+    elements of the vector is a nonzero number or is logical 1 (TRUE).
+    Otherwise it returns logical 0 (FALSE).  For matrices, <strong>any</strong>(X) 
+    operates on the columns of X, returning a row vector of logical 1's 
+    and 0's.  For multi-dimensional arrays, <strong>any</strong>(X) operates on the 
+    first non-singleton dimension.
+ 
+    <strong>any</strong>(X,'all') returns logical 1 (TRUE) if any of the elements of an 
+    array X are nonzero. Otherwise, it returns logical 0 (FALSE).  
+ 
+    <strong>any</strong>(X,DIM) operates down the dimension DIM of an array X.  For example, 
+    <strong>any</strong>(X,1) operates down the first dimension (the rows) of X.
+ 
+    <strong>any</strong>(X,VECDIM) operates on the dimensions specified in the vector 
+    VECDIM of an array X. For example, <strong>any</strong>(X,[1 2]) operates on the 
+    elements contained in the first and second dimensions of X.
+ 
+    See also <a href="matlab:help all">all</a>, <a href="matlab:help nnz">nnz</a>.
+
+    <a href="matlab:doc any">Documentation for any</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('any')">Other functions named any</a>
+
+doc any
+whos
+  Name       Size            Bytes  Class      Attributes
+
+  L          3x3                 9  logical              
+  a          1x1                 8  double               
+  ans        1x17               17  logical              
+  b          1x1                 2  char                 
+  c          1x1                 8  double               
+  cm         1x1                16  double     complex   
+  d          1x11               88  double               
+  e          0x0                 0  double               
+  f          1x1                 1  int8                 
+  g          1x1                 1  logical              
+  h          1x5                 5  logical              
+  i          1x4                32  double               
+  j          1x3                 3  logical              
+  k          3x1                 3  logical              
+  prime      1x1                 8  double               
+  str        1x15               30  char                 
+  str1       1x17               34  char                 
+
+A = [1 2 3;0 0 0;3 2 4; 0 1 0]
+
+A =
+
+     1     2     3
+     0     0     0
+     3     2     4
+     0     1     0
+
+any(A)
+
+ans =
+
+  1×3 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   1   1   1
+
+B = [0 1 2; 0 4 5; 0 6 7]
+
+B =
+
+     0     1     2
+     0     4     5
+     0     6     7
+
+any(B)
+
+ans =
+
+  1×3 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   0   1   1
+
+help all
+ <strong>all</strong>    True if all elements of a vector are nonzero.
+    For vectors, <strong>all</strong>(V) returns logical 1 (TRUE) if none of the elements 
+    of the vector are zero.  Otherwise it returns logical 0 (FALSE).  For 
+    matrices, <strong>all</strong>(X) operates on the columns of X, returning a row vector
+    of logical 1's and 0's. For N-D arrays, <strong>all</strong>(X) operates on the first
+    non-singleton dimension.
+ 
+    <strong>all</strong>(X,'all') returns logical 1 (TRUE) if none of the elements of an 
+    array X are zero.  Otherwise, it returns logical 0 (FALSE).
+ 
+    <strong>all</strong>(X,DIM) operates down the dimension DIM of an array X.  For example, 
+    <strong>all</strong>(X,1) operates down the first dimension (the rows) of X.
+ 
+    <strong>all</strong>(X,VECDIM) operates on the dimensions specified in the vector 
+    VECDIM of an array X. For example, <strong>all</strong>(X,[1 2]) operates on the 
+    elements contained in the first and second dimensions of X.
+ 
+    See also <a href="matlab:help any">any</a>.
+
+    <a href="matlab:doc all">Documentation for all</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('all')">Other functions named all</a>
+
+doc all
+any(A)
+
+ans =
+
+  1×3 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   1   1   1
+
+help any
+ <strong>any</strong>    True if any element of a vector is a nonzero number or is
+    logical 1 (TRUE).  <strong>any</strong> ignores entries that are NaN (Not a Number).
+ 
+    For vectors, <strong>any</strong>(V) returns logical 1 (TRUE) if any of the 
+    elements of the vector is a nonzero number or is logical 1 (TRUE).
+    Otherwise it returns logical 0 (FALSE).  For matrices, <strong>any</strong>(X) 
+    operates on the columns of X, returning a row vector of logical 1's 
+    and 0's.  For multi-dimensional arrays, <strong>any</strong>(X) operates on the 
+    first non-singleton dimension.
+ 
+    <strong>any</strong>(X,'all') returns logical 1 (TRUE) if any of the elements of an 
+    array X are nonzero. Otherwise, it returns logical 0 (FALSE).  
+ 
+    <strong>any</strong>(X,DIM) operates down the dimension DIM of an array X.  For example, 
+    <strong>any</strong>(X,1) operates down the first dimension (the rows) of X.
+ 
+    <strong>any</strong>(X,VECDIM) operates on the dimensions specified in the vector 
+    VECDIM of an array X. For example, <strong>any</strong>(X,[1 2]) operates on the 
+    elements contained in the first and second dimensions of X.
+ 
+    See also <a href="matlab:help all">all</a>, <a href="matlab:help nnz">nnz</a>.
+
+    <a href="matlab:doc any">Documentation for any</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('any')">Other functions named any</a>
+
+doc any
+whos
+  Name       Size            Bytes  Class      Attributes
+
+  A          4x3                96  double               
+  B          3x3                72  double               
+  L          3x3                 9  logical              
+  a          1x1                 8  double               
+  ans        1x3                 3  logical              
+  b          1x1                 2  char                 
+  c          1x1                 8  double               
+  cm         1x1                16  double     complex   
+  d          1x11               88  double               
+  e          0x0                 0  double               
+  f          1x1                 1  int8                 
+  g          1x1                 1  logical              
+  h          1x5                 5  logical              
+  i          1x4                32  double               
+  j          1x3                 3  logical              
+  k          3x1                 3  logical              
+  prime      1x1                 8  double               
+  str        1x15               30  char                 
+  str1       1x17               34  char                 
+
+B
+
+B =
+
+     0     1     2
+     0     4     5
+     0     6     7
+
+A
+
+A =
+
+     1     2     3
+     0     0     0
+     3     2     4
+     0     1     0
+
+any(A,1)
+
+ans =
+
+  1×3 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   1   1   1
+
+any(A,3)
+
+ans =
+
+  4×3 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   1   1   1
+   0   0   0
+   1   1   1
+   0   1   0
+
+any(A,4)
+
+ans =
+
+  4×3 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   1   1   1
+   0   0   0
+   1   1   1
+   0   1   0
+
+any(A,2)
+
+ans =
+
+  4×1 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   1
+   0
+   1
+   1
+
+any(A,5)
+
+ans =
+
+  4×3 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   1   1   1
+   0   0   0
+   1   1   1
+   0   1   0
+
+help all
+ <strong>all</strong>    True if all elements of a vector are nonzero.
+    For vectors, <strong>all</strong>(V) returns logical 1 (TRUE) if none of the elements 
+    of the vector are zero.  Otherwise it returns logical 0 (FALSE).  For 
+    matrices, <strong>all</strong>(X) operates on the columns of X, returning a row vector
+    of logical 1's and 0's. For N-D arrays, <strong>all</strong>(X) operates on the first
+    non-singleton dimension.
+ 
+    <strong>all</strong>(X,'all') returns logical 1 (TRUE) if none of the elements of an 
+    array X are zero.  Otherwise, it returns logical 0 (FALSE).
+ 
+    <strong>all</strong>(X,DIM) operates down the dimension DIM of an array X.  For example, 
+    <strong>all</strong>(X,1) operates down the first dimension (the rows) of X.
+ 
+    <strong>all</strong>(X,VECDIM) operates on the dimensions specified in the vector 
+    VECDIM of an array X. For example, <strong>all</strong>(X,[1 2]) operates on the 
+    elements contained in the first and second dimensions of X.
+ 
+    See also <a href="matlab:help any">any</a>.
+
+    <a href="matlab:doc all">Documentation for all</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('all')">Other functions named all</a>
+
+doc all
+A
+
+A =
+
+     1     2     3
+     0     0     0
+     3     2     4
+     0     1     0
+
+all(A)
+
+ans =
+
+  1×3 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   0   0   0
+
+B
+
+B =
+
+     0     1     2
+     0     4     5
+     0     6     7
+
+all(B)
+
+ans =
+
+  1×3 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   0   1   1
+
+all(B,1)
+
+ans =
+
+  1×3 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   0   1   1
+
+B
+
+B =
+
+     0     1     2
+     0     4     5
+     0     6     7
+
+all(B,1)
+
+ans =
+
+  1×3 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   0   1   1
+
+all(B,2)
+
+ans =
+
+  3×1 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   0
+   0
+   0
+
+all(B,3)
+
+ans =
+
+  3×3 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   0   1   1
+   0   1   1
+   0   1   1
+
+A
+
+A =
+
+     1     2     3
+     0     0     0
+     3     2     4
+     0     1     0
+
+B
+
+B =
+
+     0     1     2
+     0     4     5
+     0     6     7
+
+C = (B>2)
+
+C =
+
+  3×3 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   0   0   0
+   0   1   1
+   0   1   1
+
+C = all(B>2)
+
+C =
+
+  1×3 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+
+   0   0   0
+
+diary off
