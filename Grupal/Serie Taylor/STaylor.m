@@ -80,15 +80,11 @@ function [v_fx,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x)
         end
     end
     
-<<<<<<< HEAD
-    if isreal(c)==true
+    if isreal(c)==true && isnumeric(c) 
         v_c = true;
     else 
         v_c = false;
     end
         
-    
-    
-=======
->>>>>>> c01e24d0f4e99d518dafffc4899254f246bf86b3
+   
 end
