@@ -71,6 +71,12 @@ function [v_fx,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x)
         end
     end
     
+    if isreal(c)==true
+        v_c = true;
+    else 
+        v_c = false;
+    end
+        
     
     
 end
