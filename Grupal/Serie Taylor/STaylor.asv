@@ -16,8 +16,7 @@ function [tx,Rx,R,r,Ea,Er] = STaylor(fx,n,c,e,N,x)
 %      Rx: Formula del error de truncamiento
 %      R: Radio mayor de convergencia
 %      r: Radio menor de convergencia donde diverge mas rapdio la funcion
-%      Ea: Error Absoluto
-%      Er: Error relativo
+%      E
 % :raises: :exc:`STaylor(args)`
     clc
     [v_fx,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x);
@@ -80,15 +79,4 @@ function [v_fx,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x)
         end
     end
     
-<<<<<<< HEAD
-    if isreal(c)==true
-        v_c = true;
-    else 
-        v_c = false;
-    end
-        
-    
-    
-=======
->>>>>>> c01e24d0f4e99d518dafffc4899254f246bf86b3
 end
