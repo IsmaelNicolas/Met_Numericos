@@ -19,14 +19,15 @@ function [tx,Rx,R,r,Ea,Er] = STaylor(fx,n,c,e,N,x)
 %      Ea: Error Absoluto
 %      Er: Error relativo
 % :raises: :exc:`STaylor(args)`
-    clc
+    
     [v_fx,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x);
     v = [v_fx,v_c,v_e,v_N,v_x];
-    disp(v(1)) 
-    if v(1) == 1
-        disp('Validado')
-    elseif (v(1) == 0)
-        disp('Ingresa una funcion trasedental')
+    disp(v) 
+%     if all(v == true)
+%         disp('Validado')
+%     else
+    if all(v == true)
+        disp('Ingresa argumentos validos')
     else
         disp('Igresa de nuevo')
         tx = true;
@@ -44,7 +45,7 @@ function [tx,Rx,R,r,Ea,Er] = STaylor(fx,n,c,e,N,x)
     Er = true;
 end
 
-function [v_fx,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x)
+function [v_fx,v_n,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x)
 % validate: valida los valores 
 % [v_fx,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x) 
 % 
@@ -65,6 +66,7 @@ function [v_fx,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x)
     
     %Asigno los valores por defecto de los returns
     v_fx = false;
+    v_n = false;
     v_c = false;
     v_e = false;
     v_N = false;
