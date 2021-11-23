@@ -1,4 +1,5 @@
 function [tx,Rx,R,r,Ea,Er] = STaylor(fx,n,c,e,N,x)
+tic
 % Authors: 
 %   Andrade Mateo
 %   Cedillo Nicolas
@@ -53,6 +54,7 @@ function [tx,Rx,R,r,Ea,Er] = STaylor(fx,n,c,e,N,x)
         s(i+1)=subs(diff(fxs,vs,i),vs,c)/factorial(i)*(x-c)^i;
         sigma(i+1)=sum(double(s));
         
+        
         %polinomio de Taylor
         
         tx(i+1)= poly2sym(fliplr(s(1:i+1)),vs);
@@ -63,6 +65,10 @@ function [tx,Rx,R,r,Ea,Er] = STaylor(fx,n,c,e,N,x)
         end
         
     end
+    
+    ezplot(fxs,[-5,5]);
+    
+    
     
     %---------------Tabla de resultados------------
     %aprox = sigma(end); etf = Er(end); eaf = Ea(end);
@@ -76,7 +82,10 @@ function [tx,Rx,R,r,Ea,Er] = STaylor(fx,n,c,e,N,x)
     disp(tx);
     disp('valor aproximado: ')
     disp(Valor_aproximado);
+    disp('Error relativo: ')
+    disp(Er)
     r=true;
+    toc
 end
 
 function [v_fx,v_n,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x)
