@@ -44,14 +44,6 @@ function [tx,Rx,R,r,Ea,Er] = STaylor(fx,n,c,e,N,x)
     end
     
     
-    
-    tx = true;
-    Rx = true;
-    R = true;
-    r = true;
-    Ea = true;
-    Er = true;
-    
     %Se procede a realizar los calculos en la serie de taylor
     fxs=str2sym(fx);%convertir la funcion a simbolica
     vs = symvar(fxs);%Encontrar la variable simbólica en fxs.
@@ -63,11 +55,11 @@ function [tx,Rx,R,r,Ea,Er] = STaylor(fx,n,c,e,N,x)
         
         %polinomio de Taylor
         
-        Tp(i+1)= STaylor(fxs,vs,c,'Order',i+1);
+        %Tp(i+1)= STaylor(fxs,i+1,c,e,i+1);
         
         Er(i+1)=abs(((R-sigma(i+1))/R))*100; %error relativo
         if i >= 1 %Error absoluto
-            Ea(i+1) = abs((sigma(i+1)-sigma(i))/sigma(i+1))*100
+            Ea(i+1) = abs((sigma(i+1)-sigma(i))/sigma(i+1))*100;
         end
         
     end
