@@ -1,4 +1,12 @@
 function [tx,Rx,R,r,Ea,Er] = STaylor(fx,n,c,e,N,x)
+% Authors: 
+%   Andrade Mateo
+%   Cedillo Nicolas
+%   Garces Elian
+%   Han Martin
+%   Sanmiento Alejandro
+% Date: 23/11/2021
+% 
 % STaylor: Aproxima el valor de una funcion 
 %           en un punto dado utilizando la serie de taylor 
 % [tx,Rx,R,r,Ea] = STaylor(fx,n,c,e,N,x) 
@@ -18,16 +26,13 @@ function [tx,Rx,R,r,Ea,Er] = STaylor(fx,n,c,e,N,x)
 %      r: Radio menor de convergencia donde diverge mas rapdio la funcion
 %      Ea: Error Absoluto
 %      Er: Error relativo
-% :raises: :exc:`STaylor(args)`
+% 
     
-    [v_fx,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x);
-    v = [v_fx,v_c,v_e,v_N,v_x];
+    [v_fx,v_n,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x);
+    v = [v_fx,v_n,v_c,v_e,v_N,v_x];
     disp(v) 
-%     if all(v == true)
-%         disp('Validado')
-%     else
     if all(v == true)
-        disp('Ingresa argumentos validos')
+        disp('Validado')
     else
         disp('Igresa de nuevo')
         tx = true;
@@ -74,7 +79,7 @@ function [v_fx,v_n,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x)
     
     %Verifico si es una funcion trasedental
     for i = 1:length(tras)
-        if fx==tras(1,i)
+        if strfind(fx,tras(1,i))
             v_fx = true;
             break;
         else
@@ -95,13 +100,19 @@ function [v_fx,v_n,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x)
     else 
         v_e = false;
     end
-    
-    
+        
     %I check if "x" is a real
-    if isreal(x)==true && isnumeric(x) 
+    if isreal(x) && isnumeric(x) 
         v_x = true;
-    else 
-        v_x = false;
+    end
+    
+    %I check if "n" is positive integer
+    if isnumeric(n) && mod(n,1)==0 && n>0
+        v_n= true;
+    end
+    %I check if "n" is positive integer
+    if isnumeric(N) && mod(N,1)==0 && N>0
+        v_N = true;
     end
    
 end
