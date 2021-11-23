@@ -60,10 +60,20 @@ function [tx,Rx,R,r,Ea,Er] = STaylor(fx,n,c,e,N,x)
         
         %polinomio de Taylor
         
-        Tp(i+1)=
+        %Tp(i+1)= STaylor(fxs,i,c,e,i+1,x);
         
+        Er(i+1)=abs(((R-sigma(i+1))/R))*100; %error relativo
+        if i >= 1 %Error absoluto
+            Ea(i+1) = abs((sigma(i+1)-sigma(i))/sigma(i+1))*100
+        end
         
     end
+    
+    %---------------Tabla de resultados------------
+    aprox = sigma(end); etf = Er(end); eaf = Ea(end);
+    Encabezado = {'Iteracion','Valor aproximado'};
+    T = num2cell([(1:n+1)', sigma']); M = [Encabezado;T];
+    
     
 end
 
