@@ -42,6 +42,9 @@ function [tx,Rx,R,r,Ea,Er] = STaylor(fx,n,c,e,N,x)
         Ea = true;
         return;
     end
+    
+    
+    
     tx = true;
     Rx = true;
     R = true;
