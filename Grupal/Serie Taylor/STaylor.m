@@ -28,19 +28,21 @@ tic
 %      Ea: Error Absoluto
 %      Er: Error relativo
 % 
-    
+    if nargin ~= 6
+        error('Ingrese todos los argumentos');
+    end
     [v_fx,v_n,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x);
     v = [v_fx,v_n,v_c,v_e,v_N,v_x];
-    %disp(v) 
+    %disp(v)
     if all(v == true)
         disp('Validado')
     else
         disp('Igresa de nuevo')
-        tx = true;
-        Rx = true;
-        R = true;
-        r = true;
-        Ea = true;
+        tx = NaN;
+        Rx = NaN;
+        R = NaN;
+        r = NaN;
+        Ea = NaN;
         return;
     end
 
@@ -53,8 +55,7 @@ tic
     for i=0:n
         s(i+1)=subs(diff(fxs,vs,i),vs,c)/factorial(i)*(x-c)^i;
         sigma(i+1)=sum(double(s));
-        
-        
+       
         %polinomio de Taylor
         
         %Tp(i+1)= STaylor(fxs,i+1,c,e,i+1);
@@ -67,9 +68,18 @@ tic
         
     end
     
-    ezplot(fxs,[-5,5]);
+    %ezplot(fxs,[-5,5]);
     
-    
+    fplot(fxs,'LineWidth',2); grid on; hold on
+    plot(x,Valor_aproximado,'ro','MarkerFaceColor','r'); 
+    hold on
+    plot(c,subs(fxs,vs,c),'bo','MarkerFaceColor','b');
+%     for i = 2:n+1
+%         hold on
+%         fplot(Ea(i));
+%     end
+    %txt1 = strcat(strseq('T_p_',1:n+1),{'(x)'});
+    %legend([cellstr(fun); {['f(',num2str(x),')']}; {'a'}; txt1],'Location','Best')
     
     %---------------Tabla de resultados------------
     %aprox = sigma(end); etf = Er(end); eaf = Ea(end);
