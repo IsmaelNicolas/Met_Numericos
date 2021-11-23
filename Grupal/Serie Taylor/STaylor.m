@@ -105,3 +105,10 @@ function [v_fx,v_n,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x)
     end
    
 end
+
+function [tx,Rx,R,r,Ea,Er] = CalculosSTaylor(fx,n,c,e,N,x)
+%Se procede a realizar los calculos en la serie de taylor
+fxs=str2sym(fx);%convertir la funcion a simbolica
+vs = symvar(fxs);%Encontrar la variable simbólica en fxs.
+R=double(subs(fxs,vs,x)); %Valor real al cual aproximarse.
+end
