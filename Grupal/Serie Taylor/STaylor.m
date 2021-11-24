@@ -190,22 +190,89 @@ function [v_fx,v_n,v_c,v_e,v_N,v_x] = validate(fx,n,c,e,N,x)
 end
 
 function [tx,Rtx] = taylor1(fx,n)
-    syms c x e
-    fxs=str2sym(fx);%convertir la funcion a simbolica
-    vs = symvar(fxs);%Encontrar la variable simbólica en fxs.
-    for i=0:n
-        s(i+1)=subs(diff(fxs,i),vs,c)/factorial(i)*(x-c)^i;
-        tx(i+1)= poly2sym(fliplr(s(1:i+1)),vs);
-    end
-    Rtx = (subs(diff(fxs,n),vs,e)*x^(n+1))/factorial(n+1);
+    
+    
+    if validatefx(fx) && validateIntPosi(n) 
+ 
+        syms c x e
+            fxs=str2sym(fx);%convertir la funcion a simbolica
+            vs = symvar(fxs);%Encontrar la variable simbólica en fxs.
+            for i=0:n
+                s(i+1)=subs(diff(fxs,i),vs,c)/factorial(i)*(x-c)^i;
+                tx(i+1)= poly2sym(fliplr(s(1:i+1)),vs);
+            end
+            Rtx = (subs(diff(fxs,n),vs,e)*x^(n+1))/factorial(n+1);
      
-    %Imprimo los valores 
-     disp('<strong>Impresion de datos.</strong>')
-     fprintf('<strong>f(x):</strong> %s\n',fxs)
-     fprintf('<strong>n:</strong> %d\n',n)
-     fprintf('<strong>t(x):</strong> %s\n',tx(end))
-     fprintf('<strong>Rt(x):</strong> %s\n',Rtx)
+            %Imprimo los valores 
+                disp('<strong>Impresion de datos.</strong>')
+                fprintf('<strong>f(x):</strong> %s\n',fxs)
+                fprintf('<strong>n:</strong> %d\n',n)
+                fprintf('<strong>t(x):</strong> %s\n',tx(end))
+                fprintf('<strong>Rt(x):</strong> %s\n',Rtx)
+    else
+        error('Error al ingresar los datos')
+
+    end
     
+end
+
+function [v_fx]= validatefx(fx)
+    %validatefx: valida si es fx es funcion trasendental
     
+    %valores de entrada
+    %fx=funcion trasendental
+    
+    %valores de salida
+    %v_fx=boolean
+    
+    % defino las funciones tracedentales
+    tras = ["sin",'cos','tan','exp','csc','log','sinh','cosh','tanh',]; 
+    
+     v_fx = false;
+     
+     for i = 1:length(tras)
+        if strfind(fx,tras(1,i))
+            v_fx = true;
+            break;
+        else
+            v_fx = false;
+        end
+    end
+end
+
+function [isreal]=validateReal(num)
+
+    %validateReal: valida si un numero es real
+    
+    %valores de entrada
+    %num=numero cualquiera
+    
+    %valores de salida
+    %isreal=boolean
+    
+
+    if isreal(num)==true && isnumeric(num) 
+        isreal = true;
+    else 
+        isreal = false;
+    end
+
+end
+
+function isenteroposi = validateIntPosi(num)
+
+    %validateReal: valida si un numero es entero positivo
+    
+    %valores de entrada
+    %num=numero cualquiera
+    
+    %valores de salida
+    %isreal=boolean
+    
+    isenteroposi=false;
+    if num>0 && isnumeric(num) && mod(num,1)==0 
+        isenteroposi = true;
+    end
+
 end
 
