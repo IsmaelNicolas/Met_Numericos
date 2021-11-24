@@ -268,7 +268,7 @@ function [v_fx]= validatefx(fx)
     end
 end
 
-function [isreal]=validateReal(num)
+function [isreal]= validateReal(num)
 
     %validateReal: valida si un numero es real
     
