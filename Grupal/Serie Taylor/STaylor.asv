@@ -43,26 +43,11 @@ tic
             [varargout{1},varargout{2},varargout{3},varargout{4}] = taylor2(fx,n,c); %envio de los parametros receptados a la funcion taylor2 en este caso
         %Caso 4: Ingreso de la funcion, n, c y epsilon 
         case 4
-
-            fx = varargin{1};
-            n = varargin{2};
-            c = varargin{3};
-            e = varargin{4};
-            [varargout{1},varargout{2},varargout{3},varargout{4}] = taylor3(fx,n,c,e);
-        case 5
-            fx = varargin{1};
-            n = varargin{2};
-            c = varargin{3};
-            e = varargin{4};
-            N = varargin{5};
-            [varargout{1},varargout{2},varargout{3},varargout{4}] = taylor4(fx,n,c,e,N);
-
             fx = varargin{1};  %guardo la funcion que recibo por consola de forma dinamica
             n = varargin{2};   %guardo el parametro n que recibo por consola de forma dinamica
             c = varargin{3};  %guardo el parametro c que recibo por consola de forma dinamica
             e = varargin{4};  %guardo el parametro e que recibo por consola de forma dinamica
             [varargout{1},varargout{2},varargout{3},varargout{4}] = taylor3(fx,n,c,e);  %envio de los parametros receeptados a la funcion taylor3 en este caso
-
         otherwise
             error('Ingrese los parametros correctos') %error producto de un ingreso erroneo de los parametros
     end
@@ -148,7 +133,6 @@ end
 %declaracion de la funcion para validar numeros reales
 function [isreal]=validateReal(num) 
 
-
     %validateReal: valida si un numero es real
     
     %valores de entrada
@@ -193,99 +177,34 @@ function [tx,Rtx,R,r] = taylor2(fx,n,c)
     fxs=str2sym(fx);%convertir la funcion a simbolica
     vs = symvar(fxs);%Encontrar la variable simbólica en fxs.
     for i=0:n
-
-        s(i+1)=subs(diff(fxs,vs,i),vs,c)/factorial(i)*(x-c)^i;
-
         %calculo para mostrar el polinomio de taylor
         s(i+1)=subs(diff(fxs,vs,i),vs,c)/factorial(i)*(x-c)^i
-
         tx(i+1)= poly2sym(fliplr(s(1:i+1)),vs);
-        
         
     end
     %calculo del error de truncamiento
     Rtx = (subs(diff(fxs,n),vs,e)*x^(n+1))/factorial(n+1);
-
-    R= limit(abs(tx(n))/abs(tx(n)),x,inf);
-    r=subs(abs(x-c),'c',c);
-    %R= limit(abs(s(n+1))/abs(s(n)),x,inf) ;
-    %disp(limit(abs(tx(n+1)/tx(n)),x,0))
-
-    R= 1;%limit(abs(tx(n+1)/tx(n)),x,inf) ;
-    r=0;
-    %R= 1%;limit(abs(s(i+1)/s(i+1)),x,inf) ;
-    disp(limit(abs(tx(n+1)/tx(n)),x,0))
-    %Imprimo los valores
-    print(fxs,n,tx(end),Rtx,c,R,r)
-    
-    %grafico
-    fplot(fxs,'LineWidth',3); grid on;
-    xlim([-(double(R)-c) double(R)+c])
-    ylim([-(double(R)-c) double(R)+c])
-    
-    for i = 2:n+1
-       hold on
-       fplot(tx(i));
-    end
-    
-    theta = (0:0.01:2.01*pi);
-    x1 = c + double(R) * cos(theta);
-    y1 = double(subs(fxs,vs,c))+ double(R) * sin(theta);
-    
-    plot(c,subs(fxs,vs,c),'ro','MarkerFaceColor','r');
-    plot(x1,y1,'-g','LineWidth',1)
-
-end
-
-function [tx,Rtx,R,r] = taylor3(fx,n,c,e)
-
-    syms  x 
-    fxs=str2sym(fx);%convertir la funcion a simbolica
-    vs = symvar(fxs);%Encontrar la variable simbólica en fxs.
-    for i=0:n
-        s(i+1)=subs(diff(fxs,vs,i),vs,c)/factorial(i)*(x-c)^i;
-        tx(i+1)= poly2sym(fliplr(s(1:i+1)),vs);
-        
-    end
-    
-  
-    Rtx = (subs(diff(fxs,n),vs,e)*x^(n+1))/factorial(n+1);
-
     %calculo del radio de convergencia
-
     R= limit(abs(tx(n+1)/tx(n)),x,inf) ;
     r=0;
     R= limit(abs(s(i+1)/s(i+1)),x,inf) ;
     disp(limit(abs(tx(n+1)/tx(n)),x,0))
-
     %Imprimo los valores
     print(fxs,n,tx(end),Rtx,c,R,r)
     
     %grafico
     fplot(fxs,'LineWidth',3); grid on;
-
-    
-    xlim([(double(R)+2) double(R)+1])
-    ylim([(double(R)+2) double(R)+1])
-    
-
     %establecer limites en x,y
     xlim([-(double(R)+c/2) double(R)+c*2])
     ylim([-(double(R)+c/2) double(R)+c*2])
     %ciclo repetitivo para la impresion de las funciones en una sola
     %interfaz
-
     for i = 2:n+1
        hold on
        fplot(tx(i));
     end
-
-    
-    theta = (0:0.001:2.01*pi);
-
     %grafico de circulo de convergencia
     theta = (0:0.01:2.01*pi);
-
     x1 = c + double(R) * cos(theta);
     y1 = double(subs(fxs,vs,c))+ double(R) * sin(theta);
     
@@ -294,67 +213,41 @@ function [tx,Rtx,R,r] = taylor3(fx,n,c,e)
 
 end
 
-
-
-function [tx,Rtx,R,r] = taylor4(fx,n,c,e)
-    %declaro la variable simbolica x
-
+%declaracion de la funcion taylor3
+function [tx,Rtx,R,r] = taylor3(fx,n,c,e)
+    %declaro la va
     syms  x 
     fxs=str2sym(fx);%convertir la funcion a simbolica
     vs = symvar(fxs);%Encontrar la variable simbólica en fxs.
     for i=0:n
-        %calculo para mostrar el polinomio de taylor
         s(i+1)=subs(diff(fxs,vs,i),vs,c)/factorial(i)*(x-c)^i;
         tx(i+1)= poly2sym(fliplr(s(1:i+1)),vs);
         
     end
-
-    Valor_aproximado=double(subs(fxs,vs,c)); 
-    for i = n:N
-        s(i+1)=subs(diff(fxs,vs,i),vs,c)/factorial(i)*(x-c)^i;
-        sigma(i+1)=sum(double(s));
-        Er(i+1)=abs(((Valor_aproximado-sigma(i+1))/Valor_aproximado))*100; 
-    end
-    
-    
-
-    %calculo del error de truncamiento
-
     Rtx = (subs(diff(fxs,n),vs,e)*x^(n+1))/factorial(n+1);
-
-     R= limit(abs(tx(n))/abs(tx(n)),x,inf);
-    r=subs(abs(x-c),'c',c);
+    R= limit(abs(tx(n+1)/tx(n)),x,inf) ;
+    r=0;
     R= limit(abs(s(i+1)/s(i+1)),x,inf) ;
     disp(limit(abs(tx(n+1)/tx(n)),x,0))
-
     %Imprimo los valores
     print(fxs,n,tx(end),Rtx,c,R,r)
     
     %grafico
     fplot(fxs,'LineWidth',3); grid on;
     
-
-    xlim([-(double(R)+c-2) double(R)+c*2])
-    ylim([-(double(R)+c-2) double(R)+c*2])
-    
-
     xlim([-(double(R)+c/2) double(R)+c*2])
     ylim([-(double(R)+c/2) double(R)+c*2])
-    %ciclo repetitivo para la impresion de las funciones en una sola
-    %interfaz   
-
+    
     for i = 2:n+1
        hold on
        fplot(tx(i));
     end
-     %grafico de circulo de convergencia
+    
     theta = (0:0.01:2.01*pi);
     x1 = c + double(R) * cos(theta);
     y1 = double(subs(fxs,vs,c))+ double(R) * sin(theta);
     
     plot(c,subs(fxs,vs,c),'ro','MarkerFaceColor','r');
     plot(x1,y1,'-g','LineWidth',1)
-
-%fin de la funcion 
 
 end
