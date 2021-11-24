@@ -200,11 +200,12 @@ function [tx,Rtx] = taylor1(fx,n)
     Rtx = (subs(diff(fxs,n),vs,e)*x^(n+1))/factorial(n+1);
      
     %Imprimo los valores 
-     disp('<strong>Impresion de datos.</strong>')
-     fprintf('<strong>f(x):</strong> %s\n',fxs)
-     fprintf('<strong>n:</strong> %d\n',n)
-     fprintf('<strong>t(x):</strong> %s\n',tx(end))
-     fprintf('<strong>Rt(x):</strong> %s\n',Rtx)
+     disp('Impresion de datos.')
+     disp(['this is [' 31 'orange]' 31 ' text'])
+     fprintf('[\b f(x):]\b %s\n',fxs)
+     fprintf(6,'n: %d\n',n)
+     fprintf('t(x): %s\n',tx(end))
+     fprintf('Rt(x): %s\n',Rtx)
     
     
 end
