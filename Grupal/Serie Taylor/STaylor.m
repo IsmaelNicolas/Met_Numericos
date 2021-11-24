@@ -152,10 +152,7 @@ function isenteroposi = validateIntPosi(num)
     
     %valores de salida
     %isreal=boolean
-<<<<<<< HEAD
 
-=======
->>>>>>> 0997be01321f482e423e84f6732a345d191bea6c
     
     isenteroposi=false;
     if num>0 && isnumeric(num) && mod(num,1)==0 
@@ -170,15 +167,16 @@ function [tx,Rtx,R,r] = taylor2(fx,n,c)
     fxs=str2sym(fx);%convertir la funcion a simbolica
     vs = symvar(fxs);%Encontrar la variable simbólica en fxs.
     for i=0:n
-        s(i+1)=subs(diff(fxs,vs,i),vs,c)/factorial(i)*(x-c)^i
+        s(i+1)=subs(diff(fxs,vs,i),vs,c)/factorial(i)*(x-c)^i;
         tx(i+1)= poly2sym(fliplr(s(1:i+1)),vs);
+        
         
     end
     Rtx = (subs(diff(fxs,n),vs,e)*x^(n+1))/factorial(n+1);
-    R= limit(abs(tx(n+1)/tx(n)),x,inf) ;
-    r=0;
-    R= limit(abs(s(i+1)/s(i+1)),x,inf) ;
-    disp(limit(abs(tx(n+1)/tx(n)),x,0))
+    R= limit(abs(tx(n))/abs(tx(n)),x,inf);
+    r=subs(abs(x-c),'c',c);
+    %R= limit(abs(s(n+1))/abs(s(n)),x,inf) ;
+    %disp(limit(abs(tx(n+1)/tx(n)),x,0))
     %Imprimo los valores
     print(fxs,n,tx(end),Rtx,c,R,r)
     
@@ -193,7 +191,7 @@ function [tx,Rtx,R,r] = taylor2(fx,n,c)
        fplot(tx(i));
     end
     
-    theta = (0:0.01:2.01*pi);
+    theta = (0:0.001:2.01*pi);
     x1 = c + double(R) * cos(theta);
     y1 = double(subs(fxs,vs,c))+ double(R) * sin(theta);
     
@@ -213,10 +211,10 @@ function [tx,Rtx,R,r] = taylor3(fx,n,c,e)
         
     end
     Rtx = (subs(diff(fxs,n),vs,e)*x^(n+1))/factorial(n+1);
-    R= limit(abs(tx(n+1)/tx(n)),x,inf) ;
-    r=0;
-    R= limit(abs(s(i+1)/s(i+1)),x,inf) ;
-    disp(limit(abs(tx(n+1)/tx(n)),x,0))
+     R= limit(abs(tx(n))/abs(tx(n)),x,inf);
+    r=subs(abs(x-c),'c',c);
+    %R= limit(abs(s(i+1)/s(i+1)),x,inf) ;
+    %disp(limit(abs(tx(n+1)/tx(n)),x,0))
     %Imprimo los valores
     print(fxs,n,tx(end),Rtx,c,R,r)
     
