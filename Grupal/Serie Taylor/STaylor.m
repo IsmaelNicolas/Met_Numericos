@@ -46,6 +46,13 @@ tic
             c = varargin{3};
             e = varargin{4};
             [varargout{1},varargout{2},varargout{3},varargout{4}] = taylor3(fx,n,c,e);
+        case 5
+            fx = varargin{1};
+            n = varargin{2};
+            c = varargin{3};
+            e = varargin{4};
+            N = varargin{5};
+            [varargout{1},varargout{2},varargout{3},varargout{4}] = taylor4(fx,n,c,e,N);
         otherwise
             error('Ingrese los parametros correctos')
     end
@@ -152,10 +159,7 @@ function isenteroposi = validateIntPosi(num)
     
     %valores de salida
     %isreal=boolean
-<<<<<<< HEAD
 
-=======
->>>>>>> 0997be01321f482e423e84f6732a345d191bea6c
     
     isenteroposi=false;
     if num>0 && isnumeric(num) && mod(num,1)==0 
@@ -170,23 +174,22 @@ function [tx,Rtx,R,r] = taylor2(fx,n,c)
     fxs=str2sym(fx);%convertir la funcion a simbolica
     vs = symvar(fxs);%Encontrar la variable simbólica en fxs.
     for i=0:n
-        s(i+1)=subs(diff(fxs,vs,i),vs,c)/factorial(i)*(x-c)^i
+        s(i+1)=subs(diff(fxs,vs,i),vs,c)/factorial(i)*(x-c)^i;
         tx(i+1)= poly2sym(fliplr(s(1:i+1)),vs);
         
     end
     Rtx = (subs(diff(fxs,n),vs,e)*x^(n+1))/factorial(n+1);
-    R= limit(abs(tx(n+1)/tx(n)),x,inf) ;
+    R= 1;%limit(abs(tx(n+1)/tx(n)),x,inf) ;
     r=0;
-    R= limit(abs(s(i+1)/s(i+1)),x,inf) ;
+    %R= 1%;limit(abs(s(i+1)/s(i+1)),x,inf) ;
     disp(limit(abs(tx(n+1)/tx(n)),x,0))
     %Imprimo los valores
     print(fxs,n,tx(end),Rtx,c,R,r)
     
     %grafico
     fplot(fxs,'LineWidth',3); grid on;
-    
-    xlim([-(double(R)+c/2) double(R)+c*2])
-    ylim([-(double(R)+c/2) double(R)+c*2])
+    xlim([-(double(R)-c) double(R)+c])
+    ylim([-(double(R)-c) double(R)+c])
     
     for i = 2:n+1
        hold on
@@ -212,6 +215,8 @@ function [tx,Rtx,R,r] = taylor3(fx,n,c,e)
         tx(i+1)= poly2sym(fliplr(s(1:i+1)),vs);
         
     end
+    
+  
     Rtx = (subs(diff(fxs,n),vs,e)*x^(n+1))/factorial(n+1);
     R= limit(abs(tx(n+1)/tx(n)),x,inf) ;
     r=0;
@@ -223,8 +228,8 @@ function [tx,Rtx,R,r] = taylor3(fx,n,c,e)
     %grafico
     fplot(fxs,'LineWidth',3); grid on;
     
-    xlim([-(double(R)+c/2) double(R)+c*2])
-    ylim([-(double(R)+c/2) double(R)+c*2])
+    xlim([(double(R)+2) double(R)+1])
+    ylim([(double(R)+2) double(R)+1])
     
     for i = 2:n+1
        hold on
@@ -237,5 +242,52 @@ function [tx,Rtx,R,r] = taylor3(fx,n,c,e)
     
     plot(c,subs(fxs,vs,c),'ro','MarkerFaceColor','r');
     plot(x1,y1,'-g','LineWidth',1)
+
+end
+
+function [tx,Rtx,R,r] = taylor4(fx,n,c,e,N)
+
+    syms  x 
+    fxs=str2sym(fx);%convertir la funcion a simbolica
+    vs = symvar(fxs);%Encontrar la variable simbólica en fxs.
+    for i=0:n
+        s(i+1)=subs(diff(fxs,vs,i),vs,c)/factorial(i)*(x-c)^i;
+        tx(i+1)= poly2sym(fliplr(s(1:i+1)),vs);
+        
+    end
+    Valor_aproximado=double(subs(fxs,vs,c)); 
+    for i = n:N
+        s(i+1)=subs(diff(fxs,vs,i),vs,c)/factorial(i)*(x-c)^i;
+        sigma(i+1)=sum(double(s));
+        Er(i+1)=abs(((Valor_aproximado-sigma(i+1))/Valor_aproximado))*100; 
+    end
+    
+    
+    Rtx = (subs(diff(fxs,n),vs,e)*x^(n+1))/factorial(n+1);
+    R= limit(abs(tx(n+1)/tx(n)),x,inf) ;
+    r=0;
+    R= limit(abs(s(i+1)/s(i+1)),x,inf) ;
+    disp(limit(abs(tx(n+1)/tx(n)),x,0))
+    %Imprimo los valores
+    print(fxs,n,tx(end),Rtx,c,R,r)
+    
+    %grafico
+    fplot(fxs,'LineWidth',3); grid on;
+    
+    xlim([-(double(R)+c-2) double(R)+c*2])
+    ylim([-(double(R)+c-2) double(R)+c*2])
+    
+    for i = 2:n+1
+       hold on
+       fplot(tx(i));
+    end
+    
+    theta = (0:0.01:2.01*pi);
+    x1 = c + double(R) * cos(theta);
+    y1 = double(subs(fxs,vs,c))+ double(R) * sin(theta);
+    
+    plot(c,subs(fxs,vs,c),'ro','MarkerFaceColor','r');
+    plot(x1,y1,'-g','LineWidth',1)
+    
 
 end
