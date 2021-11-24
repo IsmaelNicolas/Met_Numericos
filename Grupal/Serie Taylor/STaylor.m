@@ -204,20 +204,99 @@ function print(varargin)
 end
 
 function [tx,Rtx] = taylor1(fx,n)
-    syms c x e
-    fxs=str2sym(fx);%convertir la funcion a simbolica
-    vs = symvar(fxs);%Encontrar la variable simbólica en fxs.
-    for i=0:n
-        s(i+1)=subs(diff(fxs,i),vs,c)/factorial(i)*(x-c)^i;
-        tx(i+1)= poly2sym(fliplr(s(1:i+1)),vs);
+    
+    
+    if validatefx(fx) && validateIntPosi(n) 
+ 
+        syms c x e
+            fxs=str2sym(fx);%convertir la funcion a simbolica
+            vs = symvar(fxs);%Encontrar la variable simbólica en fxs.
+            for i=0:n
+                s(i+1)=subs(diff(fxs,i),vs,c)/factorial(i)*(x-c)^i;
+                tx(i+1)= poly2sym(fliplr(s(1:i+1)),vs);
+            end
+            Rtx = (subs(diff(fxs,n),vs,e)*x^(n+1))/factorial(n+1);
+     
+            %Imprimo los valores 
+                disp('<strong>Impresion de datos.</strong>')
+                fprintf('<strong>f(x):</strong> %s\n',fxs)
+                fprintf('<strong>n:</strong> %d\n',n)
+                fprintf('<strong>t(x):</strong> %s\n',tx(end))
+                fprintf('<strong>Rt(x):</strong> %s\n',Rtx)
+    else
+        error('Error al ingresar los datos')
+
     end
+<<<<<<< HEAD
     Rtx = (subs(diff(fxs,n),vs,e)*x^(n+1))/factorial(n+1);
     fplot(fxs,'LineWidth',2); grid on;
     
     %fplot(tx,'LineWidth',2);
     %Imprimo los valores
     print(fxs,n,tx(end),Rtx)
+=======
     
+end
+
+function [v_fx]= validatefx(fx)
+    %validatefx: valida si es fx es funcion trasendental
+    
+    %valores de entrada
+    %fx=funcion trasendental
+    
+    %valores de salida
+    %v_fx=boolean
+    
+    % defino las funciones tracedentales
+    tras = ["sin",'cos','tan','exp','csc','log','sinh','cosh','tanh',]; 
+    
+     v_fx = false;
+     
+     for i = 1:length(tras)
+        if strfind(fx,tras(1,i))
+            v_fx = true;
+            break;
+        else
+            v_fx = false;
+        end
+    end
+end
+
+function [isreal]=validateReal(num)
+
+    %validateReal: valida si un numero es real
+    
+    %valores de entrada
+    %num=numero cualquiera
+    
+    %valores de salida
+    %isreal=boolean
+    
+
+    if isreal(num)==true && isnumeric(num) 
+        isreal = true;
+    else 
+        isreal = false;
+    end
+
+end
+
+function isenteroposi = validateIntPosi(num)
+
+    %validateReal: valida si un numero es entero positivo
+    
+    %valores de entrada
+    %num=numero cualquiera
+    
+    %valores de salida
+    %isreal=boolean
+>>>>>>> 7b0406a04827edc050a110bfdf39af0293c91d3d
+    
+    isenteroposi=false;
+    if num>0 && isnumeric(num) && mod(num,1)==0 
+        isenteroposi = true;
+    end
+
 end
 
 function [tx,Rtx,R,r] = taylor2(fx,n,c)
