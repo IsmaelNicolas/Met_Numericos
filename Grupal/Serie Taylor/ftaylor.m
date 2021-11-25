@@ -1,4 +1,4 @@
-function varargout = STaylor(varargin)
+function varargout = ftaylor(varargin)
 tic
 % Authors: 
 %   Andrade Mateo
@@ -274,8 +274,8 @@ function [tx,Rtx,R,r] = taylor4(fx,n,c,e,N)
     %grafico
     fplot(fxs,'LineWidth',3); grid on;
     
-    xlim([-(double(R)+c-2) double(R)+c*2])
-    ylim([-(double(R)+c-2) double(R)+c*2])
+%    xlim([-(double(R)+c-2) double(R)+c*2])
+%    ylim([-(double(R)+c-2) double(R)+c*2])
     
     for i = 2:n+1
        hold on

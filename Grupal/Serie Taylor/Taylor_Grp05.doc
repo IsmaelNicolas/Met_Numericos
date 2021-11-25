@@ -1,0 +1,159 @@
+disp('Grupo 5')
+Grupo 5
+disp('NRC:7543')
+NRC:7543
+date
+
+ans =
+
+    '23-Nov-2021'
+
+clock
+
+ans =
+
+   1.0e+03 *
+
+  Columns 1 through 5
+
+    2.0210    0.0110    0.0230    0.0230    0.0510
+
+  Column 6
+
+    0.0328
+
+clc
+clear
+clc
+disp('Funcion Taylor')
+Funcion Taylor
+[fx,Rx,R,r] = ftaylor('exp(cos(x))',2);
+<strong>Impresion de datos.</strong>
+<strong>f(x):</strong> exp(cos(x))
+<strong>n:</strong> 2
+<strong>t(x):</strong> exp(cos(c)) - x^2*((exp(cos(c))*cos(c))/2 - (exp(cos(c))*sin(c)^2)/2)*(c - x)^2 + x*exp(cos(c))*sin(c)*(c - x)
+<strong>Rt(x):</strong> -(x^3*(exp(cos(e))*cos(e) - exp(cos(e))*sin(e)^2))/6
+<strong>	 Impresion de datos.
+</strong><strong>f(x): </strong>exp(cos(x))
+ 
+<strong>n: </strong>     2
+
+<strong>t(x): </strong>exp(cos(c)) - x^2*((exp(cos(c))*cos(c))/2 - (exp(cos(c))*sin(c)^2)/2)*(c - x)^2 + x*exp(cos(c))*sin(c)*(c - x)
+ 
+<strong>Rt(x): </strong>-(x^3*(exp(cos(e))*cos(e) - exp(cos(e))*sin(e)^2))/6
+ 
+Elapsed time is 0.708588 seconds.
+{Output argument "varargout{3}" (and maybe others) not
+assigned during call to "ftaylor".
+} 
+disp('Aqui va la fig 1')
+Aqui va la fig 1
+[fx,Rx] = ftaylor('exp(cos(x))',2);
+<strong>Impresion de datos.</strong>
+<strong>f(x):</strong> exp(cos(x))
+<strong>n:</strong> 2
+<strong>t(x):</strong> exp(cos(c)) - x^2*((exp(cos(c))*cos(c))/2 - (exp(cos(c))*sin(c)^2)/2)*(c - x)^2 + x*exp(cos(c))*sin(c)*(c - x)
+<strong>Rt(x):</strong> -(x^3*(exp(cos(e))*cos(e) - exp(cos(e))*sin(e)^2))/6
+<strong>	 Impresion de datos.
+</strong><strong>f(x): </strong>exp(cos(x))
+ 
+<strong>n: </strong>     2
+
+<strong>t(x): </strong>exp(cos(c)) - x^2*((exp(cos(c))*cos(c))/2 - (exp(cos(c))*sin(c)^2)/2)*(c - x)^2 + x*exp(cos(c))*sin(c)*(c - x)
+ 
+<strong>Rt(x): </strong>-(x^3*(exp(cos(e))*cos(e) - exp(cos(e))*sin(e)^2))/6
+ 
+Elapsed time is 0.847435 seconds.
+[fx,Rx,R,r] = ftaylor('exp(cos(x))',2,6);
+1
+ 
+<strong>	 Impresion de datos.
+</strong><strong>f(x): </strong>exp(cos(x))
+ 
+<strong>n: </strong>     2
+
+<strong>t(x): </strong>exp(cos(6)) - x^2*(x - 6)^2*((cos(6)*exp(cos(6)))/2 - (exp(cos(6))*sin(6)^2)/2) - x*exp(cos(6))*sin(6)*(x - 6)
+ 
+<strong>Rt(x): </strong>-(x^3*(exp(cos(e))*cos(e) - exp(cos(e))*sin(e)^2))/6
+ 
+<strong>c: </strong>     6
+
+<strong>R: </strong>     1
+
+<strong>r: </strong>     0
+
+Elapsed time is 1.268188 seconds.
+disp('Aqui va la fig 2')
+Aqui va la fig 2
+[fx,Rx,R,r] = ftaylor('exp(cos(x))',2,8);
+1
+ 
+<strong>	 Impresion de datos.
+</strong><strong>f(x): </strong>exp(cos(x))
+ 
+<strong>n: </strong>     2
+
+<strong>t(x): </strong>exp(cos(8)) - x^2*(x - 8)^2*((cos(8)*exp(cos(8)))/2 - (exp(cos(8))*sin(8)^2)/2) - x*exp(cos(8))*sin(8)*(x - 8)
+ 
+<strong>Rt(x): </strong>-(x^3*(exp(cos(e))*cos(e) - exp(cos(e))*sin(e)^2))/6
+ 
+<strong>c: </strong>     8
+
+<strong>R: </strong>     1
+
+<strong>r: </strong>     0
+
+Elapsed time is 1.177980 seconds.
+disp('Aqui va la fig 3')
+Aqui va la fig 3
+[fx,Rx,R,r] = ftaylor('exp(cos(x))',2,8,2,3);
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('symengine')" style="font-weight:bold">symengine</a>
+Unable to convert expression into double array.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('sym/double', 'C:\Program Files\Polyspace\R2020a\toolbox\symbolic\symbolic\@sym\sym.m', 698)" style="font-weight:bold">sym/double</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\symbolic\symbolic\@sym\sym.m',698,0)">line 698</a>)
+        Xstr = mupadmex('symobj::double', S.s,
+        0);
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ftaylor>taylor4', 'C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Serie Taylor\ftaylor.m', 261)" style="font-weight:bold">ftaylor>taylor4</a> (<a href="matlab: opentoline('C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Serie Taylor\ftaylor.m',261,0)">line 261</a>)
+        sigma(i+1)=sum(double(s));
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('ftaylor', 'C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Serie Taylor\ftaylor.m', 55)" style="font-weight:bold">ftaylor</a> (<a href="matlab: opentoline('C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Serie Taylor\ftaylor.m',55,0)">line 55</a>)
+            [varargout{1},varargout{2},varargout{3},varargout{4}]
+            = taylor4(fx,n,c,e,N);
+} 
+[fx,Rx] = ftaylor('exp(cos(x))',2);
+<strong>Impresion de datos.</strong>
+<strong>f(x):</strong> exp(cos(x))
+<strong>n:</strong> 2
+<strong>t(x):</strong> exp(cos(c)) - x^2*((exp(cos(c))*cos(c))/2 - (exp(cos(c))*sin(c)^2)/2)*(c - x)^2 + x*exp(cos(c))*sin(c)*(c - x)
+<strong>Rt(x):</strong> -(x^3*(exp(cos(e))*cos(e) - exp(cos(e))*sin(e)^2))/6
+<strong>	 Impresion de datos.
+</strong><strong>f(x): </strong>exp(cos(x))
+ 
+<strong>n: </strong>     2
+
+<strong>t(x): </strong>exp(cos(c)) - x^2*((exp(cos(c))*cos(c))/2 - (exp(cos(c))*sin(c)^2)/2)*(c - x)^2 + x*exp(cos(c))*sin(c)*(c - x)
+ 
+<strong>Rt(x): </strong>-(x^3*(exp(cos(e))*cos(e) - exp(cos(e))*sin(e)^2))/6
+ 
+Elapsed time is 0.607654 seconds.
+[fx,Rx,R,r] = ftaylor('exp(cos(x))',2,8);
+1
+ 
+<strong>	 Impresion de datos.
+</strong><strong>f(x): </strong>exp(cos(x))
+ 
+<strong>n: </strong>     2
+
+<strong>t(x): </strong>exp(cos(8)) - x^2*(x - 8)^2*((cos(8)*exp(cos(8)))/2 - (exp(cos(8))*sin(8)^2)/2) - x*exp(cos(8))*sin(8)*(x - 8)
+ 
+<strong>Rt(x): </strong>-(x^3*(exp(cos(e))*cos(e) - exp(cos(e))*sin(e)^2))/6
+ 
+<strong>c: </strong>     8
+
+<strong>R: </strong>     1
+
+<strong>r: </strong>     0
+
+Elapsed time is 0.999772 seconds.
+diary off
