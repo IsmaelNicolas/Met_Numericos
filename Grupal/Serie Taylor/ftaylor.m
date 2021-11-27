@@ -1,13 +1,8 @@
 
-<<<<<<< HEAD
+
 
 function varargout = STaylor(varargin) %declaracion de la funcion principal STaylot
 
-=======
-function varargout = ftaylor(varargin)
-
-function varargout = STaylor(varargin) %declaracion de la funcion principal STaylot
->>>>>>> 784b022f02baf5cdfefff2d91e2eb3630f1f19a6
 tic
 % Authors: 
 %   Andrade Mateo
@@ -341,11 +336,7 @@ function [tx,Rtx,R,r] = taylor4(fx,n,c,e)
     
     %grafico
     fplot(fxs,'LineWidth',3); grid on;
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 784b022f02baf5cdfefff2d91e2eb3630f1f19a6
 %    xlim([-(double(R)+c-2) double(R)+c*2])
 %    ylim([-(double(R)+c-2) double(R)+c*2])
 
