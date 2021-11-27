@@ -33,7 +33,7 @@ function varargout = fsec(varargin)
             fx = varargin{1}; %ingreso de la funcion
             a = varargin{2};  %ingreso del intervalo de inicio
 	%condicional: si cumple con ser un valor numerico y entero
-
+>>>>>>> 69562f5ec802ed911563907da9f7a7ae8f22ea00
             if mod(varargin{3},1)==0 && isnumeric(varargin{3})
                 n = varargin{3};	%ingresamos la variable n
 	%Disponemos los argumentos de salida para la funcion fsec3 con los parametros ingresados
@@ -59,69 +59,24 @@ end	%fin de la funcion
 %declaracion de la funcion fsec1
 %param fx (funcion a estudiar)
 function [r] = fsec1(fx) 
-    syms x
-    fxs=str2sym(fx);%convertir la funcion a simbolica
-    try
-        r=solve(fxs,x,'Real',true);
-    catch e
-        [msgstr, msgid] = lastwarn;
-        switch msgid
-            case 'Warning: Unable to solve symbolically.'    
-        end
-        warning('No existe raices reales')
-    end
+    r = zeros(4); %creamos un arreglo de ceros para las raices de la funcion
+    disp(fx)      %imprime la funcion
 end	%fin de la funcion fsec1
 
 %declaracion de la funcion fsec2
 %param fx (funcion a estudiar)
 %param i (intervalo de entrada)
-function [r,z] = fsec2(fx,i)
-    k=1;
-    syms x
-    fxs=str2sym(fx);%convertir la funcion a simbolica
-    %r = zeros(size((solve(fxs)))); %creamos un arreglo de ceros para las raices de la funcion
-    %r(k)=double(solve(fxs,x,'Real',true));
-	arr = strsplit(i,',');
-    a = str2double(arr(1));
-    b = str2double(arr(2));
-    error(k)=abs(b-a);
-    e=10e-10;
-    fa = feval(inline(fx),a);
-    fb = feval(inline(fx),b);
-    r(k) = b - fb*((b-a)/(fb-fa));
-    
-    while error(k)>e 
-        k = k+1;
-        b = a;
-        a = r(k-1);
-        fa = feval(inline(fx),a);
-        fb = feval(inline(fx),b);
-        r(k) = b - fb*((b-a)/(fb-fa));
-        error(k) = abs(b-a);
-        disp(r(k))
-        disp(r(k-1))
-        disp('----------------')
-        if r(k)==r(k-1)
-            break;
-        end    
-    end
-    
-    z{1}=i;
-    fplot(fxs,'DisplayName',fx)
-    grid on;
-    hold on;
-    xlim([-3 15])
-    ylim([-1 5])
-    s = strcat('A(',num2str(round(a,6)),',',num2str(round(fa,3)),')');
-    plot([a,b],[fa,fb],'ko','markerfacecolor','r','DisplayName',s);
-    legend()
+function [r,z] = fsec2(fx,i) 
+	r = zeros(2);	%creamos un arreglo de ceros para las raices de la funcion
+    z{1} = i;
+    z{2} = r;
+    disp('z = { [a,b], r} ')
+    disp('r')		%imprime la letra 'r'
+    disp(z{1})		%imprime el valor de z{1}
+    disp('r')		%imprime la letra 'r'
+    disp(z{2})		%imprime el valor de z{1}
 end	%fin de la funcion fsec2
 
-
-%declaracion de la funcion fsec3
-%param fx (funcion a estudiar)
-%param i (intervalo de entrada)
-%param n (iteraciones para buscar el error)
 function [r,z,w] = fsec3(fx,i,n)
     syms  x 
     fxs = str2sym(fx);%convertir la funcion a simbolica
@@ -183,12 +138,12 @@ end
 %param fx (funcion a estudiar)
 %param i (intervalo de entrada)
 %param n (iteraciones para buscar el error)
-% function [r,z,w] = fsec3(fx,i,n) 
-% 	r = zeros(2);	%creamos un arreglo de ceros para las raices de la funcion
-%     z{1} = i;
-%     z{2} = r;
-%     w = [n,'ci','ec','ea','er','e(n)'];
-% end	%fin de la funcion
+function [r,z,w] = fsec3(fx,i,n) 
+	r = zeros(2);	%creamos un arreglo de ceros para las raices de la funcion
+    z{1} = i;
+    z{2} = r;
+    w = [n,'ci','ec','ea','er','e(n)'];
+end	%fin de la funcion
 
 
 %declaracion de la funcion fsec3
