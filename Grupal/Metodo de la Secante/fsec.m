@@ -9,14 +9,7 @@ function varargout = fsec(varargin)
             disp(1);
             fx = varargin{1};
             [varargout{1}] = fsec1(fx);
-        case 2
-            disp(2);
-            fx = varargin{1};
-            a = varargin{2};
-
-            fx = varargin{1}; %ingreso de la funcion
-            [varargout{1}] = fsec1(fx); %Disponemos un argumento de salida para la funcion fsec1
-	
+        	
 	%caso2:Entrada de una funcion y de un intervalo
         case 2
             fx = varargin{1}; %ingreso de la funcion
@@ -124,6 +117,7 @@ end	%fin de la funcion fsec2
 %param n (iteraciones para buscar el error)
 function [r,z,w] = fsec3(fx,i,n)
     syms  x 
+    
     fxs = str2sym(fx);%convertir la funcion a simbolica
     vs = symvar(fxs);%Encontrar la variable simbólica en fxs.
     %plot_fun(fxs,'k-','LineWidth',2)
@@ -134,26 +128,36 @@ function [r,z,w] = fsec3(fx,i,n)
     %set(gcf,'Position',[551,86,560,420],'Units','pixels');
     a = i(1);
     b = i(2);
+    ai(1)= a;
+    bi(1)= b;
+    fa(1) = feval(inline(fx),a);
+    fb(1) = feval(inline(fx),b);
     
-    fa = feval(inline(fx),a);
-    fb = feval(inline(fx),b);
-
+    
     r(1) = b - fb*((b-a)/(fb-fa));
     error(1) = abs(b-a);
     ea(1) = abs((b-a)/b)*100;
+    er(1) = feval(inline(fx),ai(1))- r(1);
+    
+    
     legend()
     for k = 2:1:n
         
         ylim([-1 5])
         xlim([-1 15])
         b = a;
+        bi(k)=a;
         a = r(k-1);
-        fa = feval(inline(fx),a);
-        fb = feval(inline(fx),b);
-        r(k) = b - fb*((b-a)/(fb-fa));
+        ai(k)=a;
+        fa(k) = feval(inline(fx),a);
+        fb(k) = feval(inline(fx),b);
+        r(k) = b - fb(k)*((b-a)/(fb(k)-fa(k)));
+        
         error(k) = abs(b-a);
         ea(k) = abs((b-a)/b)*100;
-        dfdx = (fb - fa)/(b - a);
+        er(k) = abs(feval(inline(fx),ai(k)))- abs(r(k));
+        
+        dfdx = (fb(k) - fa(k))/(b - a);
         dfunc = poly2sym([dfdx,(dfdx * -b) + fb],x);
         
         obj1 = plot(r(k),subs(fxs,vs,r(k)),'ko');    
@@ -162,10 +166,10 @@ function [r,z,w] = fsec3(fx,i,n)
         %pause(0.5);       
         delete(obj1); delete(obj2);%Borra el punto medio actual y su línea de apoyo  
         
-        s = strcat('A(',num2str(round(a,4)),',',num2str(round(fa,4)),'),B(',num2str(round(b,4)),',',num2str(round(fb,4)),')');
+        s = strcat('A(',num2str(round(a,4)),',',num2str(round(fa(k),4)),'),B(',num2str(round(b,4)),',',num2str(round(fb(k),4)),')');
         
         set(obj(1),'markerfacecolor','w');
-        obj = plot([a,b],[fa,fb],'ko','markerfacecolor','r','DisplayName',s); %Actualiza los límites
+        obj = plot([a,b],[fa(k),fb(k)],'ko','markerfacecolor','r','DisplayName',s); %Actualiza los límites
         %obj = plot(i,[subs(fxs,vs,i(1)),subs(fxs,vs,i(2))],'ko','MarkerFaceColor','r');
         %ylim(yLimits)
         %pause(0.1);
@@ -178,23 +182,22 @@ function [r,z,w] = fsec3(fx,i,n)
     z{1} = i;
     z{2} = r;
     w = {n,'ci',error,'ea',error(end),error(end-1)};
+
+    iter = 1:n;
+    
+    f = double(subs(diff(fxs,1),vs,r));
+    f1 = double(subs(diff(fxs,2),vs,r));
+    VarNames = ["Iteraccion","ai","bi","f(ai)","f(bi)","ci","f'(ci)","f''(ci)","ec","ea","er"];
+    T = table(iter.',ai.',bi.',fa.',fb.',r.',f.',f1.',error.',ea.',er.','VariableNames',VarNames);
+    disp(T)
+    
 end
-%declaracion de la funcion fsec3
-%param fx (funcion a estudiar)
-%param i (intervalo de entrada)
-%param n (iteraciones para buscar el error)
-% function [r,z,w] = fsec3(fx,i,n) 
-% 	r = zeros(2);	%creamos un arreglo de ceros para las raices de la funcion
-%     z{1} = i;
-%     z{2} = r;
-%     w = [n,'ci','ec','ea','er','e(n)'];
-% end	%fin de la funcion
 
 
-%declaracion de la funcion fsec3
+%declaracion de la funcion fsec4
 %param fx (funcion a estudiar)
 %param i (intervalo de entrada)
-%param n (error de la funcion secante)
+%param e (error de la funcion secante)
 function [r,z,w] = fsec4(fx,i,e)
 
 	syms  x 
@@ -208,9 +211,10 @@ function [r,z,w] = fsec4(fx,i,e)
     %set(gcf,'Position',[551,86,560,420],'Units','pixels');
     a = i(1);
     b = i(2);
-    
-    fa = feval(inline(fx),a);
-    fb = feval(inline(fx),b);
+    bi(1)=a;
+    ai(1)=a;
+    fa(1) = feval(inline(fx),a);
+    fb(1) = feval(inline(fx),b);
     k=1;
     r(k) = b - fb*((b-a)/(fb-fa));
     error(k) = abs(b-a);
@@ -221,14 +225,16 @@ function [r,z,w] = fsec4(fx,i,e)
         ylim([-1 5])
         xlim([-1 15])
         b = a;
+        bi(k) = a;
         a = r(k-1);
-        fa = feval(inline(fx),a);
-        fb = feval(inline(fx),b);
-        r(k) = b - fb*((b-a)/(fb-fa));
+        ai(k)=a;
+        fa(k) = feval(inline(fx),a);
+        fb(k) = feval(inline(fx),b);
+        r(k) = b - fb(k)*((b-a)/(fb(k)-fa(k)));
         error(k) = abs(b-a);
         ea(k) = abs((b-a)/b)*100;
-        dfdx = (fb - fa)/(b - a);
-        dfunc = poly2sym([dfdx,(dfdx * -b) + fb],x);
+        dfdx = (fb(k) - fa(k))/(b - a);
+        dfunc = poly2sym([dfdx,(dfdx * -b) + fb(k)],x);
         
         obj1 = plot(r(k),subs(fxs,vs,r(k)),'ko');    
         obj2 = fplot(dfunc,'b');
@@ -236,10 +242,10 @@ function [r,z,w] = fsec4(fx,i,e)
         %pause(0.5);       
         delete(obj1); delete(obj2);%Borra el punto medio actual y su línea de apoyo  
         
-        s = strcat('A(',num2str(round(a,6)),',',num2str(round(fa,3)),'),B(',num2str(round(b,6)),',',num2str(round(fb,3)),')');
+        s = strcat('A(',num2str(round(a,6)),',',num2str(round(fa(k),3)),'),B(',num2str(round(b,6)),',',num2str(round(fb(k),3)),')');
         
         set(obj(1),'markerfacecolor','w');
-        obj = plot([a,b],[fa,fb],'ko','markerfacecolor','r','DisplayName',s); %Actualiza los límites
+        obj = plot([a,b],[fa(k),fb(k)],'ko','markerfacecolor','r','DisplayName',s); %Actualiza los límites
         %obj = plot(i,[subs(fxs,vs,i(1)),subs(fxs,vs,i(2))],'ko','MarkerFaceColor','r');
         %ylim(yLimits)
         %pause(0.1);
@@ -252,6 +258,17 @@ function [r,z,w] = fsec4(fx,i,e)
     z{1} = i;
     z{2} = r;
     w = {k,'ci',error,'ea',error(end),error(end-1)};
+    
+    iter = 1:k;
+    f = double(subs(diff(fxs,1),vs,r));
+    f1 = double(subs(diff(fxs,2),vs,r));
+    
+    
+    
+    VarNames = ["Iteraccion","ai","bi","f(ai)","f(bi)","ci","f'(ci)","f''(ci)","ec","ea"];
+    T = table(iter.',ai.',bi.',fa.',fb.',r.',f.',f1.',error.',ea.','VariableNames',VarNames);
+    
+    disp(T)
 end
 
 % 	r = zeros(2);	%creamos un arreglo de ceros para las raices de la funcion
