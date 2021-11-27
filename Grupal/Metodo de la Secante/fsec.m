@@ -6,23 +6,10 @@ function varargout = fsec(varargin)
 	switch nargin
 	%caso1:Entrada de una funcion
         case 1
-<<<<<<< HEAD
             disp(1); %imprimir el 1
             fx = varargin{1};   %ingreso de la funcion
             [varargout{1}] = fsec1(fx); %Disponemos argumento de salida a fsec1
-        case 2
-            disp(2);    %imprimir el 1
-            fx = varargin{1};   %ingreso de la funcion
-            a = varargin{2};    %ingreso del intervalo de inicio
-
-            fx = varargin{1}; %ingreso de la funcion
-            [varargout{1}] = fsec1(fx); %Disponemos un argumento de salida para la funcion fsec1
-=======
-            disp(1);
-            fx = varargin{1};
-            [varargout{1}] = fsec1(fx);
->>>>>>> 31b29c453e82bc600c923995f0879c7c5ccc8712
-	
+            
 	%caso2:Entrada de una funcion y de un intervalo
         case 2
             fx = varargin{1}; %ingreso de la funcion
@@ -70,11 +57,8 @@ function [r] = fsec1(fx)
     fxs=str2sym(fx);%convertir la funcion a simbolica
     %excepciones para el ingreso de datos
     try
-<<<<<<< HEAD
-        r=solve(fxs,x,'Real',true); 
-=======
         r=double(solve(fxs,x,'Real',true));
->>>>>>> 31b29c453e82bc600c923995f0879c7c5ccc8712
+        disp(r)
     catch e
         [msgstr, msgid] = lastwarn;
         switch msgid
@@ -91,80 +75,42 @@ function [r,z] = fsec2(fx,i)
     k=1;    %asignamos el valor de 1 a k
     syms x  %declaracion de variable simbolica x
     fxs=str2sym(fx);%convertir la funcion a simbolica
-    %r = zeros(size((solve(fxs)))); %creamos un arreglo de ceros para las raices de la funcion
-<<<<<<< HEAD
-    %r(k)=double(solve(fxs,x,'Real',true));
-	arr = strsplit(i,','); %Declaramos arr y lo dividimos cone l delimitador ','
-    a = str2double(arr(1)); %Declaramos a y convertimos su valor a doble presicion
-    b = str2double(arr(2)); %Declaramos b y convertimos su valor a doble presicion
-    error(k)=abs(b-a); %Definimos el error k como el valor absoluto de b menos a
-    e=10e-10;   %Definimos el valor de e
-    fa = feval(inline(fx),a);   %Evaluamos funcion con a
-    fb = feval(inline(fx),b);   %Evaluamos funcion con b 
-    r(k) = b - fb*((b-a)/(fb-fa));  %formula para el calculo de la secante
-=======
     r=double(solve(fxs,x,'Real',true));
-	arr = strsplit(i,',');
-    a = str2double(arr(1));
-    b = str2double(arr(2));
-    error(k)=abs(b-a);
-    e=10e-10;
-    fa = feval(inline(fx),a);
-    fb = feval(inline(fx),b);
-    z(k) = b - fb*((b-a)/(fb-fa));
->>>>>>> 31b29c453e82bc600c923995f0879c7c5ccc8712
+	arr = strsplit(i,',');%Declaramos arr y lo dividimos cone l delimitador ','
+    a = str2double(arr(1));%Declaramos a y convertimos su valor a doble presicion
+    b = str2double(arr(2));%Declaramos b y convertimos su valor a doble presicion
+    error(k)=abs(b-a);%Definimos el error k como el valor absoluto de b menos a  
+    e=10e-10;%Definimos el valor de e 
+    fa = feval(inline(fx),a);%Evaluamos funcion con a  
+    fb = feval(inline(fx),b);%Evaluamos funcion con b
+    z(k) = b - fb*((b-a)/(fb-fa));%formula para el calculo de la secante
     
     %mientras el error sea mayor al e por defecto 
     while error(k)>e 
-<<<<<<< HEAD
         k = k+1;    %aumentamos k en uno
         b = a;      %modificamos el valor de b
-        a = r(k-1); %modificamos el valor de a
+        a = z(k-1); %modificamos el valor de a
         fa = feval(inline(fx),a);   %evaluamos la funcion con a
         fb = feval(inline(fx),b);   %evaluamos la funcion con b
-        r(k) = b - fb*((b-a)/(fb-fa));  %formula para el calculo de la secante
+        z(k) = b - fb*((b-a)/(fb-fa));  %formula para el calculo de la secante
         error(k) = abs(b-a);    %Definimos el error k como el valor absoluto de b menos a
-        disp(r(k))  %imprimimos la raiz
-        disp(r(k-1))    %imprimimos la raiz menos 1
+        disp(z(k))  %imprimimos la raiz
+        disp(z(k-1))    %imprimimos la raiz menos 1
         disp('----------------')
-        if r(k)==r(k-1) 
+        if z(k)==z(k-1) 
             break;
         end    
     end  %fin del bucle
     
-    z{1}=i;
-    fplot(fxs,'DisplayName',fx) %grafica de la funcion
-    grid on;    %Lineas de los ejes en la grafica
-    hold on;    
-    xlim([-3 15])   %Definimos el limite en x
-    ylim([-1 5])    %Definimos el limite en y
-    s = strcat('A(',num2str(round(a,6)),',',num2str(round(fa,3)),')'); %Concatenacion de la leyenda en la grafica
-    plot([a,b],[fa,fb],'ko','markerfacecolor','r','DisplayName',s); %Grafica de la funcion
-=======
-        k = k+1;
-        b = a;
-        a = z(k-1);
-        fa = feval(inline(fx),a);
-        fb = feval(inline(fx),b);
-        z(k) = b - fb*((b-a)/(fb-fa));
-        error(k) = abs(b-a);
-        disp(z(k))
-        disp(z(k-1))
-        disp('----------------')
-        if z(k)==z(k-1)
-            break;
-        end    
-    end
     %z{1}=i;
     fprintf('<strong>Raices reales :</strong> %d\n',r)
-    fplot(fxs,'DisplayName',fx)
-    grid on;
+    fplot(fxs,'DisplayName',fx)%grafica de la funcion
+    grid on;%Lineas de los ejes en la grafica
     hold on;
-    xlim([-3 15])
-    ylim([-1 5])
-    s = strcat('A(',num2str(round(a,6)),',',num2str(round(fa,3)),')');
-    plot([a,b],[fa,fb],'ko','markerfacecolor','r','DisplayName',s);
->>>>>>> 31b29c453e82bc600c923995f0879c7c5ccc8712
+    xlim([-3 15])%Definimos el limite en x
+    ylim([-1 5])%Definimos el limite en y
+    s = strcat('A(',num2str(round(a,6)),',',num2str(round(fa,3)),')'); %Concatenacion de la leyenda en la grafica
+    plot([a,b],[fa,fb],'ko','markerfacecolor','r','DisplayName',s);%Grafica de la funcion
     legend()
 end	%fin de la funcion fsec2
 
