@@ -33,7 +33,7 @@ function varargout = fsec(varargin)
             fx = varargin{1}; %ingreso de la funcion
             a = varargin{2};  %ingreso del intervalo de inicio
 	%condicional: si cumple con ser un valor numerico y entero
-
+>>>>>>> 69562f5ec802ed911563907da9f7a7ae8f22ea00
             if mod(varargin{3},1)==0 && isnumeric(varargin{3})
                 n = varargin{3};	%ingresamos la variable n
 	%Disponemos los argumentos de salida para la funcion fsec3 con los parametros ingresados
@@ -77,11 +77,6 @@ function [r,z] = fsec2(fx,i)
     disp(z{2})		%imprime el valor de z{1}
 end	%fin de la funcion fsec2
 
-
-%declaracion de la funcion fsec3
-%param fx (funcion a estudiar)
-%param i (intervalo de entrada)
-%param n (iteraciones para buscar el error)
 function [r,z,w] = fsec3(fx,i,n)
     syms  x 
     fxs = str2sym(fx);%convertir la funcion a simbolica
@@ -143,12 +138,12 @@ end
 %param fx (funcion a estudiar)
 %param i (intervalo de entrada)
 %param n (iteraciones para buscar el error)
-% function [r,z,w] = fsec3(fx,i,n) 
-% 	r = zeros(2);	%creamos un arreglo de ceros para las raices de la funcion
-%     z{1} = i;
-%     z{2} = r;
-%     w = [n,'ci','ec','ea','er','e(n)'];
-% end	%fin de la funcion
+function [r,z,w] = fsec3(fx,i,n) 
+	r = zeros(2);	%creamos un arreglo de ceros para las raices de la funcion
+    z{1} = i;
+    z{2} = r;
+    w = [n,'ci','ec','ea','er','e(n)'];
+end	%fin de la funcion
 
 
 %declaracion de la funcion fsec3
