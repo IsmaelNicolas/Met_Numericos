@@ -1,8 +1,7 @@
-<<<<<<< HEAD:Grupal/Serie Taylor/ftaylor.m
-function varargout = ftaylor(varargin)
-=======
+
+
 function varargout = STaylor(varargin) %declaracion de la funcion principal STaylot
->>>>>>> 0c004a3f53e0e1c118045a3de9c40e33b423dab5:Grupal/Serie Taylor/STaylor.m
+
 tic
 % Authors: 
 %   Andrade Mateo
@@ -336,15 +335,14 @@ function [tx,Rtx,R,r] = taylor4(fx,n,c,e)
     
     %grafico
     fplot(fxs,'LineWidth',3); grid on;
-    
-<<<<<<< HEAD:Grupal/Serie Taylor/ftaylor.m
+
 %    xlim([-(double(R)+c-2) double(R)+c*2])
 %    ylim([-(double(R)+c-2) double(R)+c*2])
-=======
+
 
     xlim([-(double(R)+c-2) double(R)+c*2])
     ylim([-(double(R)+c-2) double(R)+c*2])
->>>>>>> 0c004a3f53e0e1c118045a3de9c40e33b423dab5:Grupal/Serie Taylor/STaylor.m
+
     
 
     xlim([-(double(R)+c/2) double(R)+c*2])
