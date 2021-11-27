@@ -62,7 +62,7 @@ function [r] = fsec1(fx)
     syms x
     fxs=str2sym(fx);%convertir la funcion a simbolica
     try
-        r=solve(fxs,x,'Real',true);
+        r=double(solve(fxs,x,'Real',true));
     catch e
         [msgstr, msgid] = lastwarn;
         switch msgid
@@ -116,7 +116,6 @@ function [r,z] = fsec2(fx,i)
     plot([a,b],[fa,fb],'ko','markerfacecolor','r','DisplayName',s);
     legend()
 end	%fin de la funcion fsec2
-
 
 %declaracion de la funcion fsec3
 %param fx (funcion a estudiar)
