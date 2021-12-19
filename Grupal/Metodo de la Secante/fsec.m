@@ -1,6 +1,6 @@
 %declaracion de la funcion Principal fsec con varargin
 function varargout = fsec(varargin)
-
+%[r,z,w]=fsec('((log(3*x-2))^2)*(exp(1/x-3)-1)*(cos(x*pi/3))',[1,7],0.0001)
 	%determinamos los 4 modos de uso del programa dadas las diferentes 
 	%posibilidades de entrada de datos	
 	switch nargin
