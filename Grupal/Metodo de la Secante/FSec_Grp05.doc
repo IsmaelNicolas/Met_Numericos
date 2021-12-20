@@ -1,0 +1,75 @@
+disp('Grupo 5')
+Grupo 5
+disp('NRC:7543')
+NRC:7543
+date
+
+ans =
+
+    '26-Nov-2021'
+
+clock
+
+ans =
+
+   1.0e+03 *
+
+  Columns 1 through 5
+
+    2.0210    0.0110    0.0260    0.0230    0.0520
+
+  Column 6
+
+    0.0030
+
+clc
+clear
+clc
+[r] = fsec('(1+sin(x))*(exp(1/x))^2');
+     1
+
+     1
+
+disp('Aqui va la img 1')
+
+Aqui va la img 1
+[r,z,w] = fsec('(1+sin(x))*(exp(1/x))^2',[-10,11],12);
+    <strong>Iteraccion</strong>      <strong>ai</strong>        <strong>bi</strong>        <strong>f(ai)</strong>         <strong>f(bi)</strong>         <strong>ci</strong>        <strong>f'(ci)</strong>      <strong>f''(ci)</strong>        <strong>ec</strong>            <strong>ea</strong>    
+    <strong>__________</strong>    <strong>______</strong>    <strong>______</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>______</strong>    <strong>__________</strong>    <strong>_______</strong>    <strong>__________</strong>    <strong>__________</strong>
+
+         1           -10        11        1.2641    1.1746e-05        11      0.005542    1.1992             21        190.91
+         2            11       -10    1.2805e-05        1.2641        11     0.0057971    1.1992             21           210
+         3            11        11    1.4011e-05    1.2805e-05    10.998     0.0028334    1.1993     0.00021272     0.0019338
+         4        10.998        11    3.3467e-06    1.4011e-05    10.997     0.0019032    1.1994      0.0024713      0.022465
+         5        10.997    10.998      1.51e-06    3.3467e-06    10.997     0.0011385    1.1994     0.00077556     0.0070518
+         6        10.997    10.997    5.4032e-07      1.51e-06    10.996    0.00071236    1.1994     0.00063758     0.0057977
+         7        10.996    10.997    2.1154e-07    5.4032e-07    10.996    0.00043819    1.1995     0.00035527     0.0032308
+         8        10.996    10.996    8.0039e-08    2.1154e-07    10.996     0.0002713    1.1995     0.00022858     0.0020788
+         9        10.996    10.996    3.0683e-08    8.0039e-08    10.996    0.00016756    1.1995     0.00013913     0.0012653
+        10        10.996    10.996    1.1704e-08    3.0683e-08    10.996    0.00010358    1.1995     8.6492e-05    0.00078659
+        11        10.996    10.996    4.4727e-09    1.1704e-08    10.996    6.4013e-05    1.1995     5.3336e-05    0.00048506
+        12        10.996    10.996    1.7081e-09    4.4727e-09    10.996    3.9563e-05    1.1995     3.2991e-05    0.00030004
+
+
+
+[r,z,w] = fsec('(1+sin(x))*(exp(1/x))^2',[10.5,11],10e-2);
+    <strong>Iteraccion</strong>    <strong>ai</strong>     <strong>bi</strong>       <strong>f(ai)</strong>         <strong>f(bi)</strong>         <strong>ci</strong>       <strong>f'(ci)</strong>      <strong>f''(ci)</strong>        <strong>ec</strong>            <strong>ea</strong>    
+    <strong>__________</strong>    <strong>__</strong>    <strong>____</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>______</strong>    <strong>_________</strong>    <strong>_______</strong>    <strong>__________</strong>    <strong>__________</strong>
+
+        1          0       0       0.14555    1.1746e-05        11    0.0053564    1.1992            0.5        4.5455
+        2         11    10.5    1.1961e-05       0.14555        11    0.0054056    1.1992        0.50004        4.7623
+        3         11      11    1.2183e-05    1.1961e-05    10.998    0.0026905    1.1993     4.1098e-05    0.00037362
+
+
+
+[r,z,w] = fsec('(1+sin(x))*(exp(1/x))^2',[10.5,11],10e-3);
+    <strong>Iteraccion</strong>    <strong>ai</strong>     <strong>bi</strong>       <strong>f(ai)</strong>         <strong>f(bi)</strong>         <strong>ci</strong>       <strong>f'(ci)</strong>      <strong>f''(ci)</strong>        <strong>ec</strong>            <strong>ea</strong>    
+    <strong>__________</strong>    <strong>__</strong>    <strong>____</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>______</strong>    <strong>_________</strong>    <strong>_______</strong>    <strong>__________</strong>    <strong>__________</strong>
+
+        1          0       0       0.14555    1.1746e-05        11    0.0053564    1.1992            0.5        4.5455
+        2         11    10.5    1.1961e-05       0.14555        11    0.0054056    1.1992        0.50004        4.7623
+        3         11      11    1.2183e-05    1.1961e-05    10.998    0.0026905    1.1993     4.1098e-05    0.00037362
+
+diary off
+
+

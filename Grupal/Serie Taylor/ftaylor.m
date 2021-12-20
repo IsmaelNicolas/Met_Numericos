@@ -1,6 +1,3 @@
-
-
-
 function varargout = STaylor(varargin) %declaracion de la funcion principal STaylot
 
 tic

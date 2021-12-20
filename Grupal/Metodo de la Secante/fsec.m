@@ -1,21 +1,39 @@
 %declaracion de la funcion Principal fsec con varargin
 function varargout = fsec(varargin)
-
+%[r,z,w]=fsec('((log(3*x-2))^2)*(exp(1/x-3)-1)*(cos(x*pi/3))',[1,7],0.0001)
 	%determinamos los 4 modos de uso del programa dadas las diferentes 
 	%posibilidades de entrada de datos	
 	switch nargin
 	%caso1:Entrada de una funcion
         case 1
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> c29b7ae24f2caf8174610f39ecff463547309470
 
             disp(1);
             fx = varargin{1};
             [varargout{1}] = fsec1(fx);
         	
 
+<<<<<<< HEAD
             disp(1); %imprimir el 1
             fx = varargin{1};   %ingreso de la funcion
             [varargout{1}] = fsec1(fx); %Disponemos argumento de salida a fsec1
        	%caso2:Entrada de una funcion y de un intervalo
+=======
+            disp(1); %imprimir el 1
+            fx = varargin{1};   %ingreso de la funcion
+            [varargout{1}] = fsec1(fx); %Disponemos argumento de salida a fsec1
+       	%caso2:Entrada de una funcion y de un intervalo
+=======
+            disp(1); %imprimir el 1
+            fx = varargin{1};   %ingreso de la funcion
+            [varargout{1}] = fsec1(fx); %Disponemos argumento de salida a fsec1
+            
+	%caso2:Entrada de una funcion y de un intervalo
+>>>>>>> 004a37011a13ce4aee79c273f2f68dce2615b7ba
+>>>>>>> c29b7ae24f2caf8174610f39ecff463547309470
         case 2
             fx = varargin{1}; %ingreso de la funcion
             a = varargin{2};  %ingreso del intervalo de inicio
@@ -62,7 +80,19 @@ function [r] = fsec1(fx)
     fxs=str2sym(fx);%convertir la funcion a simbolica
     %excepciones para el ingreso de datos
     try
+<<<<<<< HEAD
+
+        r=solve(fxs,x,'Real',true); 
+
         r=double(solve(fxs,x,'Real',true));
+
+=======
+        r=double(solve(fxs,x,'Real',true));
+<<<<<<< HEAD
+=======
+        disp(r)
+>>>>>>> 004a37011a13ce4aee79c273f2f68dce2615b7ba
+>>>>>>> c29b7ae24f2caf8174610f39ecff463547309470
     catch e
         [msgstr, msgid] = lastwarn;
         switch msgid
@@ -79,6 +109,7 @@ function [r,z] = fsec2(fx,i)
     k=1;    %asignamos el valor de 1 a k
     syms x  %declaracion de variable simbolica x
     fxs=str2sym(fx);%convertir la funcion a simbolica
+<<<<<<< HEAD
     %r = zeros(size((solve(fxs)))); %creamos un arreglo de ceros para las raices de la funcion
 
     %r(k)=double(solve(fxs,x,'Real',true));
@@ -90,6 +121,20 @@ function [r,z] = fsec2(fx,i)
     %fa = feval(inline(fx),a);   %Evaluamos funcion con a
     %fb = feval(inline(fx),b);   %Evaluamos funcion con b 
     %r(k) = b - fb*((b-a)/(fb-fa));  %formula para el calculo de la secante
+
+=======
+<<<<<<< HEAD
+    %r = zeros(size((solve(fxs)))); %creamos un arreglo de ceros para las raices de la funcion
+
+    %r(k)=double(solve(fxs,x,'Real',true));
+	arr = strsplit(i,','); %Declaramos arr y lo dividimos cone l delimitador ','
+    a = str2double(arr(1)); %Declaramos a y convertimos su valor a doble presicion
+    b = str2double(arr(2)); %Declaramos b y convertimos su valor a doble presicion
+    error(k)=abs(b-a); %Definimos el error k como el valor absoluto de b menos a
+    e=10e-10;   %Definimos el valor de e
+    fa = feval(inline(fx),a);   %Evaluamos funcion con a
+    fb = feval(inline(fx),b);   %Evaluamos funcion con b 
+    r(k) = b - fb*((b-a)/(fb-fa));  %formula para el calculo de la secante
 
     r=double(solve(fxs,x,'Real',true));
 	arr = strsplit(i,',');
@@ -105,6 +150,26 @@ function [r,z] = fsec2(fx,i)
     %mientras el error sea mayor al e por defecto 
     while error(k)>e 
 
+=======
+>>>>>>> c29b7ae24f2caf8174610f39ecff463547309470
+    r=double(solve(fxs,x,'Real',true));
+	arr = strsplit(i,',');
+    a = str2double(arr(1));
+    b = str2double(arr(2));
+    error(k)=abs(b-a);
+    e=10e-10;
+    fa = feval(inline(fx),a);
+    fb = feval(inline(fx),b);
+    z(k) = b - fb*((b-a)/(fb-fa));
+
+    
+    %mientras el error sea mayor al e por defecto 
+    while error(k)>e 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 004a37011a13ce4aee79c273f2f68dce2615b7ba
+>>>>>>> c29b7ae24f2caf8174610f39ecff463547309470
         k = k+1;    %aumentamos k en uno
         b = a;      %modificamos el valor de b
         a = z(k-1); %modificamos el valor de a
@@ -120,6 +185,18 @@ function [r,z] = fsec2(fx,i)
         end    
     end  %fin del bucle
     
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    z=i;
+    fplot(fxs,'DisplayName',fx) %grafica de la funcion
+    grid on;    %Lineas de los ejes en la grafica
+    hold on;    
+    xlim([-3 15])   %Definimos el limite en x
+    ylim([-1 5])    %Definimos el limite en y
+    s = strcat('A(',num2str(round(a,6)),',',num2str(round(fa,3)),')'); %Concatenacion de la leyenda en la grafica
+    plot([a,b],[fa,fb],'ko','markerfacecolor','r','DisplayName',s); %Grafica de la funcion
+>>>>>>> c29b7ae24f2caf8174610f39ecff463547309470
 
 %         k = k+1;
 %         b = a;
@@ -135,15 +212,34 @@ function [r,z] = fsec2(fx,i)
 %             break;
 %         end    
     
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 004a37011a13ce4aee79c273f2f68dce2615b7ba
+>>>>>>> c29b7ae24f2caf8174610f39ecff463547309470
     %z{1}=i;
     fprintf('<strong>Raices reales :</strong> %d\n',r)
     fplot(fxs,'DisplayName',fx)
     grid on;
     hold on;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> c29b7ae24f2caf8174610f39ecff463547309470
     xlim([-3 15])
     ylim([-1 5])
     s = strcat('A(',num2str(round(a,6)),',',num2str(round(fa,3)),')');
     plot([a,b],[fa,fb],'ko','markerfacecolor','r','DisplayName',s);
+<<<<<<< HEAD
+=======
+
+=======
+    xlim([-3 15])%Definimos el limite en x
+    ylim([-1 5])%Definimos el limite en y
+    s = strcat('A(',num2str(round(a,6)),',',num2str(round(fa,3)),')'); %Concatenacion de la leyenda en la grafica
+    plot([a,b],[fa,fb],'ko','markerfacecolor','r','DisplayName',s);%Grafica de la funcion
+>>>>>>> 004a37011a13ce4aee79c273f2f68dce2615b7ba
+>>>>>>> c29b7ae24f2caf8174610f39ecff463547309470
     legend()
 end	%fin de la funcion fsec2
 
