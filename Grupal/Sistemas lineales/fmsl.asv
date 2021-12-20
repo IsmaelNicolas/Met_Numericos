@@ -107,7 +107,10 @@ end
         
         n = size(A,1); %Numero de ecuaciones
         
-        a = num2str(A); b = num2str(B);% c = [a T b]; ;
+        %t = ' | '; T = repmat(t,length(A(:,1)),1);
+        %%unión de los datos en una solo matriz
+        a = num2str(A); b = num2str(B);% c = [a T b]; 
+        %disp('Sistema original'); disp(c); disp(newline);
         
         for k = 1:n
             if A(k,k) ~= max(abs(A(:,k)))
@@ -123,6 +126,9 @@ end
             if A(k,k) ~= 1 %%si el elemento i,i de la diagonal es diferente de 1
                 B(k) = B(k)/A(k,k);
                 A(k,:) = A(k,:)./A(k,k);
+                %c = [num2str(A), T, num2str(B)]; %%unión de los datos en una solo matriz
+                %disp(['Paso ',num2str(j),': Normalizar la ecuación ',num2str(k)]); 
+                %disp(c); disp(newline);
                 j = j+1;
             end
     
@@ -131,6 +137,9 @@ end
                     factor = A(i,k)/A(k,k);
                     A(i,:) = A(i,:) - factor*A(k,:);
                     B(i) = B(i) - factor*B(k);
+                    %c = [num2str(A), T, num2str(B)]; %%unión de los datos en una solo matriz
+                    %disp(['Paso ',num2str(j)]); 
+                    %disp(c); disp(newline);
                     j = j+1;
                 end
             end
@@ -141,7 +150,7 @@ end
     xi = 1:n;
     xi = xi.';
     xi = strcat('x',num2str(xi));
-    s = rref([A,B]);
+    s = rref([A,B]) ;
     vt = s(:,n+1);
     Ea = abs(vt-x);
     Er = abs(vt-x)./vt;
@@ -171,6 +180,7 @@ end
     
     
     end %% Final funcion Gauss-Jordan
+
 
     function GaussSediel(A,B,n)
         disp(A)
