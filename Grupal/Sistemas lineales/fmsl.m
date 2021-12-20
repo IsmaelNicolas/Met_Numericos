@@ -61,7 +61,7 @@ switch nargin
                 fprintf('<strong>Gauss-Sediel</strong>');
                 GaussSediel(varargin{1},varargin{2},varargin{5})
             case 3
-                fprintf('<strong>Descomposicion LU</strong>');
+                fprintf('<strong>Descomposicion LU \n</strong>');
                 DescomposicionLu(varargin{1},varargin{2});
             case 4
                 fprintf('<strong>Matriz Inversa</strong>');
@@ -238,9 +238,56 @@ end
     end
     
     function DescomposicionLu(A,B)
-        disp(A)
-        disp(B)
-    end
+
+        if size(A,1) ~= size(A,2)
+            error('Se necesita que la matriz A sea cuadrada')
+        elseif size(B,2) ~= 1
+            error('B debe ser un vector columna');
+        elseif size(A,1) ~= size(B,1)
+            error('El número de filas de A no coincide con el de B. Sistema inconsistente');
+        end
+        
+        if prod(diag(A)) == 0
+            error('El determinante de la matriz A es cero, no se puede resolver');
+        end
+        
+        n = size(A,1); 
+        for k = 1:n
+            if A(k,k) ~= max(abs(A(:,k)))
+                [filapivote,~] = find(abs(A) == max(abs(A(:,k))));
+                A([k,filapivote(1)],:) = A([filapivote(1),k],:);
+                B([k,filapivote(1)]) = B([filapivote(1),k]);
+            end
+        end
+        
+        U = A; D = B; L = eye(n);
+        for k = 1:n - 1
+            for i = k + 1:n
+                factor = U(i,k)/U(k,k);
+                L(i,k) = factor;
+                U(i,:) = U(i,:) - factor*U(k,:);
+                D(i) = D(i) - factor*D(k);
+            end
+        end
+        
+        x(n) = D(n)/U(n,n);
+        for i = n - 1:-1:1
+            sum = D(i);
+            for j = i + 1:n
+                sum = sum - U(i,j)*x(j);
+            end
+            x(i) = sum/U(i,i);
+        end
+        x = x';
+        
+        disp('L')
+        disp(L)
+        disp('U')
+        disp(U)
+        disp('x')
+        disp(x)
+        
+    end %% Final funcion Descomposicion LU
     
     function MatrizInversa(A,B)
         disp(A)
