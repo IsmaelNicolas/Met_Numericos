@@ -89,16 +89,16 @@ end
         n=length(B);
         %matriz triangular
         for k=1:n-1 
-            [mayor,j]=max(abs(AB(k:n,k)));
+            [~,j]=max(abs(AB(k:n,k)));
             fila=j+k-1;
             if fila~=k
                 AB([k,fila],:)=AB([fila,k],:);%intercambio de filas
             end
-        for i=k+1:n
-            factor=AB(i,k)/AB(k,k);
-            AB(i,k:n+1)=AB(i,k:n+1)-factor*AB(k,k:n+1);          
+            for i=k+1:n
+                factor=AB(i,k)/AB(k,k);
+                AB(i,k:n+1)=AB(i,k:n+1)-factor*AB(k,k:n+1);          
+            end
         end
-  end
     %incógnitas
     x=zeros(n,1);
     x(n)=AB(n,n+1)/AB(n,n);
@@ -114,8 +114,8 @@ end
     xi = strcat('x',num2str(xi));
     s = A\B ;
     vt = s(i:n);
-    Ea = abs(vt-x)
-    Er = abs(vt-x)./vt
+    Ea = abs(vt-x);
+    Er = abs(vt-x)./vt;
     
     
     
@@ -161,8 +161,7 @@ end
         
         n = size(A,1); %Numero de ecuaciones
         
-        a = num2str(A); b = num2str(B);% c = [a T b]; ;
-        
+
         for k = 1:n
             if A(k,k) ~= max(abs(A(:,k)))
             [filapivote,~] = find(abs(A) == max(abs(A(:,k))));
