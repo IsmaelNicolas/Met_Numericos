@@ -144,7 +144,10 @@ end
     end %fin de la funcion GAUSS
 
     function GaussJordan(A,B)
-
+        
+        A1 = A;
+        B1 =B;
+        
         %Validamos las matrices de entrada
         if size(A,1) ~= size(A,2) %La matriz no es cuadrada
             error('Se necesita que la matriz A sea cuadrada')
@@ -187,7 +190,7 @@ end
                     j = j+1;
                 end
             end
-            x = B;
+            xs = B;
         end
         
     varNames = {'xi','vt','ve','Ea','Er'};   
@@ -196,17 +199,17 @@ end
     xi = strcat('x',num2str(xi));
     s = rref([A,B]);
     vt = s(:,n+1);
-    Ea = abs(vt-x);
-    Er = abs(vt-x)./vt;
+    Ea = abs(vt-xs);
+    Er = abs(vt-xs)./vt;
     
     if varargin{4} == 3
         vt = rats(vt) ;
         vt =deblank(vt);
         vt =strtrim(vt);
         
-        x = rats(x);
-        x= deblank(x);
-        x = strtrim(x);
+        xs = rats(xs);
+        xs= deblank(xs);
+        xs = strtrim(xs);
         
         Ea = rats(Ea);
         Ea = deblank(Ea);
@@ -218,10 +221,37 @@ end
         
     end
     
-    T = table(xi,vt,x,Ea,Er,'VariableNames',varNames);
+    T = table(xi,vt,xs,Ea,Er,'VariableNames',varNames);
     fprintf('<strong>\t\t Tabla Gauss-Jordan\n</strong>')
     disp(T)
     
+    if (n ==2)
+        x = sym('x');
+        disp('Sistema 2x2')
+        hold on
+        grid on
+        legend()
+        for i = 1:n
+            y1 = strcat('(',num2str(B1(i,1)),'-',num2str(A1(i,1)),'*','x',')/',num2str(A1(i,2)));
+            y1 = str2sym(y1);
+            fplot(y1)            
+        end
+        %delete(o)
+    
+    elseif(n ==3)
+        disp('Sistema 3x3')
+        %grid on
+        for i = 1:n
+            %x = sym('x');
+            %y = sym('y');
+            z = strcat('(',num2str(B1(i,1)),'-',num2str(A1(i,1)),'.*','x','-',num2str(A1(i,2)),'.*y)/',num2str(A1(i,3)));
+            [x y] = meshgrid(-10:1:10);
+            z = eval(z);            
+            surf(x,y,z)       
+            hold on
+        end
+        legend()
+    end
     
     end %% Final funcion Gauss-Jordan
 
