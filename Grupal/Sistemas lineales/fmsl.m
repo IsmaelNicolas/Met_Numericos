@@ -167,9 +167,9 @@ end
 
         for k = 1:n
             if A(k,k) ~= max(abs(A(:,k)))
-            [filapivote,~] = find(abs(A) == max(abs(A(:,k))));
-            A([k,filapivote(1)],:) = A([filapivote(1),k],:);
-            B([k,filapivote(1)]) = B([filapivote(1),k]);
+                [filapivote,~] = find(abs(A) == max(abs(A(:,k))));
+                A([k,filapivote(1)],:) = A([filapivote(1),k],:);
+                B([k,filapivote(1)]) = B([filapivote(1),k]);
             end
         end
 
