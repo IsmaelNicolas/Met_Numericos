@@ -319,8 +319,36 @@ end
     end %% Final funcion Descomposicion LU
     
     function MatrizInversa(A,B)
-        disp(A)
-        disp(B)
+        dimA = size(A); %tamanio de A
+        %Validamos las matrices de entrada
+        if size(A,1) ~= size(A,2) %La matriz no es cuadrada
+            error('Se necesita que la matriz A sea cuadrada')      
+        elseif size(B,2) ~= 1 %El vector no es una columna       
+            error('B debe ser un vector columna');
+        elseif size(A,1) ~= size(B,1) % no coinciden los valores
+            error('El número de filas de A no coincide con el de B. Sistema inconsistente');
+        end
+        %Validamos si el sistema tiene solucion
+        if det(A) == 0
+            error('El determinante de la matriz A es cero, no se puede resolver');
+        end
+        C=[A eye(dimA(1))]; %unión de A y B en una sola matriz                    
+        for i=1:length(C(:,1)) %recorrer matriz extendida
+            if C(i,i)~=1 %si el elemento (i,i) de la diagonal es diferente de 1                  
+               C(i,:)= C(i,:)./C(i,i);  %entonces se convierte a 1  dividiendo toda la fila por dicho elemento
+            end
+            for n=1:length(C(:,1)) %recorre matrix extendida
+                if n~=i % si n en la columna i no está en la diagonal es decir si i no es igual a n
+                    C(n,:)=-C(n,i).*C(i,:)+C(n,:); %entonces se convierte a 0
+                end
+            end
+        end
+        dimC = size(C);
+        matrizInv = C(:,dimA(1)+1:dimC(2));
+        matrizInv
+        %disp('Solucion')
+        X = matrizInv*B
+
     end
 
 end
