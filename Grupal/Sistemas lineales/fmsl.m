@@ -11,9 +11,10 @@ function fmsl(varargin)
 %   0 - Gauss 
 %   1 - Gauss - Jordan 
 %   2 - Gauss - Sediel
-%   3 - Descomposicion LU 
-%   4 - Matriz Inversa
-%   5 - Todos los metodos 
+%   3 - Gauss - Seidel2
+%   4 - Descomposicion LU 
+%   5 - Matriz Inversa
+%   6 - Todos los metodos 
 %
 % f: Formato de decimales (Integer o String)
 %   0 - Short - 4 decimales
@@ -26,6 +27,9 @@ function fmsl(varargin)
 % Ec: Error de calculo para Gauss- Sediel(Real)
 
 switch nargin
+    case 3
+        fprintf('fmsl(A,B,m)');
+        
     case 4
        fprintf('fmsl(A,B,m,f)\n');
        
@@ -59,14 +63,17 @@ switch nargin
                 GaussJordan(varargin{1},varargin{2})
             case 2
                 fprintf('<strong>Gauss-Sediel</strong>');
-                GaussSediel(varargin{1},varargin{2},varargin{5})
+                Seidel(varargin{1},varargin{2})
             case 3
+                fprintf('<strong>Gauss-Sediel</strong>');
+                Seidel2(varargin{1},varargin{2})
+            case 4
                 fprintf('<strong>Descomposicion LU \n</strong>');
                 DescomposicionLu(varargin{1},varargin{2});
-            case 4
+            case 5
                 fprintf('<strong>Matriz Inversa</strong>');
                 MatrizInversa(varargin{1},varargin{2});
-            case 5
+            case 6
                 fprintf('<strong>Todos los metodos</strong>');
             otherwise
                 clc;
@@ -89,16 +96,16 @@ end
         n=length(B);
         %matriz triangular
         for k=1:n-1 
-            [~,j]=max(abs(AB(k:n,k)));
+            [mayor,j]=max(abs(AB(k:n,k)));
             fila=j+k-1;
             if fila~=k
                 AB([k,fila],:)=AB([fila,k],:);%intercambio de filas
             end
-            for i=k+1:n
-                factor=AB(i,k)/AB(k,k);
-                AB(i,k:n+1)=AB(i,k:n+1)-factor*AB(k,k:n+1);          
-            end
+        for i=k+1:n
+            factor=AB(i,k)/AB(k,k);
+            AB(i,k:n+1)=AB(i,k:n+1)-factor*AB(k,k:n+1);          
         end
+  end
     %incógnitas
     x=zeros(n,1);
     x(n)=AB(n,n+1)/AB(n,n);
@@ -114,8 +121,8 @@ end
     xi = strcat('x',num2str(xi));
     s = A\B ;
     vt = s(i:n);
-    Ea = abs(vt-x);
-    Er = abs(vt-x)./vt;
+    Ea = abs(vt-x)
+    Er = abs(vt-x)./vt
     
     
     
@@ -144,10 +151,7 @@ end
     end %fin de la funcion GAUSS
 
     function GaussJordan(A,B)
-        
-        A1 = A;
-        B1 =B;
-        
+
         %Validamos las matrices de entrada
         if size(A,1) ~= size(A,2) %La matriz no es cuadrada
             error('Se necesita que la matriz A sea cuadrada')
@@ -164,12 +168,13 @@ end
         
         n = size(A,1); %Numero de ecuaciones
         
-
+        a = num2str(A); b = num2str(B);% c = [a T b]; ;
+        
         for k = 1:n
             if A(k,k) ~= max(abs(A(:,k)))
-                [filapivote,~] = find(abs(A) == max(abs(A(:,k))));
-                A([k,filapivote(1)],:) = A([filapivote(1),k],:);
-                B([k,filapivote(1)]) = B([filapivote(1),k]);
+            [filapivote,~] = find(abs(A) == max(abs(A(:,k))));
+            A([k,filapivote(1)],:) = A([filapivote(1),k],:);
+            B([k,filapivote(1)]) = B([filapivote(1),k]);
             end
         end
 
@@ -190,7 +195,7 @@ end
                     j = j+1;
                 end
             end
-            xs = B;
+            x = B;
         end
         
     varNames = {'xi','vt','ve','Ea','Er'};   
@@ -199,17 +204,17 @@ end
     xi = strcat('x',num2str(xi));
     s = rref([A,B]);
     vt = s(:,n+1);
-    Ea = abs(vt-xs);
-    Er = abs(vt-xs)./vt;
+    Ea = abs(vt-x);
+    Er = abs(vt-x)./vt;
     
     if varargin{4} == 3
         vt = rats(vt) ;
         vt =deblank(vt);
         vt =strtrim(vt);
         
-        xs = rats(xs);
-        xs= deblank(xs);
-        xs = strtrim(xs);
+        x = rats(x);
+        x= deblank(x);
+        x = strtrim(x);
         
         Ea = rats(Ea);
         Ea = deblank(Ea);
@@ -221,50 +226,55 @@ end
         
     end
     
-    T = table(xi,vt,xs,Ea,Er,'VariableNames',varNames);
+    T = table(xi,vt,x,Ea,Er,'VariableNames',varNames);
     fprintf('<strong>\t\t Tabla Gauss-Jordan\n</strong>')
     disp(T)
     
-    if (n ==2)
-        x = sym('x');
-        disp('Sistema 2x2')
-        hold on
-        grid on
-        legend()
-        for i = 1:n
-            y1 = strcat('(',num2str(B1(i,1)),'-',num2str(A1(i,1)),'*','x',')/',num2str(A1(i,2)));
-            y1 = str2sym(y1);
-            fplot(y1)            
-        end
-        %delete(o)
-    
-    elseif(n ==3)
-        disp('Sistema 3x3')
-        %grid on
-        for i = 1:n
-            %x = sym('x');
-            %y = sym('y');
-            z = strcat('(',num2str(B1(i,1)),'-',num2str(A1(i,1)),'.*','x','-',num2str(A1(i,2)),'.*y)/',num2str(A1(i,3)));
-            [x y] = meshgrid(-10:1:10);
-            z = eval(z);            
-            surf(x,y,z)       
-            hold on
-        end
-        legend()
-    end
     
     end %% Final funcion Gauss-Jordan
 
-    function GaussSediel(A,B,n)
-        disp(A)
-        disp(B)
-        disp(n)
+    %Inicio Funcion Seidel
+    function Seidel(A,B)
+        m=input('\nIngrese el numero de iteraciones: ')
+        tol = 0.0001;
+        x=[1 1 1]';
+        n=length(x);
+        for k=1:m
+            w=x;
+            for i=1:n
+                s=A(i,1:i-1)*x(1:i-1)+A(i,i+1:n)*x(i+1:n);
+                x(i)=(B(i)-s)/A(i,i);
+            end
+            if norm(x-w,inf)<tol
+            return
+            end
+            fprintf('\nLa solucion en el sistema en la iteracion %4.0f\n',k)
+            for i=1:n
+                fprintf('       x(%1.0f)=%6.8f\n',i,x(i))
+            end
+        end
+    end %Fin funcion Seidel
+    function Seidel2(A,B)
+    tol = input('\nIngrese el numero de tolerancia: ')
+    m=1;
+    x=[1 1 1]';
+    n=length(x);
+    for k=1:m
+        w=x;
+        for i=1:n
+            s=A(i,1:i-1)*x(1:i-1)+A(i,i+1:n)*x(i+1:n);
+            x(i)=(B(i)-s)/A(i,i);
+        end
+        if norm(x-w,inf)<tol
+            return
+        end
+        fprintf('\nLa solucion en el sistema\n')
+        for i=1:n
+            fprintf('       x(%1.0f)=%6.8f\n',i,x(i))
+        end
     end
-    function GaussSediel1(A,B,Ec)
-        disp(A)
-        disp(B)
-        disp(Ec)
     end
+%Fin de funcions seidel 2
     
     function DescomposicionLu(A,B)
 
