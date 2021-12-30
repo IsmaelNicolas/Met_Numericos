@@ -242,8 +242,8 @@ end
             for i = 1:n
                 if i ~= k
                     factor = A(i,k)/A(k,k);%Calculo el factor para el pivote
-                    A(i,:) = A(i,:) - factor*A(k,:); %Opero toda la fila de
-                    B(i) = B(i) - factor*B(k);
+                    A(i,:) = A(i,:) - factor*A(k,:); %Opero toda la fila de A con el factor
+                    B(i) = B(i) - factor*B(k); %Opero la fila de B
                     j = j+1;
                 end
             end
