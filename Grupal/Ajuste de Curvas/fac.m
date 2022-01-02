@@ -80,5 +80,37 @@ end
     function exponencial(M)
         disp(M)
     end
+
+    function coeficiente_correlacion(M)
+        [m,n] = size(M);
+        xmed=0;
+        ymed=0;
+        xymed=0;
+        for i=1:m 
+            xmedi=xmed+M(i,1);
+            xmed=xmedi;
+            ymedi=ymed+M(i,2);
+            ymed=ymedi;
+    
+        end
+
+        xmedia=xmed/m;
+        ymedia=ymed/m;
+
+        for i=1:m
+    
+            Sx=xmed+(M(i,1)-xmedia);
+            xmed=Sx;
+    
+            Sy=ymed+(M(i,2)-ymedia);
+            ymed=Sy;
+    
+            Sxy=xymed+((M(i,1)-xmedia)*(M(i,2)-ymedia));
+            xymed=Sxy;
+    
+        end
+
+        p=Sxy/((Sx*Sy)^(1/2));
+    end
 end
 
