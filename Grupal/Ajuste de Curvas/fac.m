@@ -22,7 +22,7 @@ function fac(varargin)
 % <strong>Ea:</strong> Error absoluto
 % <strong>Er:</strong> Error relativo
 % <strong>y:</strong>  Valor de Ec evaluado en x
-
+M = varargin{1};
 switch nargin
     case 1
         disp('fac(M)')
@@ -32,12 +32,16 @@ switch nargin
         switch varargin{2}
             case 0
                 disp('Ajuste Lineal')
+                lineal(M)
             case 1
                 disp('Ajuste cuadratico')
+                cuadratico(M)
             case 2
                 disp('Ajuste cubico')
+                cubico(M)
             case 3
                 disp('Ajuste Exponencial')
+                exponencial(M)
             otherwise
                fprintf(2,'<strong>Ingresa un Ajuste valido\n</strong>'); 
         end
@@ -67,6 +71,9 @@ end
 
     function lineal(M)
         disp(M)
+        disp('Coef:')
+        coeficiente_correlacion(M)
+        plot_points(M)
     end
 
     function cuadratico(M)
@@ -82,7 +89,7 @@ end
     end
 
     function coeficiente_correlacion(M)
-        [m,n] = size(M);
+        [m,~] = size(M);
         xmed=0;
         ymed=0;
         xymed=0;
@@ -111,6 +118,18 @@ end
         end
 
         p=Sxy/((Sx*Sy)^(1/2));
+        disp(p)
     end
+    
+    function plot_points(M)
+       [n,~] = size(M);
+       
+       for i = 1:1:n
+           plot(M(i,1),M(i,2),'o','MarkerSize',5,'MarkerEdgeColor','b','MarkerFaceColor','b')
+           hold on
+       end
+       grid on
+    end
+
 end
 
