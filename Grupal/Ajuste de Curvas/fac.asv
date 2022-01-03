@@ -79,7 +79,6 @@ end
     function cuadratico(M)
         plot_points(M)
         [n,~] = size(M);
-
         for i = 1:n
             x(i) = M(i,1);
             y(i) = M(i,2);
@@ -95,7 +94,7 @@ end
             x(i) = M(i,1);
             y(i) = M(i,2);
         end
-        p = polyfit(x,y,3);
+        p = polyfit(x,y,2);
         disp(p)
     end
 
