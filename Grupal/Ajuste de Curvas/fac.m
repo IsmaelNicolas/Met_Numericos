@@ -129,9 +129,8 @@ end
         x = sym('x');       
         y = b0*exp(z(2)*x);
         
-        f = fit(x1,y,'exp1')
-        plot(f,x1,y)
-          
+        fplot(y);
+        
     end
 
     function coeficiente_correlacion(M)
