@@ -26,7 +26,8 @@ M = varargin{1};
 switch nargin
     case 1
         disp('fac(M)')
-        
+        coeficiente_correlacion(M)
+        plot_points(M)
     case 2
         disp('fac(M,m)')
         switch varargin{2}
@@ -97,14 +98,33 @@ end
         end
         p = polyfit(x,y,3);
         disp(p)
+        fplot(p)
     end
 
     function exponencial(M)
-        disp(M)
+        plot_points(M)
+        [n,~] = size(M);
+        for i = 1:n
+            x1(i) = M(i,1);
+            y1(i) = M(i,2);
+        end
+        Sx = sum(x1);
+        Sy = sum(y1);
+        Sx2 = sum(x1.^2);
+        Ly = log(y1);
+        SLy = sum(Ly);
+        xLy = sum(x1.*Ly);
+        A = [n Sx;Sx Sx2];
+        B = [SLy;xLy];
+        z = A\B;
+        b0 = exp(z(1));
+        x = sym('x');       
+        y = b0*exp(z(2)*x);
+        fplot(y)
     end
 
     function coeficiente_correlacion(M)
-        [m,n] = size(M);%Obtenemos el tamanio de la matriz
+        [m,~] = size(M);%Obtenemos el tamanio de la matriz
         xmed=0;%inicualizamos las variables
         ymed=0;
         xymed=0;
@@ -147,11 +167,11 @@ end
        [n,~] = size(M);
        
        for i = 1:1:n
-           plot(M(i,1),M(i,2),'o','MarkerSize',5,'MarkerEdgeColor','b','MarkerFaceColor','b')
+           plot(M(i,1),M(i,2),'o','MarkerSize',4)
            hold on
        end
        grid on
-       legend()
+       
     end
 
 end
