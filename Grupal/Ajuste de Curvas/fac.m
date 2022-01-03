@@ -75,6 +75,12 @@ end
         disp('Coef:')
         coeficiente_correlacion(M)
         plot_points(M)
+        for i = 1:n
+            x(i) = M(i,1);
+            y(i) = M(i,2);
+        end
+        p = polyfit(x,y,1);
+        disp(p)
     end
 
     function cuadratico(M)
