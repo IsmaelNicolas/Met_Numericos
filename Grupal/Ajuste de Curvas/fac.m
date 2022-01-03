@@ -128,7 +128,7 @@ end
         b0 = exp(z(1));
         x = sym('x');       
         y = b0*exp(z(2)*x);
-        
+        disp(y)
         fplot(y);
         
     end
