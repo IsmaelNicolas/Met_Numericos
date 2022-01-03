@@ -124,9 +124,9 @@ end
         Ly = log(y1);
         SLy = sum(Ly);
         xLy = sum(x1.*Ly);
-        A = [n Sx;Sx Sx2];
-        B = [SLy;xLy];
-        z = A\B;
+        A = [n Sx;Sx Sx2]
+        B = [SLy;xLy]
+        z = A\B
         b0 = exp(z(1));
         x = sym('x');       
         y = b0*exp(z(2)*x);
