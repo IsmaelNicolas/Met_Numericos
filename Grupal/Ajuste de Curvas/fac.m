@@ -97,12 +97,16 @@ end
         xmedia=xmed/m;
         ymedia=ymed/m;
 
+        xmed=0;
+        ymed=0;
+        xymed=0;
+
         for i=1:m
     
-            Sx=xmed+(M(i,1)-xmedia);
+            Sx=xmed+((M(i,1)-xmedia)^2);
             xmed=Sx;
     
-            Sy=ymed+(M(i,2)-ymedia);
+            Sy=ymed+((M(i,2)-ymedia))^2;
             ymed=Sy;
     
             Sxy=xymed+((M(i,1)-xmedia)*(M(i,2)-ymedia));
@@ -110,7 +114,7 @@ end
     
         end
 
-        p=Sxy/((Sx*Sy)^(1/2));
+        p=Sxy/((Sx^(1/2))*(Sy^(1/2)));
     end
 end
 
