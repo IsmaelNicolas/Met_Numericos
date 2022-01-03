@@ -96,9 +96,11 @@ end
             x(i) = M(i,1);
             y(i) = M(i,2);
         end
-        p = polyfit(x,y,3);
+        [p,S] = polyfit(x,y,3);
+        [y_fit,delta] = polyval(p,x,S);
+        plot(x,y_fit+2*delta,'m--',x,y_fit-2*delta,'m--')
+        plot(x,y_fit,'r-')
         disp(p)
-        fplot(p)
     end
 
     function exponencial(M)
@@ -120,7 +122,10 @@ end
         b0 = exp(z(1));
         x = sym('x');       
         y = b0*exp(z(2)*x);
-        fplot(y)
+        
+        f = fit(x1,y,'exp1')
+        plot(f,x1,y)
+          
     end
 
     function coeficiente_correlacion(M)

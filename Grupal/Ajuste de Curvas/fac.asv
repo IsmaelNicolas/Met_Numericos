@@ -96,7 +96,10 @@ end
             x(i) = M(i,1);
             y(i) = M(i,2);
         end
-        p = polyfit(x,y,3);
+        [p,S] = polyfit(x,y,3);
+        [y_fit,delta] = polyval(p,x,S);
+        plot(x,y_fit+2*delta,'m--',x,y_fit-2*delta,'m--')
+        plot(x,y_fit,'r-')
         disp(p)
     end
 
@@ -104,14 +107,24 @@ end
         plot_points(M)
         [n,~] = size(M);
         for i = 1:n
-            x(i) = M(i,1);
-            y(i) = M(i,2);
+            x1(i) = M(i,1);
+            y1(i) = M(i,2);
         end
-        Sx = sum(x);
-        Sy = sum(y);
-        Sx2 = sum(x.^2);
-          Ly = log(y);
-        disp(Ly)
+%         Sx = sum(x1);
+%         Sy = sum(y1);
+%         Sx2 = sum(x1.^2);
+%         Ly = log(y1);
+%         SLy = sum(Ly);
+%         xLy = sum(x1.*Ly);
+%         A = [n Sx;Sx Sx2];
+%         B = [SLy;xLy];
+%         z = A\B;
+%         b0 = exp(z(1));
+%         x = sym('x');       
+%         y = b0*exp(z(2)*x);
+%         fplot(y)
+
+          
     end
 
     function coeficiente_correlacion(M)
