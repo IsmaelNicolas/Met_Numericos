@@ -1,4 +1,5 @@
 function fac(varargin)
+tic
 % FAC Resuleve el ajuste de curvas
 % <strong>Modos de entrada</strong>
 % [X,Y,r] = FAC(M)
@@ -75,6 +76,12 @@ end
         disp('Coef:')
         coeficiente_correlacion(M)
         plot_points(M)
+        for i = 1:n
+            x(i) = M(i,1);
+            y(i) = M(i,2);
+        end
+        p = polyfit(x,y,1);
+        disp(p)
     end
 
     function cuadratico(M)
@@ -110,21 +117,21 @@ end
             x1(i) = M(i,1);
             y1(i) = M(i,2);
         end
-%         Sx = sum(x1);
-%         Sy = sum(y1);
-%         Sx2 = sum(x1.^2);
-%         Ly = log(y1);
-%         SLy = sum(Ly);
-%         xLy = sum(x1.*Ly);
-%         A = [n Sx;Sx Sx2];
-%         B = [SLy;xLy];
-%         z = A\B;
-%         b0 = exp(z(1));
-%         x = sym('x');       
-%         y = b0*exp(z(2)*x);
-%         fplot(y)
-
-          
+        Sx = sum(x1);
+        Sy = sum(y1);
+        Sx2 = sum(x1.^2);
+        Ly = log(y1);
+        SLy = sum(Ly);
+        xLy = sum(x1.*Ly);
+        A = [n Sx;Sx Sx2]
+        B = [SLy;xLy]
+        z = A\B
+        b0 = exp(z(1));
+        x = sym('x');       
+        y = b0*exp(z(2)*x);
+        disp(y)
+        fplot(y);
+        
     end
 
     function coeficiente_correlacion(M)
@@ -177,6 +184,6 @@ end
        grid on
        
     end
-
+toc
 end
 

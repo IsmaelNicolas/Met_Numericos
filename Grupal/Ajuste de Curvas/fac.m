@@ -1,4 +1,5 @@
 function fac(varargin)
+tic
 % FAC Resuleve el ajuste de curvas
 % <strong>Modos de entrada</strong>
 % [X,Y,r] = FAC(M)
@@ -183,6 +184,6 @@ end
        grid on
        
     end
-
+toc
 end
 
