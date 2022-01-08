@@ -79,34 +79,10 @@ end
     end
 
     function evaluar(A,X)
-        A = A';        
-        Pn = " ";
-        Rt = 0;
-        %x = sym('x');
-        
-        [~,m] = size(A); 
-        for j = 1:m+1
-            [n,m] = size(A); 
-            for i = 1:n-j
-                A(i,m+1)= ((A(i+1,m)-A(i,m))/(A(i+j,m-j)-A(i,m-j)));
-            end
-        end
-        
-        m = 1;
-        p = " ";
-        [n,~] = size(A); 
-        Pn = strcat(num2str(A(1,2)));
-        for i = 3:n+1
-            Pn = strcat(Pn,'+',num2str(A(1,i)));
-            for k = i-2:m
-                p = strcat(p,'*(x-',num2str(A(k,1)),')'); 
-            end
-            Pn = strcat(Pn,p);
-            m=m+1;
-        end
-        Pn = str2sym(Pn);
-        Pn = expand(Pn);
+        [Pn,Rt] = newton(A);
         Pn = subs(Pn,X);
+        plot(X,Pn,'r*')
+        legend('Puntos','Pn(x)','Pn(X)')
         varargout{1} = Pn;
         varargout{2} = Rt;
     end
