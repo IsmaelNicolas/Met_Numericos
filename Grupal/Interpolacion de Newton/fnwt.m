@@ -38,11 +38,8 @@ end
 
     function [Pn,Rt]=newton(A)
         A = A';        
-        Pn = " ";
         Rt = 0;
-        
-        %x = sym('x');
-        
+
         [~,m] = size(A); 
         for j = 1:m+1
             [n,m] = size(A); 
@@ -50,7 +47,6 @@ end
                 A(i,m+1)= ((A(i+1,m)-A(i,m))/(A(i+j,m-j)-A(i,m-j)));
             end
         end
-        
         m = 1;
         p = " ";
         [n,~] = size(A); 
@@ -65,6 +61,19 @@ end
         end
         Pn = str2sym(Pn);
         Pn = expand(Pn);
+        %Grafico los puntos
+        scatter(A(:,1),A(:,2)) 
+        grid on
+        hold on
+        fplot(Pn) %Grafico la funcion
+        
+        %Delimito los valores de la grafica
+        xlim([A(1,1) A(end,1)])
+        xlim auto
+        %ylim([A(1,2) A(end,2)])
+        disp(A)
+        disp(A(1,2))
+
         varargout{1} = Pn;
         varargout{2} = Rt;
     end
