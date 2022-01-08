@@ -97,7 +97,6 @@ end
     end
 
     function cubico(M)
-        
         plot_points(M)
         [n,~] = size(M);
         for i = 1:n
@@ -112,7 +111,6 @@ end
     end
 
     function exponencial(M)
-        coeficiente_correlacion(M);
         plot_points(M)
         [n,~] = size(M);
         for i = 1:n
