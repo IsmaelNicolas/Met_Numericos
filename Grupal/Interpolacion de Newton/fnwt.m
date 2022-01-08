@@ -77,11 +77,11 @@ end
         varargout{2} = Rt;
     end
 
-    function evaluar(A,x)
+    function evaluar(A,X)
         [Pn,Rt] = newton(A);
-        disp(x)
-        disp(Pn)
-        disp(Rt)
+        Pn = subs(Pn,X);
+        plot(X,Pn,'r*')
+        legend('Puntos','Pn(x)','Pn(X)')
         varargout{1} = Pn;
         varargout{2} = Rt;
     end
