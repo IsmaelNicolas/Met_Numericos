@@ -69,8 +69,7 @@ end
         
         %Delimito los valores de la grafica
         xlim([A(1,1) A(end,1)])
-        xlim auto
-        %ylim([A(1,2) A(end,2)])
+        ylim([A(1,2),A(end,2)])
         disp(A)
         disp(A(1,2))
 
