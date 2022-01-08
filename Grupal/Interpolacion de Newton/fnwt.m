@@ -59,20 +59,28 @@ end
             Pn = strcat(Pn,p);
             m=m+1;
         end
+        
         Pn = str2sym(Pn);
         Pn = expand(Pn);
+        
         %Grafico los puntos
-        scatter(A(:,1),A(:,2)) 
+        scatter(A(:,1),A(:,2),'filled') 
         grid on
         hold on
-        fplot(Pn) %Grafico la funcion
+        
+        title("Interpolacion de newton")
+        
+        %Grafico la funcion
+        fplot(Pn) 
         
         %Delimito los valores de la grafica
-        xlim([A(1,1) A(end,1)])
-        ylim([A(1,2),A(end,2)])
+        xlim([A(1,1)-1 A(end,1)+1])
+        ylim([min(A(:,2))-1 max(A(:,2))+1])
         disp(A)
         disp(A(1,2))
-
+        
+        
+        
         varargout{1} = Pn;
         varargout{2} = Rt;
     end
@@ -80,8 +88,8 @@ end
     function evaluar(A,X)
         [Pn,Rt] = newton(A);
         Pn = subs(Pn,X);
-        plot(X,Pn,'r*')
-        legend('Puntos','Pn(x)','Pn(X)')
+        plot(X,Pn,'kd')
+        legend('Puntos','Pn(x)',strcat('Pn(',num2str(X),')'))
         varargout{1} = Pn;
         varargout{2} = Rt;
     end
