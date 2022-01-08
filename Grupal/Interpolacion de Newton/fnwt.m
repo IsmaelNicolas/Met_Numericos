@@ -17,6 +17,7 @@ function varargout = fnwt(varargin)
 % manera  algebraica y en el [Pn,Rt] = FNWT(A,x)
 % como valor numerico
 tic
+
 A = varargin{1};
 
 if nargout == 0
@@ -26,28 +27,55 @@ end
 switch nargin
     
     case 1
-       [varargout{1},varargout{2}] = newton(A);
+        [varargout{1},varargout{2}]=newton(A);
     case 2
-        x = varargin{2};
-        [varargout{1},varargout{2}] = evaluar(A,x);
+        evaluar(A,varargin{2});
     otherwise
         fprintf(2,'<strong>Ingresa un Ajuste valido\n</strong>');
         
 end
 
 
-    function [Pn,Rt] = newton(A)
-        A = A';
-        disp(A)
-        Pn = 0;
-        Rt = 1;
+    function [Pn,Rt]=newton(A)
+        A = A';        
+        Pn = " ";
+        Rt = 0;
+        
+        %x = sym('x');
+        
+        [~,m] = size(A); 
+        for j = 1:m+1
+            [n,m] = size(A); 
+            for i = 1:n-j
+                A(i,m+1)= ((A(i+1,m)-A(i,m))/(A(i+j,m-j)-A(i,m-j)));
+            end
+        end
+        
+        m = 1;
+        p = " ";
+        [n,~] = size(A); 
+        Pn = strcat(num2str(A(1,2)));
+        for i = 3:n+1
+            Pn = strcat(Pn,'+',num2str(A(1,i)));
+            for k = i-2:m
+                p = strcat(p,'*(x-',num2str(A(k,1)),')'); 
+            end
+            Pn = strcat(Pn,p);
+            m=m+1;
+        end
+        Pn = str2sym(Pn);
+        Pn = expand(Pn);
+        varargout{1} = Pn;
+        varargout{2} = Rt;
     end
 
-    function [Pn,Rt] = evaluar(A,x)
+    function evaluar(A,x)
         [Pn,Rt] = newton(A);
         disp(x)
         disp(Pn)
         disp(Rt)
+        varargout{1} = Pn;
+        varargout{2} = Rt;
     end
     
 toc
