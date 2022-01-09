@@ -63,6 +63,7 @@ end
         Pn = str2sym(Pn);
         Pn = expand(Pn);
         
+        
         %Grafico los puntos
         scatter(A(:,1),A(:,2),'filled') 
         grid on
@@ -90,6 +91,38 @@ end
         Pn = subs(Pn,X);
         plot(X,Pn,'kd')
         legend('Puntos','Pn(x)',strcat('Pn(',num2str(X),')'))
+        disp(A)
+        [n,m]=size(A);
+        p = " ";
+        p1=0;
+        p2=0;
+        for i=1:m
+            if X<A(1,i)
+                p2=A(1,i);
+                break;
+            end
+        end
+        for i=1:m
+            if X>A(1,i)
+                p1=A(1,i);
+                break;
+            end
+        end
+        p11=0;
+        p22=0;
+        for i=1:m
+            if p1==A(1,i)
+                p11=A(2,i);
+            end
+        end
+        for i=1:m
+            if p2==A(1,i)
+                p22=A(2,i);
+            end
+        end
+        
+        f=((p22-p11)/(p2-p1))/factorial(m+1);
+        
         varargout{1} = Pn;
         varargout{2} = Rt;
     end
