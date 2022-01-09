@@ -107,7 +107,6 @@ end
         Pn = subs(Pn,X);
         plot(X,Pn,'kd')
         legend('Puntos','Pn(x)',strcat('Pn(',num2str(X),')'))
-        disp(A)
         [~,m]=size(A);
         p1=0;
         p2=0;
