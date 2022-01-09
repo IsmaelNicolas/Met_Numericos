@@ -92,7 +92,7 @@ end
         plot(X,Pn,'kd')
         legend('Puntos','Pn(x)',strcat('Pn(',num2str(X),')'))
         disp(A)
-        [n,m]=size(A);
+        [~,m]=size(A);
         p = " ";
         p1=0;
         p2=0;
