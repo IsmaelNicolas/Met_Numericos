@@ -19,7 +19,7 @@ function varargout = fnwt(varargin)
 tic
 
 A = varargin{1};
-p = "";
+
 if nargout == 0
     fprintf(2,'<strong>No tiene parametros de salida\n</strong>');
 end
@@ -69,7 +69,6 @@ end
         
         Rt = "(f^(n+1)(z)/factorial(n+1))"+p;
         %Rt = str2sym(Rt);
-
         %Grafico los puntos
         scatter(A(:,1),A(:,2),'filled') 
         grid on
@@ -79,7 +78,7 @@ end
         
         %Grafico la funcion
         fplot(Pn) 
-        legend('Puntos','Pn(x)')
+        
         %Delimito los valores de la grafica
         xlim([A(1,1)-1 A(end,1)+1])
         ylim([min(A(:,2))-1 max(A(:,2))+1])
@@ -107,43 +106,6 @@ end
         Pn = subs(Pn,X);
         plot(X,Pn,'kd')
         legend('Puntos','Pn(x)',strcat('Pn(',num2str(X),')'))
-        disp(A)
-        [~,m]=size(A);
-        p1=0;
-        p2=0;
-        for i=1:m
-            if X<A(1,i)
-                p2=A(1,i);
-                break;
-            end
-        end
-        for i=1:m
-            if X>A(1,i)
-                p1=A(1,i);
-                break;
-            end
-        end
-        p11=0;
-        p22=0;
-        for i=1:m
-            if p1==A(1,i)
-                p11=A(2,i);
-            end
-        end
-        for i=1:m
-            if p2==A(1,i)
-                p22=A(2,i);
-            end
-        end
-        f=((p22-p11)/(p2-p1))/factorial(m+1);
-        f=string(f);
-        Rt=f+p;
-        Rt = str2sym(Rt);
-        Rt = abs(subs(Rt,X))*100;
-        Rt=string(Rt);
-        Rt=Rt+'%'
-
-        
         varargout{1} = Pn;
         varargout{2} = Rt;
     end
