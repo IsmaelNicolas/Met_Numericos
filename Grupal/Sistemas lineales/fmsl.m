@@ -219,7 +219,9 @@ end
         
         n = size(A,1); %Numero de ecuaciones
         
-        a = num2str(A); b = num2str(B);% c = [a T b]; ;
+        %a = num2str(A); 
+        %b = num2str(B);
+        % c = [a T b]; ;
         
         %Ordeno la diagonal de mayor a menor de izquierda a derecha  
         for k = 1:n
@@ -245,11 +247,11 @@ end
                     A(i,:) = A(i,:) - factor*A(k,:); %Opero toda la fila de A con el factor
                     B(i) = B(i) - factor*B(k); %Opero la fila de B
                     j = j+1;
+                    disp(A)
                 end
             end
             x = B;
-        end
-        
+        end    
     varNames = {'xi','vt','ve','Ea','Er'};   
     xi = 1:n;
     xi = xi.';
