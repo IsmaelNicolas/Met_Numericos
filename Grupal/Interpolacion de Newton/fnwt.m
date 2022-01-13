@@ -82,8 +82,8 @@ end
         scatter(A(:,1),A(:,2),'filled')
         legend('Pn(x)','Puntos')
         %Delimito los valores de la grafica
-        xlim([A(1,1)-1 A(end,1)+1])
-        ylim([min(A(:,2))-1 max(A(:,2))+1])
+        %xlim([A(1,1)-1 A(end,1)+1])
+        %ylim([min(A(:,2))-1 max(A(:,2))+1])
         
         [n,m] = size(A);
         var{1} = 'x';

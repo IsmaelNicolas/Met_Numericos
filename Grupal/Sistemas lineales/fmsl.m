@@ -338,7 +338,7 @@ end
             error('El número de filas de A no coincide con el de B. Sistema inconsistente');
         end
         
-        if prod(diag(A)) == 0
+        if det(A) == 0
             error('El determinante de la matriz A es cero, no se puede resolver');
         end
         

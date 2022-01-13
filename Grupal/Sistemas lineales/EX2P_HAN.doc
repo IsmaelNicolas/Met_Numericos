@@ -1,0 +1,244 @@
+disp('Martin Han')
+Martin Han
+disp('NRC: 7543')
+NRC: 7543
+date
+
+ans =
+
+    '11-Jan-2022'
+
+clock
+
+ans =
+
+   1.0e+03 *
+
+    2.0220    0.0010    0.0110    0.0110    0.0030    0.0310
+
+disp('Ejercicio 1')
+Ejercicio 1
+A = [0.098 1.002 1;2.002 3.001 -1.001;3.002 4 0]
+
+A =
+
+    0.0980    1.0020    1.0000
+    2.0020    3.0010   -1.0010
+    3.0020    4.0000         0
+
+B = [2;2;1]
+
+B =
+
+     2
+     2
+     1
+
+help fmsl
+  <strong>fmsl</strong> resuelve un sistema de ecuaciones NxN
+ 
+  [AX=B,Ea,Er] = <strong>fmsl</strong>(A,B,m,f)
+  [AX=B,Ea,Er,Ec] = <strong>fmsl</strong>(A,B,m,f,n)
+  [AX=B,Ea,Er,n] = <strong>fmsl</strong>(A,B,m,f,Ec)
+ 
+  A: Una matriz NxN
+  B: Una matriz 1xN
+  m: El metodo para resolver el sistema (Integer)
+    0 - Gauss 
+    1 - Gauss - Jordan 
+    2 - Gauss - Sediel
+    3 - Descomposicion LU 
+    4 - Matriz Inversa
+    5 - Todos los metodos 
+ 
+  f: Formato de decimales (Integer o String)
+    0 - Short - 4 decimales
+    1 - Long - 15 decimales
+    2 - Bank - 2 decimales
+    3 - Rat - Fraccion
+    'eng' - Notacion Cientifica
+ 
+  n: Numero de iteraccion para Gauss- Sediel(Integer)
+  Ec: Error de calculo para Gauss- Sediel(Real)
+
+fmsl(A,B,2,0)
+fmsl(A,B,m,f)
+<strong>format short
+</strong><strong>Gauss-Sediel</strong>
+La solucion en el sistema
+       x(1)=-0.02040816
+       x(2)=1.01361451
+       x(3)=  -Inf
+fmsl(A,B,1,0)
+fmsl(A,B,m,f)
+<strong>format short
+</strong><strong>Gauss-Jordan
+</strong>    1.0000   10.2245   10.2041
+         0  -26.6939  -30.6327
+    2.0020    3.0010   -1.0010
+
+    1.0000   10.2245   10.2041
+         0  -26.6939  -30.6327
+         0  -17.4684  -21.4296
+
+    1.0000         0   -1.5290
+         0    1.0000    1.1476
+         0  -17.4684  -21.4296
+
+    1.0000         0   -1.5290
+         0    1.0000    1.1476
+         0         0   -1.3836
+
+    1.0000         0         0
+         0    1.0000    1.1476
+         0         0    1.0000
+
+     1     0     0
+     0     1     0
+     0     0     1
+
+<strong>		 Tabla Gauss-Jordan
+</strong>    <strong>xi</strong>       <strong>vt</strong>          <strong>ve</strong>       <strong>Ea</strong>    <strong>Er</strong>
+    <strong>__</strong>    <strong>________</strong>    <strong>________</strong>    <strong>__</strong>    <strong>__</strong>
+
+    x1     -3.3164     -3.3164    0     0 
+    x2      2.7389      2.7389    0     0 
+    x3    -0.41941    -0.41941    0     0 
+
+disp('Si x3=3')
+Si x3=3
+A = [0.098 1.002 3;2.002 3.001 -3.003;3.002 4 0]
+
+A =
+
+    0.0980    1.0020    3.0000
+    2.0020    3.0010   -3.0030
+    3.0020    4.0000         0
+
+fmsl(A,B,1,0)
+fmsl(A,B,m,f)
+<strong>format short
+</strong><strong>Gauss-Jordan
+</strong>    1.0000   10.2245   30.6122
+         0  -26.6939  -91.8980
+    2.0020    3.0010   -3.0030
+
+    1.0000   10.2245   30.6122
+         0  -26.6939  -91.8980
+         0  -17.4684  -64.2887
+
+    1.0000         0   -4.5871
+         0    1.0000    3.4427
+         0  -17.4684  -64.2887
+
+    1.0000         0   -4.5871
+         0    1.0000    3.4427
+         0         0   -4.1509
+
+    1.0000         0         0
+         0    1.0000    3.4427
+         0         0    1.0000
+
+     1     0     0
+     0     1     0
+     0     0     1
+
+<strong>		 Tabla Gauss-Jordan
+</strong>    <strong>xi</strong>      <strong>vt</strong>         <strong>ve</strong>       <strong>Ea</strong>    <strong>Er</strong>
+    <strong>__</strong>    <strong>_______</strong>    <strong>_______</strong>    <strong>__</strong>    <strong>__</strong>
+
+    x1    -3.3164    -3.3164    0     0 
+    x2     2.7389     2.7389    0     0 
+    x3    -0.1398    -0.1398    0     0 
+
+disp('Si x3=0')
+Si x3=0
+A = [0.098 1.002 0;2.002 3.001 0;3.002 4 0]
+
+A =
+
+    0.0980    1.0020         0
+    2.0020    3.0010         0
+    3.0020    4.0000         0
+
+fmsl(A,B,2,0)
+fmsl(A,B,m,f)
+<strong>format short
+</strong><strong>Gauss-Sediel</strong>
+La solucion en el sistema
+       x(1)=10.18367347
+       x(2)=-6.12719570
+       x(3)=  -Inf
+
+
+
+disp('Ejercicio 2')
+Ejercicio 2
+fnwt
+{Index exceeds the number of array elements (0).
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fnwt', 'C:\Users\Martin\Desktop\Martin\Universidad\Tercer Nivel\Metodos Numericos\Trabajos Grupales\Met_Numericos\Grupal\Interpolacion de Newton\fnwt.m', 21)" style="font-weight:bold">fnwt</a> (<a href="matlab: opentoline('C:\Users\Martin\Desktop\Martin\Universidad\Tercer Nivel\Metodos Numericos\Trabajos Grupales\Met_Numericos\Grupal\Interpolacion de Newton\fnwt.m',21,0)">line 21</a>)
+A = varargin{1};
+} 
+disp('Escogi puntos significativos')
+Escogi puntos significativos
+M=[10 9 8 7 6 5;5 3.8 4 4.6 2.6 3.5]
+
+M =
+
+   10.0000    9.0000    8.0000    7.0000    6.0000    5.0000
+    5.0000    3.8000    4.0000    4.6000    2.6000    3.5000
+
+[Pn,Rt] = fnwt(M)
+         <strong>x</strong>      <strong>y</strong>      <strong>Δ1</strong>      <strong>Δ2</strong>        <strong>Δ3</strong>          <strong>Δ4</strong>          <strong>Δ5</strong>   
+         <strong>__</strong>    <strong>___</strong>    <strong>____</strong>    <strong>____</strong>    <strong>________</strong>    <strong>_________</strong>    <strong>_______</strong>
+
+    <strong>0</strong>    10      5     1.2     0.7     0.16667    -0.083333    -0.0875
+    <strong>1</strong>     9    3.8    -0.2     0.2         0.5      0.35417          0
+    <strong>2</strong>     8      4    -0.6    -1.3    -0.91667            0          0
+    <strong>3</strong>     7    4.6       2    1.45           0            0          0
+    <strong>4</strong>     6    2.6    -0.9       0           0            0          0
+    <strong>5</strong>     5    3.5       0       0           0            0          0
+
+Elapsed time is 0.244674 seconds.
+ 
+Pn =
+ 
+- 0.0875*x^5 + 3.416667*x^4 - 52.562508*x^3 + 397.783387*x^2 - 1478.949998*x + 2161.99928
+ 
+
+Rt = 
+
+    "(f^(n+1)(z)/factorial(n+1)) *(x-10)*(x-9)*(x-8)*(x-7)*(x-6)*(x-5)"
+
+disp('Aqui va fig 1')
+Aqui va fig 1
+
+disp('Con x=11')
+Con x=11
+[Pn,Rt] = fnwt(M,11)
+         <strong>x</strong>      <strong>y</strong>      <strong>Δ1</strong>      <strong>Δ2</strong>        <strong>Δ3</strong>          <strong>Δ4</strong>          <strong>Δ5</strong>   
+         <strong>__</strong>    <strong>___</strong>    <strong>____</strong>    <strong>____</strong>    <strong>________</strong>    <strong>_________</strong>    <strong>_______</strong>
+
+    <strong>0</strong>    10      5     1.2     0.7     0.16667    -0.083333    -0.0875
+    <strong>1</strong>     9    3.8    -0.2     0.2         0.5      0.35417          0
+    <strong>2</strong>     8      4    -0.6    -1.3    -0.91667            0          0
+    <strong>3</strong>     7    4.6       2    1.45           0            0          0
+    <strong>4</strong>     6    2.6    -0.9       0           0            0          0
+    <strong>5</strong>     5    3.5       0       0           0            0          0
+
+Elapsed time is 0.508740 seconds.
+ 
+Pn =
+ 
+-3.899972
+ 
+
+Rt = 
+
+    "7.142832%"
+
+
+
+diary off
+
