@@ -55,16 +55,16 @@ switch nargin
         switch varargin{2}
             case 0
                 disp('Ajuste Lineal')
-                lineal(M)
+                lineal(M,varargin{3})
             case 1
                 disp('Ajuste cuadratico')
-                cuadratico(M)
+                cuadratico(M,varargin{3})
             case 2
                 disp('Ajuste cubico')
-                cubico(M)
+                cubico(M,varargin{3})
             case 3
                 disp('Ajuste Exponencial')
-                exponencial(M)
+                exponencial(M,varargin{3})
             otherwise
                fprintf(2,'<strong>Ingresa un Ajuste valido\n</strong>'); 
         end
@@ -73,7 +73,8 @@ switch nargin
         fprintf(2,'<strong>Ingresa un modo valido \n</strong>');
 end
 
-    function lineal(M)
+    function lineal(varargin)
+        M = varargin{1};
         disp(M)
         [n,~] = size(M);
         disp('Coef:')
@@ -94,10 +95,18 @@ end
         xlim([min(x) max(x)])
         ylim([min(y) max(y)])
         hold on
+        if nargin>1
+            X=varargin{2};
+            disp(subs(str2sym(f),X))
+            plot(X,subs(str2sym(f),X),'kd')
+            hold on
+            legend()
+        end
         %plot(x1,y1)
     end
 
-    function cuadratico(M)
+    function cuadratico(varargin)
+        M = varargin{1};
         plot_points(M)
         [n,~] = size(M);
 
@@ -116,10 +125,17 @@ end
         xlim([min(x) max(x)])
         ylim([min(y) max(y)])
         hold on
+        if nargin>1
+            X=varargin{2};
+            disp(subs(str2sym(f),X))
+            plot(X,subs(str2sym(f),X),'kd')
+            hold on
+            legend()
+        end
     end
 
-    function cubico(M)
-        
+    function cubico(varargin)
+        M = varargin{1};
         plot_points(M)
         [n,~] = size(M);
         for i = 1:n
@@ -137,9 +153,17 @@ end
         xlim([min(x) max(x)])
         ylim([min(y) max(y)])
         hold on
+        if nargin>1
+            X=varargin{2};
+            disp(subs(str2sym(f),X))
+            plot(X,subs(str2sym(f),X),'kd')
+            hold on
+            legend()
+        end
     end
 
-    function exponencial(M)
+    function exponencial(varargin)
+        M = varargin{1};
         coeficiente_correlacion(M);
         plot_points(M)
         [n,~] = size(M);
@@ -161,6 +185,14 @@ end
         y = b0*exp(z(2)*x);
         disp(y)
         fplot(y);
+        hold on
+        if nargin>1
+            X=varargin{2};
+            disp(subs(str2sym(f),X))
+            plot(X,subs(str2sym(f),X),'kd')
+            hold on
+            legend()
+        end
         
     end
 

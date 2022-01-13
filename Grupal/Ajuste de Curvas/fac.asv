@@ -25,6 +25,7 @@ function fac(varargin)
 % <strong>y:</strong>  Valor de Ec evaluado en x
 tic
 M = varargin{1};
+coeficiente_correlacion(M);
 switch nargin
     case 1
         disp('fac(M)')
@@ -86,18 +87,17 @@ end
         [~,n] = size(p);
         f = "";
         for i = 1:n
-            f = strcat(f,'+',num2str(p(i)),'*x^',num2str(n-i)); 
-        en
-        disp(f)
+            f = strcat(f,'+',num2str(p(i)),'*x.^',num2str(n-i)); 
+        end
+        disp(str2sym(f))
         fplot(f)
         xlim([min(x) max(x)])
         ylim([min(y) max(y)])
-        x1 = linspace(min(x),max(x),101);
         hold on
         %plot(x1,y1)
     end
 
-    function cuadratico(M)
+    function cuadratico(varargin)
         plot_points(M)
         [n,~] = size(M);
 
@@ -106,8 +106,16 @@ end
             y(i) = M(i,2);
         end
         p = polyfit(x,y,2);
-        disp(p)
-        
+        [~,n] = size(p);
+        f = "";
+        for i = 1:n
+            f = strcat(f,'+',num2str(p(i)),'*x.^',num2str(n-i)); 
+        end
+        disp(str2sym(f))
+        fplot(f)
+        xlim([min(x) max(x)])
+        ylim([min(y) max(y)])
+        hold on
     end
 
     function cubico(M)
@@ -118,11 +126,17 @@ end
             x(i) = M(i,1);
             y(i) = M(i,2);
         end
-        [p,S] = polyfit(x,y,3);
-        [y_fit,delta] = polyval(p,x,S);
-        plot(x,y_fit+2*delta,'m--',x,y_fit-2*delta,'m--')
-        plot(x,y_fit,'r-')
-        disp(p)
+        p = polyfit(x,y,3);
+        [~,n] = size(p);
+        f = "";
+        for i = 1:n
+            f = strcat(f,'+',num2str(p(i)),'*x.^',num2str(n-i)); 
+        end
+        disp(str2sym(f))
+        fplot(f)
+        xlim([min(x) max(x)])
+        ylim([min(y) max(y)])
+        hold on
     end
 
     function exponencial(M)
