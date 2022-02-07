@@ -1,4 +1,4 @@
-disp('Martin Han')
+﻿disp('Martin Han')
 Martin Han
 disp('NRC: 7543')
 NRC: 7543
@@ -18,6 +18,9 @@ ans =
 
 disp('Ejercicio 1')
 Ejercicio 1
+disp('Cuando X3=3')
+Cuando X3=0
+
 A = [0.098 1.002 1;2.002 3.001 -1.001;3.002 4 0]
 
 A =
@@ -26,217 +29,223 @@ A =
     2.0020    3.0010   -1.0010
     3.0020    4.0000         0
 
-B = [2;2;1]
+B = [2;2;8.229999]
 
 B =
 
-     2
-     2
-     1
+    2.0000
+    2.0000
+    8.2300
 
-help fmsl
-  <strong>fmsl</strong> resuelve un sistema de ecuaciones NxN
- 
-  [AX=B,Ea,Er] = <strong>fmsl</strong>(A,B,m,f)
-  [AX=B,Ea,Er,Ec] = <strong>fmsl</strong>(A,B,m,f,n)
-  [AX=B,Ea,Er,n] = <strong>fmsl</strong>(A,B,m,f,Ec)
- 
-  A: Una matriz NxN
-  B: Una matriz 1xN
-  m: El metodo para resolver el sistema (Integer)
-    0 - Gauss 
-    1 - Gauss - Jordan 
-    2 - Gauss - Sediel
-    3 - Descomposicion LU 
-    4 - Matriz Inversa
-    5 - Todos los metodos 
- 
-  f: Formato de decimales (Integer o String)
-    0 - Short - 4 decimales
-    1 - Long - 15 decimales
-    2 - Bank - 2 decimales
-    3 - Rat - Fraccion
-    'eng' - Notacion Cientifica
- 
-  n: Numero de iteraccion para Gauss- Sediel(Integer)
-  Ec: Error de calculo para Gauss- Sediel(Real)
-
-fmsl(A,B,2,0)
+disp('Calculo por GAUUS')
+Calculo por GAUUS
+fmsl(A,B,0,0)
 fmsl(A,B,m,f)
 <strong>format short
-</strong><strong>Gauss-Sediel</strong>
-La solucion en el sistema
-       x(1)=-0.02040816
-       x(2)=1.01361451
-       x(3)=  -Inf
-fmsl(A,B,1,0)
-fmsl(A,B,m,f)
-<strong>format short
-</strong><strong>Gauss-Jordan
-</strong>    1.0000   10.2245   10.2041
-         0  -26.6939  -30.6327
-    2.0020    3.0010   -1.0010
-
-    1.0000   10.2245   10.2041
-         0  -26.6939  -30.6327
-         0  -17.4684  -21.4296
-
-    1.0000         0   -1.5290
-         0    1.0000    1.1476
-         0  -17.4684  -21.4296
-
-    1.0000         0   -1.5290
-         0    1.0000    1.1476
-         0         0   -1.3836
-
-    1.0000         0         0
-         0    1.0000    1.1476
-         0         0    1.0000
-
-     1     0     0
-     0     1     0
-     0     0     1
-
-<strong>		 Tabla Gauss-Jordan
-</strong>    <strong>xi</strong>       <strong>vt</strong>          <strong>ve</strong>       <strong>Ea</strong>    <strong>Er</strong>
-    <strong>__</strong>    <strong>________</strong>    <strong>________</strong>    <strong>__</strong>    <strong>__</strong>
-
-    x1     -3.3164     -3.3164    0     0 
-    x2      2.7389      2.7389    0     0 
-    x3    -0.41941    -0.41941    0     0 
-
-disp('Si x3=3')
-Si x3=3
-A = [0.098 1.002 3;2.002 3.001 -3.003;3.002 4 0]
-
-A =
-
-    0.0980    1.0020    3.0000
-    2.0020    3.0010   -3.0030
-    3.0020    4.0000         0
-
-fmsl(A,B,1,0)
-fmsl(A,B,m,f)
-<strong>format short
-</strong><strong>Gauss-Jordan
-</strong>    1.0000   10.2245   30.6122
-         0  -26.6939  -91.8980
-    2.0020    3.0010   -3.0030
-
-    1.0000   10.2245   30.6122
-         0  -26.6939  -91.8980
-         0  -17.4684  -64.2887
-
-    1.0000         0   -4.5871
-         0    1.0000    3.4427
-         0  -17.4684  -64.2887
-
-    1.0000         0   -4.5871
-         0    1.0000    3.4427
-         0         0   -4.1509
-
-    1.0000         0         0
-         0    1.0000    3.4427
-         0         0    1.0000
-
-     1     0     0
-     0     1     0
-     0     0     1
-
-<strong>		 Tabla Gauss-Jordan
+</strong><strong>Gauss</strong><strong>			Tabla Gauss
 </strong>    <strong>xi</strong>      <strong>vt</strong>         <strong>ve</strong>       <strong>Ea</strong>    <strong>Er</strong>
     <strong>__</strong>    <strong>_______</strong>    <strong>_______</strong>    <strong>__</strong>    <strong>__</strong>
 
-    x1    -3.3164    -3.3164    0     0 
-    x2     2.7389     2.7389    0     0 
-    x3    -0.1398    -0.1398    0     0 
+    x1     4.6814     4.6814    0     0 
+    x2    -1.4559    -1.4559    0     0 
+    x3          3          3    0     0 
 
-disp('Si x3=0')
-Si x3=0
-A = [0.098 1.002 0;2.002 3.001 0;3.002 4 0]
+disp('Figura 1')
+Figura 1
+
+disp('Calculo por MATRIZ INVERSA')
+Calculo por MATRIZ INVERSA
+fmsl(A,B,4,0)
+fmsl(A,B,m,f)
+<strong>format short
+</strong><strong>Matriz Inversa</strong>
+matrizInv =
+
+   -1.1062   -1.1051    1.1062
+    0.8302    0.8294   -0.5802
+    0.2765   -0.7227    0.4730
+
+
+X =
+
+    4.6814
+   -1.4559
+    3.0000
+
+disp('Figura 2')
+Figura 2
+
+disp('Cuando X3=0')
+Cuando X3=0
+A
 
 A =
 
-    0.0980    1.0020         0
-    2.0020    3.0010         0
+    0.0980    1.0020    1.0000
+    2.0020    3.0010   -1.0010
     3.0020    4.0000         0
 
-fmsl(A,B,2,0)
+B = [2;2;1.8868]
+
+B =
+
+    2.0000
+    2.0000
+    1.8868
+
+disp('Calculo por DESCOMPOSICION LU')
+Calculo por DESCOMPOSICION LU
+fmsl(A,B,3,0)
 fmsl(A,B,m,f)
 <strong>format short
-</strong><strong>Gauss-Sediel</strong>
-La solucion en el sistema
-       x(1)=10.18367347
-       x(2)=-6.12719570
-       x(3)=  -Inf
+</strong><strong>Descomposicion LU 
+</strong>L
+    1.0000         0         0
+   30.6327    1.0000         0
+   20.4286    0.6544    1.0000
+
+U
+    0.0980    1.0020    1.0000
+         0  -26.6939  -30.6327
+         0         0   -1.3836
+
+x
+   -2.3354
+    2.2244
+    0.0000
+
+disp('Calculo por GAUSS SEIDEL')
+Calculo por GAUSS SEIDEL
+linsolve(A,B)
+
+ans =
+
+   -2.3354
+    2.2244
+    0.0000
 
 
 
 disp('Ejercicio 2')
 Ejercicio 2
-fnwt
-{Index exceeds the number of array elements (0).
-
-Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fnwt', 'C:\Users\Martin\Desktop\Martin\Universidad\Tercer Nivel\Metodos Numericos\Trabajos Grupales\Met_Numericos\Grupal\Interpolacion de Newton\fnwt.m', 21)" style="font-weight:bold">fnwt</a> (<a href="matlab: opentoline('C:\Users\Martin\Desktop\Martin\Universidad\Tercer Nivel\Metodos Numericos\Trabajos Grupales\Met_Numericos\Grupal\Interpolacion de Newton\fnwt.m',21,0)">line 21</a>)
-A = varargin{1};
-} 
-disp('Escogi puntos significativos')
-Escogi puntos significativos
-M=[10 9 8 7 6 5;5 3.8 4 4.6 2.6 3.5]
-
+disp('niño')
+niño
+x = [13 6 8 9 12 8 8 6 8]
+x =
+    13     6     8     9    12     8     8     6     8
+y = [2.1 2.6 3.8 3.8 4 4 4 4.2 4.9]
+y =
+  Columns 1 through 6
+    2.1000    2.6000    3.8000    3.8000    4.0000    4.0000
+  Columns 7 through 9
+    4.0000    4.2000    4.9000
+M = [x' y']
 M =
-
-   10.0000    9.0000    8.0000    7.0000    6.0000    5.0000
-    5.0000    3.8000    4.0000    4.6000    2.6000    3.5000
-
-[Pn,Rt] = fnwt(M)
-         <strong>x</strong>      <strong>y</strong>      <strong>Δ1</strong>      <strong>Δ2</strong>        <strong>Δ3</strong>          <strong>Δ4</strong>          <strong>Δ5</strong>   
-         <strong>__</strong>    <strong>___</strong>    <strong>____</strong>    <strong>____</strong>    <strong>________</strong>    <strong>_________</strong>    <strong>_______</strong>
-
-    <strong>0</strong>    10      5     1.2     0.7     0.16667    -0.083333    -0.0875
-    <strong>1</strong>     9    3.8    -0.2     0.2         0.5      0.35417          0
-    <strong>2</strong>     8      4    -0.6    -1.3    -0.91667            0          0
-    <strong>3</strong>     7    4.6       2    1.45           0            0          0
-    <strong>4</strong>     6    2.6    -0.9       0           0            0          0
-    <strong>5</strong>     5    3.5       0       0           0            0          0
-
-Elapsed time is 0.244674 seconds.
+   13.0000    2.1000
+    6.0000    2.6000
+    8.0000    3.8000
+    9.0000    3.8000
+   12.0000    4.0000
+    8.0000    4.0000
+    8.0000    4.0000
+    6.0000    4.2000
+    8.0000    4.9000
+help fac
+  <strong>fac</strong> Resuleve el ajuste de curvas
+  <strong>Modos de entrada</strong>
+  [X,Y,r] = <strong>fac</strong>(M)
+  [X,Y,r,Ec,Ea,Er] = <strong>fac</strong>(M,m)
+  [X,Y,r,Ec,Ea,Er,y] = <strong>fac</strong>(M,m,x)
+  
+  <strong>Valores de entrada</strong>
+  <strong>M:</strong> Matriz de pares ordenados [xi;yi]
+  <strong>m:</strong> Tipo de ajuste:
+    0 - Lineal
+    1 - Cuadratico
+    2 - Cubico
+    3 - Exponencial
+  <strong>x:</strong> Valor a comprovar dentro del ajuste ya efectuado
  
-Pn =
- 
-- 0.0875*x^5 + 3.416667*x^4 - 52.562508*x^3 + 397.783387*x^2 - 1478.949998*x + 2161.99928
- 
+  <strong>Valores de Salida</strong>
+  <strong>X:</strong> Lista de puntos en x
+  <strong>Y:</strong> Lista de puntos en y
+  <strong>r:</strong> Coeficiente de correlacion -1 < r < 1
+  <strong>Ec:</strong> Ecuacion nde regresion
+  <strong>Ea:</strong> Error absoluto
+  <strong>Er:</strong> Error relativo
+  <strong>y:</strong>  Valor de Ec evaluado en x
+fac(M,1)
+   -0.3423
+fac(M,m)
+Ajuste cuadratico
+- 0.10207*x^2 + 1.8242*x - 3.9104
+fac(M)
+   -0.3423
 
-Rt = 
+fac(M)
+   -0.3423
+Elapsed time is 0.106871 seconds.
+fac(M,1)
+   -0.3423
+fac(M,m)
+Ajuste cuadratico
+- 0.10207*x^2 + 1.8242*x - 3.9104
+xlabel('Edad')
+ylabel('Horas')
+title('Niño: Ajuste por minimos cuadraticos')
 
-    "(f^(n+1)(z)/factorial(n+1)) *(x-10)*(x-9)*(x-8)*(x-7)*(x-6)*(x-5)"
+disp('Niña')
+Niña
+x1 = [5 5 7 7 7 8 7 7 7 6 10]
+x1 =
+  Columns 1 through 10
+     5     5     7     7     7     8     7     7     7     6
+  Column 11
+    10
+y1 = [3 3.5 4.2 4.3 4.3 4.4 4.5 4.6 4.6 4.7 5]
+y1 =
+  Columns 1 through 6
+    3.0000    3.5000    4.2000    4.3000    4.3000    4.4000
+  Columns 7 through 11
+    4.5000    4.6000    4.6000    4.7000    5.0000
+M1 = [x1' y1']
+M1 =
+    5.0000    3.0000
+    5.0000    3.5000
+    7.0000    4.2000
+    7.0000    4.3000
+    7.0000    4.3000
+    8.0000    4.4000
+    7.0000    4.5000
+    7.0000    4.6000
+    7.0000    4.6000
+    6.0000    4.7000
+   10.0000    5.0000
+fac(M1)
+    0.7670
+fac(M)
+    0.7670
+Elapsed time is 0.108183 seconds.
 
-disp('Aqui va fig 1')
-Aqui va fig 1
+fac(M1,1)
+    0.7670
+fac(M,m)
+Ajuste cuadratico
+- 0.071735*x^2 + 1.3689*x - 1.6285
 
-disp('Con x=11')
-Con x=11
-[Pn,Rt] = fnwt(M,11)
-         <strong>x</strong>      <strong>y</strong>      <strong>Δ1</strong>      <strong>Δ2</strong>        <strong>Δ3</strong>          <strong>Δ4</strong>          <strong>Δ5</strong>   
-         <strong>__</strong>    <strong>___</strong>    <strong>____</strong>    <strong>____</strong>    <strong>________</strong>    <strong>_________</strong>    <strong>_______</strong>
+Elapsed time is 0.249538 seconds.
+fac(M1,1,11)
+    0.7670
+fac(M,m,x)
+Ajuste cuadratico
+- 0.071735*x^2 + 1.3689*x - 1.6285
+4.749465
+Elapsed time is 0.476287 seconds.
+xlabel('Edad')
+ylabel('Horas')
+title('Niña: Ajuste por minimos cuadraticos')
 
-    <strong>0</strong>    10      5     1.2     0.7     0.16667    -0.083333    -0.0875
-    <strong>1</strong>     9    3.8    -0.2     0.2         0.5      0.35417          0
-    <strong>2</strong>     8      4    -0.6    -1.3    -0.91667            0          0
-    <strong>3</strong>     7    4.6       2    1.45           0            0          0
-    <strong>4</strong>     6    2.6    -0.9       0           0            0          0
-    <strong>5</strong>     5    3.5       0       0           0            0          0
 
-Elapsed time is 0.508740 seconds.
- 
-Pn =
- 
--3.899972
- 
-
-Rt = 
-
-    "7.142832%"
 
 
 

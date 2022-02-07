@@ -1,0 +1,112 @@
+disp('EJERCICIO 1')
+EJERCICIO 1
+disp('Cuando X3=3')
+Cuando X3=0
+
+A = [0.098 1.002 1;2.002 3.001 -1.001;3.002 4 0]
+
+A =
+
+    0.0980    1.0020    1.0000
+    2.0020    3.0010   -1.0010
+    3.0020    4.0000         0
+
+B = [2;2;8.229999]
+
+B =
+
+    2.0000
+    2.0000
+    8.2300
+
+disp('Calculo por GAUUS')
+Calculo por GAUUS
+fmsl(A,B,0,0)
+fmsl(A,B,m,f)
+<strong>format short
+</strong><strong>Gauss</strong><strong>			Tabla Gauss
+</strong>    <strong>xi</strong>      <strong>vt</strong>         <strong>ve</strong>       <strong>Ea</strong>    <strong>Er</strong>
+    <strong>__</strong>    <strong>_______</strong>    <strong>_______</strong>    <strong>__</strong>    <strong>__</strong>
+
+    x1     4.6814     4.6814    0     0 
+    x2    -1.4559    -1.4559    0     0 
+    x3          3          3    0     0 
+
+disp('Figura 1')
+Figura 1
+disp('Calculo por MATRIZ INVERSA')
+Calculo por MATRIZ INVERSA
+fmsl(A,B,4,0)
+fmsl(A,B,m,f)
+<strong>format short
+</strong><strong>Matriz Inversa</strong>
+matrizInv =
+
+   -1.1062   -1.1051    1.1062
+    0.8302    0.8294   -0.5802
+    0.2765   -0.7227    0.4730
+
+
+X =
+
+    4.6814
+   -1.4559
+    3.0000
+
+disp('Figura 2')
+Figura 2
+disp('Cuando X3=0')
+Cuando X3=0
+A
+
+A =
+
+    0.0980    1.0020    1.0000
+    2.0020    3.0010   -1.0010
+    3.0020    4.0000         0
+
+B = [2;2;1.8868]
+
+B =
+
+    2.0000
+    2.0000
+    1.8868
+
+disp('Calculo por DESCOMPOSICION LU')
+Calculo por DESCOMPOSICION LU
+fmsl(A,B,3,0)
+fmsl(A,B,m,f)
+<strong>format short
+</strong><strong>Descomposicion LU 
+</strong>L
+    1.0000         0         0
+   30.6327    1.0000         0
+   20.4286    0.6544    1.0000
+
+U
+    0.0980    1.0020    1.0000
+         0  -26.6939  -30.6327
+         0         0   -1.3836
+
+x
+   -2.3354
+    2.2244
+    0.0000
+
+disp('Figura 3')
+Figura 3
+disp('Calculo por GAUSS SEIDEL')
+Calculo por GAUSS SEIDEL
+linsolve(A,B)
+
+ans =
+
+   -2.3354
+    2.2244
+    0.0000
+
+disp('Figura 4')
+Figura 4
+diary off
+
