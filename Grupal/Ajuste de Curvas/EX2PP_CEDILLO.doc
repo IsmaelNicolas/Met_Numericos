@@ -1,0 +1,325 @@
+disp('Ejercicio 1')
+Ejercicio 1
+disp('niño')
+niño
+x = [13 6 8 9 12 8 8 6 8]
+
+x =
+
+    13     6     8     9    12     8     8     6     8
+
+y = [2.1 2.6 3.8 3.8 4 4 4 4.2 4.9]
+
+y =
+
+  Columns 1 through 6
+
+    2.1000    2.6000    3.8000    3.8000    4.0000    4.0000
+
+  Columns 7 through 9
+
+    4.0000    4.2000    4.9000
+
+M = [x' y']
+
+M =
+
+   13.0000    2.1000
+    6.0000    2.6000
+    8.0000    3.8000
+    9.0000    3.8000
+   12.0000    4.0000
+    8.0000    4.0000
+    8.0000    4.0000
+    6.0000    4.2000
+    8.0000    4.9000
+
+help fac
+  <strong>fac</strong> Resuleve el ajuste de curvas
+  <strong>Modos de entrada</strong>
+  [X,Y,r] = <strong>fac</strong>(M)
+  [X,Y,r,Ec,Ea,Er] = <strong>fac</strong>(M,m)
+  [X,Y,r,Ec,Ea,Er,y] = <strong>fac</strong>(M,m,x)
+  
+  <strong>Valores de entrada</strong>
+  <strong>M:</strong> Matriz de pares ordenados [xi;yi]
+  <strong>m:</strong> Tipo de ajuste:
+    0 - Lineal
+    1 - Cuadratico
+    2 - Cubico
+    3 - Exponencial
+  <strong>x:</strong> Valor a comprovar dentro del ajuste ya efectuado
+ 
+  <strong>Valores de Salida</strong>
+  <strong>X:</strong> Lista de puntos en x
+  <strong>Y:</strong> Lista de puntos en y
+  <strong>r:</strong> Coeficiente de correlacion -1 < r < 1
+  <strong>Ec:</strong> Ecuacion nde regresion
+  <strong>Ea:</strong> Error absoluto
+  <strong>Er:</strong> Error relativo
+  <strong>y:</strong>  Valor de Ec evaluado en x
+
+fac(M)
+   -0.3423
+
+fac(M)
+   -0.3423
+
+Elapsed time is 3.241827 seconds.
+disp('aqui va la figura 1')
+aqui va la figura 1
+fac(M)
+   -0.3423
+
+fac(M)
+   -0.3423
+
+Elapsed time is 0.255166 seconds.
+fac(M,1)
+   -0.3423
+
+fac(M,m)
+Ajuste cuadratico
+- 0.10207*x^2 + 1.8242*x - 3.9104
+ 
+[Warning: fplot will not accept character vector or string
+inputs in a future release. Use
+fplot(@(x)+-0.10207.*x.^2+1.8242.*x.^1+-3.9104.*x.^0) instead.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 110)" style="font-weight:bold">fplot</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',110,0)">line 110</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fac/cuadratico', 'C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Ajuste de Curvas\fac.m', 124)" style="font-weight:bold">fac/cuadratico</a> (<a href="matlab: opentoline('C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Ajuste de Curvas\fac.m',124,0)">line 124</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fac', 'C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Ajuste de Curvas\fac.m', 42)" style="font-weight:bold">fac</a> (<a href="matlab: opentoline('C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Ajuste de Curvas\fac.m',42,0)">line 42</a>)] 
+Elapsed time is 5.154037 seconds.
+legend
+disp('niña')
+niña
+x1 = [5 5 7 7 7 8 7 7 7 6 10]
+
+x1 =
+
+  Columns 1 through 10
+
+     5     5     7     7     7     8     7     7     7     6
+
+  Column 11
+
+    10
+
+y1 = [3 3.5 4.2 4.3 4.3 4.4 4.5 4.6 4.6 4.7 5]
+
+y1 =
+
+  Columns 1 through 6
+
+    3.0000    3.5000    4.2000    4.3000    4.3000    4.4000
+
+  Columns 7 through 11
+
+    4.5000    4.6000    4.6000    4.7000    5.0000
+
+M1 = [x1' y1']
+
+M1 =
+
+    5.0000    3.0000
+    5.0000    3.5000
+    7.0000    4.2000
+    7.0000    4.3000
+    7.0000    4.3000
+    8.0000    4.4000
+    7.0000    4.5000
+    7.0000    4.6000
+    7.0000    4.6000
+    6.0000    4.7000
+   10.0000    5.0000
+
+fac(M1)
+    0.7670
+
+fac(M)
+    0.7670
+
+Elapsed time is 0.242680 seconds.
+disp('aqui va la figura 3')
+aqui va la figura 3
+fac(M1,1)
+    0.7670
+
+fac(M,m)
+Ajuste cuadratico
+- 0.071735*x^2 + 1.3689*x - 1.6285
+ 
+[Warning: fplot will not accept character vector or string
+inputs in a future release. Use
+fplot(@(x)+-0.071735.*x.^2+1.3689.*x.^1+-1.6285.*x.^0) instead.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 110)" style="font-weight:bold">fplot</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',110,0)">line 110</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fac/cuadratico', 'C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Ajuste de Curvas\fac.m', 124)" style="font-weight:bold">fac/cuadratico</a> (<a href="matlab: opentoline('C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Ajuste de Curvas\fac.m',124,0)">line 124</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fac', 'C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Ajuste de Curvas\fac.m', 42)" style="font-weight:bold">fac</a> (<a href="matlab: opentoline('C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Ajuste de Curvas\fac.m',42,0)">line 42</a>)] 
+Elapsed time is 0.545373 seconds.
+legend
+fac(M1,1)
+    0.7670
+
+fac(M,m)
+Ajuste cuadratico
+- 0.071735*x^2 + 1.3689*x - 1.6285
+ 
+[Warning: fplot will not accept character vector or string
+inputs in a future release. Use
+fplot(@(x)+-0.071735.*x.^2+1.3689.*x.^1+-1.6285.*x.^0) instead.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 110)" style="font-weight:bold">fplot</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',110,0)">line 110</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fac/cuadratico', 'C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Ajuste de Curvas\fac.m', 124)" style="font-weight:bold">fac/cuadratico</a> (<a href="matlab: opentoline('C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Ajuste de Curvas\fac.m',124,0)">line 124</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fac', 'C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Ajuste de Curvas\fac.m', 42)" style="font-weight:bold">fac</a> (<a href="matlab: opentoline('C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Ajuste de Curvas\fac.m',42,0)">line 42</a>)] 
+Elapsed time is 0.479202 seconds.
+legend
+disp('aqui va la figura 4')
+aqui va la figura 4
+disp('Ejercicio 2')
+Ejercicio 2
+fmsl
+<strong>Ingresa los parametros de manera correcta
+</strong>disp('Cuando x3 = 3')
+Cuando x3 = 3
+A = [0.098 1.002 3;2.002 3.001 -1.001;3.002 4 0]
+
+A =
+
+    0.0980    1.0020    3.0000
+    2.0020    3.0010   -1.0010
+    3.0020    4.0000         0
+
+B = [2;2;8.2299999]
+
+B =
+
+    2.0000
+    2.0000
+    8.2300
+
+help fmsl
+  <strong>fmsl</strong> resuelve un sistema de ecuaciones NxN
+ 
+  [AX=B,Ea,Er] = <strong>fmsl</strong>(A,B,m,f)
+  [AX=B,Ea,Er,Ec] = <strong>fmsl</strong>(A,B,m,f,n)
+  [AX=B,Ea,Er,n] = <strong>fmsl</strong>(A,B,m,f,Ec)
+ 
+  A: Una matriz NxN
+  B: Una matriz 1xN
+  m: El metodo para resolver el sistema (Integer)
+    0 - Gauss 
+    1 - Gauss - Jordan 
+    2 - Gauss - Sediel
+    3 - Descomposicion LU 
+    4 - Matriz Inversa
+    5 - Todos los metodos 
+ 
+  f: Formato de decimales (Integer o String)
+    0 - Short - 4 decimales
+    1 - Long - 15 decimales
+    2 - Bank - 2 decimales
+    3 - Rat - Fraccion
+    'eng' - Notacion Cientifica
+ 
+  n: Numero de iteraccion para Gauss- Sediel(Integer)
+  Ec: Error de calculo para Gauss- Sediel(Real)
+
+fmsl(A,B,0,0)
+fmsl(A,B,m,f)
+<strong>format short
+</strong><strong>Gauss</strong><strong>			Tabla Gauss
+</strong>    <strong>xi</strong>      <strong>vt</strong>         <strong>ve</strong>           <strong>Ea</strong>            <strong>Er</strong>     
+    <strong>__</strong>    <strong>_______</strong>    <strong>_______</strong>    <strong>__________</strong>    <strong>___________</strong>
+
+    x1      8.955      8.955             0              0
+    x2    -4.6632    -4.6632    8.8818e-16    -1.9047e-16
+    x3     1.9316     1.9316    2.2204e-16     1.1495e-16
+
+A = [0.098 1.002 1;2.002 3.001 -1.001;3.002 4 0]
+
+A =
+
+    0.0980    1.0020    1.0000
+    2.0020    3.0010   -1.0010
+    3.0020    4.0000         0
+
+fmsl(A,B,0,0)
+fmsl(A,B,m,f)
+<strong>format short
+</strong><strong>Gauss</strong><strong>			Tabla Gauss
+</strong>    <strong>xi</strong>      <strong>vt</strong>         <strong>ve</strong>           <strong>Ea</strong>            <strong>Er</strong>     
+    <strong>__</strong>    <strong>_______</strong>    <strong>_______</strong>    <strong>__________</strong>    <strong>___________</strong>
+
+    x1     4.6814     4.6814    1.7764e-15     3.7945e-16
+    x2    -1.4559    -1.4559    1.1102e-15    -7.6257e-16
+    x3          3          3    8.8818e-16     2.9606e-16
+
+disp('aqui va la figura 5')
+aqui va la figura 5
+disp('Matriz Inversa')
+Matriz Inversa
+fmsl(A,B,4,0)
+fmsl(A,B,m,f)
+<strong>format short
+</strong><strong>Matriz Inversa</strong>
+matrizInv =
+
+   -1.1062   -1.1051    1.1062
+    0.8302    0.8294   -0.5802
+    0.2765   -0.7227    0.4730
+
+
+X =
+
+    4.6814
+   -1.4559
+    3.0000
+
+disp('Cuando x3 = 0')
+Cuando x3 = 0
+A
+
+A =
+
+    0.0980    1.0020    1.0000
+    2.0020    3.0010   -1.0010
+    3.0020    4.0000         0
+
+B
+
+B =
+
+    2.0000
+    2.0000
+    8.2300
+
+disp('Descomposicion LU')
+Descomposicion LU
+fmsl(A,B,3,0)
+fmsl(A,B,m,f)
+<strong>format short
+</strong><strong>Descomposicion LU 
+</strong>L
+    1.0000         0         0
+   30.6327    1.0000         0
+   20.4286    0.6544    1.0000
+
+U
+    0.0980    1.0020    1.0000
+         0  -26.6939  -30.6327
+         0         0   -1.3836
+
+x
+    4.6814
+   -1.4559
+    3.0000
+
+disp('Gauss Seidel')
+Gauss Seidel
+linsolve(A,B)
+
+ans =
+
+    4.6814
+   -1.4559
+    3.0000
+
+diary off
