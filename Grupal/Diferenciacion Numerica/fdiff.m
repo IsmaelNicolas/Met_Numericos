@@ -80,6 +80,12 @@ end
                     i = i+1;
                     h = h*0.5;
                 end
+                raiz=solve(diff(f,3))
+                p_infl=double(raiz);
+                fplot(f);
+                hold on;
+                plot(p_infl, subs(f,p_infl),'g*')
+                hold off;
             case 4
                 i = 1;
                 dif = double(subs(diff(f,4),X,x));
