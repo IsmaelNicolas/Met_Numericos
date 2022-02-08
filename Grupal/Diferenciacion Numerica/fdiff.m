@@ -237,11 +237,9 @@ end
     function val = validarf(f,o,x)
         X = sym('x');
         if(isreal(double(subs(diff(f,o),X,x))))
-            disp('sip')
             val = true;
         else
             val = false;
-            disp('nop')
         end
     end
 
@@ -250,7 +248,9 @@ end
         p_infl=double(raiz);
         fplot(f);
         hold on;
-        plot(p_infl, subs(f,p_infl),'g*')
+        grid on;
+        plot(p_infl, subs(f,p_infl),'rd','DisplayName','Puntos de Inflexion')
+        legend
         hold off;
     end
 
