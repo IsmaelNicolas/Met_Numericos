@@ -90,12 +90,8 @@ end
                     i = i+1;
                     h = h*0.5;
                 end
-                raiz=solve(diff(f,3))
-                p_infl=double(raiz);
-                fplot(f);
-                hold on;
-                plot(p_infl, subs(f,p_infl),'g*')
-                hold off;
+                pInflexion(f);
+                
             case 4
                 while dif-F > tol 
                     F = (3*subs(f,X,x)-14*subs(f,X,x-h) + 26*subs(f,X,x-2*h)- 24*subs(f,X,x-3*h)+11*subs(f,X,x-4*h) -2*subs(f,X,x-5*h) )/(h^4);
@@ -154,6 +150,7 @@ end
                     i = i+1;
                     h = h*0.5;
                 end
+                pInflexion(f);
             case 4 % Orden 4
                 while dif-F > tol 
                     F = (3*subs(f,X,x)-14*subs(f,X,x+h) + 26*subs(f,X,x+2*h)- 24*subs(f,X,x+3*h)+11*subs(f,X,x+4*h) -2*subs(f,X,x+5*h) )/(h^4);
@@ -212,6 +209,7 @@ end
                     i = i+1;
                     h = h*0.5;
                 end
+                pInflexion(f);
             case 4 % Orden 4
                 i = 1;
                 dif = double(subs(diff(f,4),X,x));
@@ -243,6 +241,15 @@ end
         catch 
             val = false;
         end
+    end
+
+    function pInflexion(f)
+        raiz=solve(diff(f,3));
+        p_infl=double(raiz);
+        fplot(f);
+        hold on;
+        plot(p_infl, subs(f,p_infl),'g*')
+        hold off;
     end
 
 end

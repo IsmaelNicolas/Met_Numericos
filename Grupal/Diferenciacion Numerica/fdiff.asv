@@ -14,7 +14,7 @@ function  [Ea,Er,Rt,F] = fdiff(f,o,t,x,h)
 %       <strong>3</strong> - Todos los metodos
 % <strong>x:</strong> Punto a evaluar que debe de estar dentro del dominio
 % <strong>h:</strong> Paso de la derivada
-%
+
 Ea = 0;
 Er=0;
 Rt=0;
@@ -25,8 +25,13 @@ if nargin ~= 5 || nargout ~= 4
    error("Ingresa numero de parametros correcto")
 end
 
+if(validarf(f,o,x) == 0)
+   error('No se puede evaluar x en ese orden de derivada') 
+end
+
+h1 = h;
 X = sym('x');
-tol = 0.0000001;
+tol = 0.000001;
 %Verifico el tipo de diferenciacion
 switch t
     case 0
@@ -36,8 +41,11 @@ switch t
     case 2
         diff_centrada(f,x,h)
     case 3
-        diff_atras(f,x,h)
+        F = 0;
         diff_adelante(f,x,h)
+        F = 0;
+        diff_atras(f,x,h)
+        F = 0;
         diff_centrada(f,x,h)
     otherwise
         help fdiff
@@ -46,52 +54,51 @@ end
     %Subproceso para diferecniacion hacia atras
     function diff_atras(f,x,h)
         fprintf('<strong>Diferenciacion hacia atras\n</strong>')
-        disp('Funcion:')
-        disp(f)
-        disp('Punto:')
-        disp(x)
-        disp('Paso:')
-        disp(h)
+        dif = double(subs(diff(f,o),X,x));
+        i = 1;
+        T =0;
+        T(1,1) = 0;
+       
         switch o
             case 1
-                i = 1;
-                dif = double(subs(diff(f,1),X,x));
                 while dif-F > tol 
                     F = (3*subs(f,X,x)-4*subs(f,X,x-h) + subs(f,X,x-2*h) )/(2*h);
-                    fprintf(" i: %d | F:%f | Ea:%f \n",i,double(F),dif-double(F));
+                    Ea = dif-double(F);
+                    Er = (Ea/F)*100;
+                    T(i,1) = i; T(i,2) = x-i*h1; T(i,3)=subs(f,X,x-i*h1);
+                    T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
                     h = h*0.5;
                 end
             case 2
-                i = 1;
-                dif = double(subs(diff(f,2),X,x));
                 while dif-F > tol 
                     F = (2*subs(f,X,x)-5*subs(f,X,x-h) + 4*subs(f,X,x-2*h)- subs(f,X,x-3*h))/(h^2);
-                    fprintf(" i: %d | F:%f | Ea:%f \n",i,double(F),dif-double(F));
+                    Ea = dif-double(F);
+                    Er = (Ea/F)*100;
+                    T(i,1) = i; T(i,2) = x-i*h1; T(i,3)=subs(f,X,x-i*h1);
+                    T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
                     h = h*0.5;
                 end
             case 3
-                i = 1;
-                dif = double(subs(diff(f,3),X,x));
                 while dif-F > tol 
                     F = (5*subs(f,X,x)-18*subs(f,X,x-h) + 24*subs(f,X,x-2*h)- 14*subs(f,X,x-3*h)+3*subs(f,X,x-4*h) )/(2*h^3);
-                    fprintf(" i: %d | F:%f | Ea:%f \n",i,double(F),dif-double(F));
+                    Ea = dif-double(F);
+                    Er = (Ea/F)*100;
+                    T(i,1) = i; T(i,2) = x-i*h1; T(i,3)=subs(f,X,x-i*h1);
+                    T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
                     h = h*0.5;
                 end
-                %raiz=solve(diff(f,3));
-                %p_infl=double(raiz);
-                fplot(f);
-                %hold on;
-                %plot(p_infl, subs(f,p_infl),'ro')
-                %hold off;
+                pInflexion(f);
+                
             case 4
-                i = 1;
-                dif = double(subs(diff(f,4),X,x));
                 while dif-F > tol 
                     F = (3*subs(f,X,x)-14*subs(f,X,x-h) + 26*subs(f,X,x-2*h)- 24*subs(f,X,x-3*h)+11*subs(f,X,x-4*h) -2*subs(f,X,x-5*h) )/(h^4);
-                    fprintf(" i: %d | F:%f | Ea:%f \n",i,double(F),dif-double(F));
+                    Ea = dif-double(F);
+                    Er = double((Ea/F)*100);
+                    T(i,1) = i; T(i,2) = x-i*h1; T(i,3)=subs(f,X,x-i*h1);
+                    T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
                     h = h*0.5;
                 end
@@ -100,51 +107,57 @@ end
                 help fdiff
                 error('Orden de derivada no valido')
         end
+        F = double(F);
+        disp(T)
+        T = array2table(T,'VariableNames',{'i','hi','f(hi)','Ea','Er','Derivada'});
+        disp(T)
     end
     
     %Subproceso para diferenciacion hacia adelante
     function diff_adelante(f,x,h)
-        fprintf('<strong>Diferenciacion hacia adelante</strong>')
-        disp('Funcion:')
-        disp(f)
-        disp('Punto:')
-        disp(x)
-        disp('Paso:')
-        disp(h)
+        fprintf('<strong>Diferenciacion hacia adelante\n</strong>')
+        dif = double(subs(diff(f,o),X,x));
+        i = 1;
+        T(1,1) = 0;
         switch o
             case 1 % Orden 1
-                i = 1;
-                dif = double(subs(diff(f,1),X,x));
                 while dif-F > tol 
                     F = (-3*subs(f,X,x)+4*subs(f,X,x+h) - subs(f,X,x+2*h) )/(2*h);
-                    fprintf(" i: %d | F:%f | Ea:%f \n",i,double(F),dif-double(F));
+                    Ea = dif-double(F);
+                    Er = double((Ea/F)*100);
+                    T(i,1) = i; T(i,2) = x+i*h1 ; T(i,3)=subs(f,X,x+i*h1);
+                    T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
                     h = h*0.5;
                 end
             case 2 % Orden 2
-                i = 1;
-                dif = double(subs(diff(f,2),X,x));
                 while dif-F > tol 
                     F = (2*subs(f,X,x)-5*subs(f,X,x+h) + 4*subs(f,X,x+2*h)- subs(f,X,x+3*h))/(h^2);
-                    fprintf(" i: %d | F:%f | Ea:%f \n",i,double(F),dif-double(F));
+                    Ea = dif-double(F);
+                    Er = double((Ea/F)*100);
+                    T(i,1) = i; T(i,2) = x+i*h1 ; T(i,3)=subs(f,X,x+i*h1);
+                    T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
                     h = h*0.5;
                 end
             case 3 % Orden 3
-                i = 1;
-                dif = double(subs(diff(f,3),X,x));
                 while dif-F > tol 
                     F = (-5*subs(f,X,x)+18*subs(f,X,x+h) - 24*subs(f,X,x+2*h)+ 14*subs(f,X,x+3*h)-3*subs(f,X,x+4*h) )/(2*h^3);
-                    fprintf(" i: %d | F:%f | Ea:%f \n",i,double(F),dif-double(F));
+                    Ea = dif-double(F);
+                    Er = double((Ea/F)*100);
+                    T(i,1) = i; T(i,2) = x+i*h1 ; T(i,3)=subs(f,X,x+i*h1);
+                    T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
                     h = h*0.5;
                 end
+                pInflexion(f);
             case 4 % Orden 4
-                i = 1;
-                dif = double(subs(diff(f,4),X,x));
                 while dif-F > tol 
                     F = (3*subs(f,X,x)-14*subs(f,X,x+h) + 26*subs(f,X,x+2*h)- 24*subs(f,X,x+3*h)+11*subs(f,X,x+4*h) -2*subs(f,X,x+5*h) )/(h^4);
-                    fprintf(" i: %d | F:%f | Ea:%f \n",i,double(F),dif-double(F));
+                    Ea = dif-double(F);
+                    Er = double((Ea/F)*100);
+                    T(i,1) = i; T(i,2) = x+i*h1 ; T(i,3)=subs(f,X,x+i*h1);
+                    T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
                     h = h*0.5;
                 end
@@ -152,53 +165,61 @@ end
                 help fdiff
                 error('Orden de derivada no valido')
         end
+        
+        F = double(F);
+        T = array2table(T,'VariableNames',{'i','hi','f(hi)','Ea','Er','Derivada'});
+        disp(T)
+        
     end
 
     %Subproceso para diferenciacion centrada
     function diff_centrada(f,x,h)
-        fprintf('<strong>Diferenciacion centrada</strong>')
-        disp('Funcion:')
-        disp(f)
-        disp('Punto:')
-        disp(x)
-        disp('Paso:')
-        disp(h)
+        fprintf('<strong>Diferenciacion centrada\n</strong>')
+        dif = double(subs(diff(f,o),X,x));
+        i = 1;
+        T(1,1) = 0;
         switch o
             case 1 % Orden 1
-                i = 1;
-                dif = double(subs(diff(f,1),X,x));
                 while dif-F > tol 
                     F = (-subs(f,X,x+2*h) +8*subs(f,X,x+h) - 8*subs(f,X,x-h) + subs(f,X,x-2*h))/(12*h);
-                    fprintf(" i: %d | F:%f | Ea:%f \n",i,double(F),dif-double(F));
+                    Ea = dif-double(F);
+                    Er = double((Ea/F)*100);
+                    T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
+                    T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
                     h = h*0.5;
                 end
-            case 2 % Orden 2
-                i = 1;
-                dif = double(subs(diff(f,2),X,x));
-                
+            case 2 % Orden 2               
                 while dif-F > tol 
                     F = (-subs(f,X,x+2*h) +16*subs(f,X,x+h)-30*subs(f,X,x) +16*subs(f,X,x-h) - subs(f,X,x-2*h))/(12*h^2);
-                    fprintf(" i: %d | F:%f | Ea:%f \n",i,double(F),dif-double(F));
+                    Ea = dif-double(F);
+                    Er = double((Ea/F)*100);
+                    T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
+                    T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
                     h = h*0.5;
                 end
             case 3 % Orden 3
-                i = 1;
-                dif = double(subs(diff(f,3),X,x));
                 while dif-F > tol 
                     F = (-subs(f,X,x+3*h)+8*subs(f,X,x+2*h) -13*subs(f,X,x+h) + 13*subs(f,X,x-h) -8*subs(f,X,x-2*h)+ subs(f,X,x-3*h))/(8*h^3);
-                    fprintf(" i: %d | F:%f | Ea:%f \n",i,double(F),dif-double(F));
+                    Ea = dif-double(F);
+                    Er = double((Ea/F)*100);
+                    T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
+                    T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
                     h = h*0.5;
                 end
+                pInflexion(f);
             case 4 % Orden 4
                 i = 1;
                 dif = double(subs(diff(f,4),X,x));
                 while dif-F > tol 
                     %F = (-subs(f,X,x+3*h)+12*subs(f,X,x+2*h) +39*subs(f,X,x+h) +56*subs(f,X,x) - 39*subs(f,X,x-h)+12*subs(f,X,x-2*h)+ subs(f,X,x-3*h))/(6*h^4);
                     F = (subs(f,X,x+2*h) -4*subs(f,X,x+h) +6*subs(f,X,x) -4*subs(f,X,x-1*h) +subs(f,X,x-2*h) )/(h^4);
-                    fprintf(" i: %d | F:%f | Ea:%f \n",i,double(F),dif-double(F));
+                    Ea = dif-double(F);
+                    Er = double((Ea/F)*100);
+                    T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
+                    T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
                     h = h*0.5;
                 end
@@ -206,5 +227,29 @@ end
                 help fdiff
                 error('Orden de derivada no valido')
         end
+        
+        F = double(F);
+        T = array2table(T,'VariableNames',{'i','hi','f(hi)','Ea','Er','Derivada'});
+        disp(T)
     end
+
+    %Funcion para validad que la funsion sea continua y derivable
+    function val = validarf(f,o,x)
+        try
+            subs(diff(f,o),x,x);
+            val = true;
+        catch 
+            val = false;
+        end
+    end
+
+    function pInflexion(f)
+        raiz=solve(diff(f,3));
+        p_infl=double(raiz);
+        fplot(f);
+        hold on;
+        plot(p_infl, subs(f,p_infl),'g*')
+        hold off;
+    end
+
 end
