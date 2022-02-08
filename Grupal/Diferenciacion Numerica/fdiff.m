@@ -25,8 +25,8 @@ if nargin ~= 5 || nargout ~= 4
    error("Ingresa numero de parametros correcto")
 end
 
-if(validarf(f,o,x) == 0)
-   error('No se puede evaluar x en ese orden de derivada') 
+if(validarf(f,o,x) == false)
+   error('F no es continua y derivable en ese punto') 
 end
 
 h1 = h;
@@ -231,11 +231,13 @@ end
 
     %Funcion para validad que la funsion sea continua y derivable
     function val = validarf(f,o,x)
-        try
-            subs(diff(f,o),X,x);
+        X = sym('x');
+        if(isreal(double(subs(diff(f,o),X,x))))
+            disp('sip')
             val = true;
-        catch 
+        else
             val = false;
+            disp('nop')
         end
     end
 
