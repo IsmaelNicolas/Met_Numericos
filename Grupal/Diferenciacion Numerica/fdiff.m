@@ -18,7 +18,7 @@ function  [Ea,Er,Rt,F] = fdiff(f,o,t,x,h)
 Ea = 0;
 Er=0;
 Rt=0;
-F=0;
+
 %Verifico si la llamada a la fucnion es correcta
 if nargin ~= 5 || nargout ~= 4
    help fdiff
@@ -31,7 +31,12 @@ end
 
 h1 = h;
 X = sym('x');
-tol = 0.000001;
+tol = 0.00000001;
+F = 0;
+fplot(f);
+grid on
+hold on
+plot(x,subs(f,X,x),'d')
 %Verifico el tipo de diferenciacion
 switch t
     case 0
@@ -58,11 +63,12 @@ end
         i = 1;
         T =0;
         T(1,1) = 0;
-       
         switch o
             case 1
-                while dif-F > tol 
-                    F = (3*subs(f,X,x)-4*subs(f,X,x-h) + subs(f,X,x-2*h) )/(2*h);
+                while abs(dif-F) > tol
+                    
+                    %F = (3*subs(f,X,x)-4*subs(f,X,x-h) + subs(f,X,x-2*h) )/(2*h);
+                    F= (subs(f,X,x)-subs(f,X,x-h))/(h);
                     Ea = dif-double(F);
                     Er = (Ea/F)*100;
                     T(i,1) = i; T(i,2) = x-i*h1; T(i,3)=subs(f,X,x-i*h1);
@@ -70,6 +76,10 @@ end
                     i = i+1;
                     h = h*0.5;
                 end
+                T(i,1) = i; T(i,2) = x-i*h1; T(i,3)=subs(f,X,x-i*h1);
+                T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
+                disp('pendiente')
+                pendiente(double(F))
             case 2
                 while dif-F > tol 
                     F = (2*subs(f,X,x)-5*subs(f,X,x-h) + 4*subs(f,X,x-2*h)- subs(f,X,x-3*h))/(h^2);
@@ -165,7 +175,8 @@ end
                 help fdiff
                 error('Orden de derivada no valido')
         end
-        
+        T(i,1) = i; T(i,2) = x-i*h1; T(i,3)=subs(f,X,x-i*h1);
+        T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
         F = double(F);
         T = array2table(T,'VariableNames',{'i','hi','f(hi)','Ea','Er','Derivada'});
         disp(T)
@@ -189,6 +200,8 @@ end
                     i = i+1;
                     h = h*0.5;
                 end
+                    T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
+                    T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
             case 2 % Orden 2               
                 while dif-F > tol 
                     F = (-subs(f,X,x+2*h) +16*subs(f,X,x+h)-30*subs(f,X,x) +16*subs(f,X,x-h) - subs(f,X,x-2*h))/(12*h^2);
@@ -252,6 +265,12 @@ end
         plot(p_infl, subs(f,p_infl),'rd','DisplayName','Puntos de Inflexion')
         legend
         hold off;
+    end
+    
+    function pendiente(m)
+        y = m*(X-x) + subs(f,X,x);
+        fplot(y,'DisplayName','Recta tangente')
+        legend
     end
 
 end
