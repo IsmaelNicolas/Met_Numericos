@@ -67,8 +67,8 @@ end
             case 1
                 while abs(dif-F) > tol
                     
-                    %F = (3*subs(f,X,x)-4*subs(f,X,x-h) + subs(f,X,x-2*h) )/(2*h);
-                    F= (subs(f,X,x)-subs(f,X,x-h))/(h);
+                    F = (3*subs(f,X,x)-4*subs(f,X,x-h) + subs(f,X,x-2*h) )/(2*h);
+                    %F= (subs(f,X,x)-subs(f,X,x-h))/(h);
                     Ea = dif-double(F);
                     Er = (Ea/F)*100;
                     T(i,1) = i; T(i,2) = x-i*h1; T(i,3)=subs(f,X,x-i*h1);
@@ -81,7 +81,7 @@ end
                 disp('pendiente')
                 pendiente(double(F))
             case 2
-                while dif-F > tol 
+                while abs(dif-F) > tol 
                     F = (2*subs(f,X,x)-5*subs(f,X,x-h) + 4*subs(f,X,x-2*h)- subs(f,X,x-3*h))/(h^2);
                     Ea = dif-double(F);
                     Er = (Ea/F)*100;
@@ -91,7 +91,7 @@ end
                     h = h*0.5;
                 end
             case 3
-                while dif-F > tol 
+                while abs(dif-F) > tol 
                     F = (5*subs(f,X,x)-18*subs(f,X,x-h) + 24*subs(f,X,x-2*h)- 14*subs(f,X,x-3*h)+3*subs(f,X,x-4*h) )/(2*h^3);
                     Ea = dif-double(F);
                     Er = (Ea/F)*100;
@@ -103,7 +103,7 @@ end
                 pInflexion(f);
                 
             case 4
-                while dif-F > tol 
+                while abs(dif-F) > tol 
                     F = (3*subs(f,X,x)-14*subs(f,X,x-h) + 26*subs(f,X,x-2*h)- 24*subs(f,X,x-3*h)+11*subs(f,X,x-4*h) -2*subs(f,X,x-5*h) )/(h^4);
                     Ea = dif-double(F);
                     Er = double((Ea/F)*100);
@@ -131,7 +131,7 @@ end
         T(1,1) = 0;
         switch o
             case 1 % Orden 1
-                while dif-F > tol 
+                while abs(dif-F) > tol 
                     F = (-3*subs(f,X,x)+4*subs(f,X,x+h) - subs(f,X,x+2*h) )/(2*h);
                     Ea = dif-double(F);
                     Er = double((Ea/F)*100);
@@ -141,7 +141,7 @@ end
                     h = h*0.5;
                 end
             case 2 % Orden 2
-                while dif-F > tol 
+                while abs(dif-F) > tol 
                     F = (2*subs(f,X,x)-5*subs(f,X,x+h) + 4*subs(f,X,x+2*h)- subs(f,X,x+3*h))/(h^2);
                     Ea = dif-double(F);
                     Er = double((Ea/F)*100);
@@ -151,7 +151,7 @@ end
                     h = h*0.5;
                 end
             case 3 % Orden 3
-                while dif-F > tol 
+                while abs(dif-F) > tol 
                     F = (-5*subs(f,X,x)+18*subs(f,X,x+h) - 24*subs(f,X,x+2*h)+ 14*subs(f,X,x+3*h)-3*subs(f,X,x+4*h) )/(2*h^3);
                     Ea = dif-double(F);
                     Er = double((Ea/F)*100);
@@ -162,7 +162,7 @@ end
                 end
                 pInflexion(f);
             case 4 % Orden 4
-                while dif-F > tol 
+                while abs(dif-F) > tol 
                     F = (3*subs(f,X,x)-14*subs(f,X,x+h) + 26*subs(f,X,x+2*h)- 24*subs(f,X,x+3*h)+11*subs(f,X,x+4*h) -2*subs(f,X,x+5*h) )/(h^4);
                     Ea = dif-double(F);
                     Er = double((Ea/F)*100);
@@ -191,7 +191,7 @@ end
         T(1,1) = 0;
         switch o
             case 1 % Orden 1
-                while dif-F > tol 
+                while abs(dif-F) > tol 
                     F = (-subs(f,X,x+2*h) +8*subs(f,X,x+h) - 8*subs(f,X,x-h) + subs(f,X,x-2*h))/(12*h);
                     Ea = dif-double(F);
                     Er = double((Ea/F)*100);
@@ -203,7 +203,7 @@ end
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
             case 2 % Orden 2               
-                while dif-F > tol 
+                while abs(dif-F) > tol 
                     F = (-subs(f,X,x+2*h) +16*subs(f,X,x+h)-30*subs(f,X,x) +16*subs(f,X,x-h) - subs(f,X,x-2*h))/(12*h^2);
                     Ea = dif-double(F);
                     Er = double((Ea/F)*100);
@@ -213,7 +213,7 @@ end
                     h = h*0.5;
                 end
             case 3 % Orden 3
-                while dif-F > tol 
+                while abs(dif-F) > tol 
                     F = (-subs(f,X,x+3*h)+8*subs(f,X,x+2*h) -13*subs(f,X,x+h) + 13*subs(f,X,x-h) -8*subs(f,X,x-2*h)+ subs(f,X,x-3*h))/(8*h^3);
                     Ea = dif-double(F);
                     Er = double((Ea/F)*100);
@@ -224,9 +224,7 @@ end
                 end
                 pInflexion(f);
             case 4 % Orden 4
-                i = 1;
-                dif = double(subs(diff(f,4),X,x));
-                while dif-F > tol 
+                while abs(dif-F) > tol 
                     %F = (-subs(f,X,x+3*h)+12*subs(f,X,x+2*h) +39*subs(f,X,x+h) +56*subs(f,X,x) - 39*subs(f,X,x-h)+12*subs(f,X,x-2*h)+ subs(f,X,x-3*h))/(6*h^4);
                     F = (subs(f,X,x+2*h) -4*subs(f,X,x+h) +6*subs(f,X,x) -4*subs(f,X,x-1*h) +subs(f,X,x-2*h) )/(h^4);
                     Ea = dif-double(F);
