@@ -33,10 +33,10 @@ h1 = h;
 X = sym('x');
 tol = 0.00000001;
 F = 0;
-fplot(f);
+fplot(f,'DisplayName','f(x)');
 grid on
 hold on
-plot(x,subs(f,X,x),'d')
+plot(x,subs(f,X,x),'d','DisplayName','(x,f(x))')
 %Verifico el tipo de diferenciacion
 switch t
     case 0
@@ -71,8 +71,8 @@ end
                     %F= (subs(f,X,x)-subs(f,X,x-h))/(h);
                     Ea = dif-double(F);
                     Er = (Ea/F)*100;
-                    e = 0;
-                    Rt = diff(f,2,e);
+                    %e = 0;
+                    %Rt = diff(f,2,e);
                     T(i,1) = i; T(i,2) = x-i*h1; T(i,3)=subs(f,X,x-i*h1);
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
@@ -87,8 +87,8 @@ end
                     F = (2*subs(f,X,x)-5*subs(f,X,x-h) + 4*subs(f,X,x-2*h)- subs(f,X,x-3*h))/(h^2);
                     Ea = dif-double(F);
                     Er = (Ea/F)*100;
-                    e = 0;
-                    Rt = diff(f,3,e);
+                    %e = 0;
+                    %Rt = diff(f,3,e);
                     T(i,1) = i; T(i,2) = x-i*h1; T(i,3)=subs(f,X,x-i*h1);
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
@@ -100,8 +100,8 @@ end
                     F = (5*subs(f,X,x)-18*subs(f,X,x-h) + 24*subs(f,X,x-2*h)- 14*subs(f,X,x-3*h)+3*subs(f,X,x-4*h) )/(2*h^3);
                     Ea = dif-double(F);
                     Er = (Ea/F)*100;
-                    e = 0;
-                    Rt = diff(f,4,e);
+                    %e = 0;
+                    %Rt = diff(f,4,e);
                     T(i,1) = i; T(i,2) = x-i*h1; T(i,3)=subs(f,X,x-i*h1);
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
@@ -141,8 +141,8 @@ end
                     F = (-3*subs(f,X,x)+4*subs(f,X,x+h) - subs(f,X,x+2*h) )/(2*h);
                     Ea = dif-double(F);
                     Er = double((Ea/F)*100);
-                    e = 0;
-                    Rt = diff(f,2,e);
+                    %e = 0;
+                    %Rt = diff(f,2,e);
                     T(i,1) = i; T(i,2) = x+i*h1 ; T(i,3)=subs(f,X,x+i*h1);
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
@@ -153,8 +153,8 @@ end
                     F = (2*subs(f,X,x)-5*subs(f,X,x+h) + 4*subs(f,X,x+2*h)- subs(f,X,x+3*h))/(h^2);
                     Ea = dif-double(F);
                     Er = double((Ea/F)*100);
-                    e = 0;
-                    Rt = diff(f,3,e);
+                    %e = 0;
+                    %Rt = diff(f,3,e);
                     T(i,1) = i; T(i,2) = x+i*h1 ; T(i,3)=subs(f,X,x+i*h1);
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
@@ -166,8 +166,8 @@ end
                     F = (-5*subs(f,X,x)+18*subs(f,X,x+h) - 24*subs(f,X,x+2*h)+ 14*subs(f,X,x+3*h)-3*subs(f,X,x+4*h) )/(2*h^3);
                     Ea = dif-double(F);
                     Er = double((Ea/F)*100);
-                    e = 0;
-                    Rt = diff(f,4,e);
+                    %e = 0;
+                    %Rt = diff(f,4,e);
                     T(i,1) = i; T(i,2) = x+i*h1 ; T(i,3)=subs(f,X,x+i*h1);
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
@@ -208,8 +208,8 @@ end
                     F = (-subs(f,X,x+2*h) +8*subs(f,X,x+h) - 8*subs(f,X,x-h) + subs(f,X,x-2*h))/(12*h);
                     Ea = dif-double(F);
                     Er = double((Ea/F)*100);
-                    e = 0;
-                    Rt = diff(f,2,e);
+                    %e = 0;
+                    %Rt = diff(f,2,e);
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
@@ -222,8 +222,8 @@ end
                     F = (-subs(f,X,x+2*h) +16*subs(f,X,x+h)-30*subs(f,X,x) +16*subs(f,X,x-h) - subs(f,X,x-2*h))/(12*h^2);
                     Ea = dif-double(F);
                     Er = double((Ea/F)*100);
-                    e = 0;
-                    Rt = diff(f,3,e);
+                    %e = 0;
+                    %Rt = diff(f,3,e);
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
@@ -235,8 +235,8 @@ end
                     F = (-subs(f,X,x+3*h)+8*subs(f,X,x+2*h) -13*subs(f,X,x+h) + 13*subs(f,X,x-h) -8*subs(f,X,x-2*h)+ subs(f,X,x-3*h))/(8*h^3);
                     Ea = dif-double(F);
                     Er = double((Ea/F)*100);
-                    e = 0;
-                    Rt = diff(f,4,e);
+                    %e = 0;
+                    %Rt = diff(f,4,e);
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
                     i = i+1;
