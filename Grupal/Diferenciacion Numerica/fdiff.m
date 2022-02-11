@@ -210,17 +210,19 @@ toc
     %Subproceso para diferenciacion centrada
     function diff_centrada(f,x,h)
         fprintf('<strong>Diferenciacion centrada\n</strong>')
-        dif = double(subs(diff(f,o),X,x));
+        dif = double(subs(diff(f,o),X,x));%Calculo valor teorico
         i = 1;
-        T(1,1) = 0;
+        T(1,1) = 0; %Inicializo array para crear la tabla
         switch o
             case 1 % Orden 1
                 while abs(dif-F) > tol 
+                    %Ingreso formula
                     F = (-subs(f,X,x+2*h) +8*subs(f,X,x+h) - 8*subs(f,X,x-h) + subs(f,X,x-2*h))/(12*h);
-                    Ea = real(dif-double(F));
-                    Er = real(double((Ea/F)*100));
-                    e = x-i*h1;
-                    Rt = double(subs(diff(f,4),X,e));
+                    Ea = real(dif-double(F)); %Error Absoluto
+                    Er = real(double((Ea/F)*100)); %Error relativo
+                    e = x-i*h1; % valor epsilon
+                    Rt = double(subs(diff(f,4),X,e)); %Error de truncamiento
+                    %Añado valores a la tabla
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=Rt;T(i,7)=real(double(F));
                     i = i+1;
@@ -231,11 +233,13 @@ toc
                     pendiente(double(F))
             case 2 % Orden 2               
                 while abs(dif-F) > tol 
+                    %Ingreso formula
                     F = (-subs(f,X,x+2*h) +16*subs(f,X,x+h)-30*subs(f,X,x) +16*subs(f,X,x-h) - subs(f,X,x-2*h))/(12*h^2);
-                    Ea = real(dif-double(F));
-                    Er = real(double((Ea/F)*100));
+                    Ea = real(dif-double(F));%Error Absoluto
+                    Er = real(double((Ea/F)*100));%Error relativo
                     e = x-i*h1;
-                    Rt = double(subs(diff(f,4),X,e));
+                    Rt = double(subs(diff(f,4),X,e)); %Error de truncamiento
+                    %Agrego a las tablas
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=Rt;T(i,7)=real(double(F));
                     i = i+1;
@@ -245,10 +249,11 @@ toc
             case 3 % Orden 3
                 while abs(dif-F) > tol 
                     F = (-subs(f,X,x+3*h)+8*subs(f,X,x+2*h) -13*subs(f,X,x+h) + 13*subs(f,X,x-h) -8*subs(f,X,x-2*h)+ subs(f,X,x-3*h))/(8*h^3);
-                    Ea = real(dif-double(F));
-                    Er = real(double((Ea/F)*100));
+                    Ea = real(dif-double(F));%Error Absoluto
+                    Er = real(double((Ea/F)*100));%Error relativo
                     e = x-i*h1;
-                    Rt = double(subs(diff(f,4),X,e));
+                    Rt = double(subs(diff(f,4),X,e));%Error de truncamiento
+                    %Añade la tabla
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=Rt;T(i,7)=real(double(F));
                     i = i+1;
@@ -259,10 +264,11 @@ toc
                 while abs(dif-F) > tol 
                     %F = (-subs(f,X,x+3*h)+12*subs(f,X,x+2*h) +39*subs(f,X,x+h) +56*subs(f,X,x) - 39*subs(f,X,x-h)+12*subs(f,X,x-2*h)+ subs(f,X,x-3*h))/(6*h^4);
                     F = (subs(f,X,x+2*h) -4*subs(f,X,x+h) +6*subs(f,X,x) -4*subs(f,X,x-1*h) +subs(f,X,x-2*h) )/(h^4);
-                    Ea = real(dif-double(F));
-                    Er = real(double((Ea/F)*100));
+                    Ea = real(dif-double(F));%Error Absoluto
+                    Er = real(double((Ea/F)*100));%Error relativo
                     e = x-i*h1;
-                    Rt = double(subs(diff(f,4),X,e));
+                    Rt = double(subs(diff(f,4),X,e));%Error de truncamiento
+                    %Añado a la tabla
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=Rt;T(i,7)=real(double(F));
                     i = i+1;
@@ -272,12 +278,13 @@ toc
                 help fdiff
                 error('Orden de derivada no valido')
         end
-        
+        %Convierto los valores a numericos y no expresiones
         F = double(F);
         Ea = real(Ea);
         Er = real(Er);
+        %Convierto array en tabla
         T = array2table(T,'VariableNames',{'i','hi','f(hi)','Ea','Er','Rt','Derivada'});
-        disp(T)
+        disp(T) %Muestro tabla
     end
 
     %Funcion para validad que la funsion sea continua y derivable
@@ -304,7 +311,9 @@ toc
     end
     
     function pendiente(m)
+        %Utilizo la formula punto pendiente
         y = m*(X-x) + subs(f,X,x);
+        %plot recta tangente
         fplot(y,'DisplayName','Recta tangente')
         legend
     end
