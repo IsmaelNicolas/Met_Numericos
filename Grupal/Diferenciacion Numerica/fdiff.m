@@ -68,15 +68,16 @@ toc
         T = 0; 
         T(1,1) = 0; %T=arreglo para crear una tabla
         switch o
-            case 1
+            case 1 %orden 1
                 while abs(dif-F) > tol
-                    
+                    %Ingreso formula
                     F = (3*subs(f,X,x)-4*subs(f,X,x-h) + subs(f,X,x-2*h) )/(2*h);
                     %F= (subs(f,X,x)-subs(f,X,x-h))/(h);
-                    Ea = real(dif-double(F));
-                    Er = real(double((Ea/F)*100));
-                    e = x-i*h1;
-                    Rt = double(subs(diff(f,4),X,e));
+                    Ea = real(dif-double(F)); %Error Absoluto
+                    Er = real(double((Ea/F)*100)); %Error Relativo
+                    e = x-i*h1; %valor epsilon
+                    Rt = double(subs(diff(f,4),X,e)); %Error de  truncamiento
+                    %Añado valores a la tabla
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=Rt;T(i,7)=real(double(F));
                     i = i+1;
@@ -85,13 +86,15 @@ toc
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=Rt;T(i,7)=real(double(F));
                 pendiente(double(F))
-            case 2
-                while abs(dif-F) > tol 
+            case 2 %orden 2
+                while abs(dif-F) > tol
+                    %Ingreso formula
                     F = (2*subs(f,X,x)-5*subs(f,X,x-h) + 4*subs(f,X,x-2*h)- subs(f,X,x-3*h))/(h^2);
-                    Ea = real(dif-double(F));
-                    Er = real(double((Ea/F)*100));
+                    Ea = real(dif-double(F)); %Error Absoluto
+                    Er = real(double((Ea/F)*100)); %Error relativo
                     e = x-i*h1;
-                    Rt = double(subs(diff(f,4),X,e));
+                    Rt = double(subs(diff(f,4),X,e)); %Error de truncamiento
+                    %Agrego a las tablas
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=Rt;T(i,7)=real(double(F));
                     i = i+1;
@@ -101,23 +104,26 @@ toc
             case 3 %Orden 3
                 while abs(dif-F) > tol 
                     F = (5*subs(f,X,x)-18*subs(f,X,x-h) + 24*subs(f,X,x-2*h)- 14*subs(f,X,x-3*h)+3*subs(f,X,x-4*h) )/(2*h^3);
-                    Ea = real(dif-double(F));
-                    Er = real(double((Ea/F)*100));
+                    Ea = real(dif-double(F)); %Error Absoluto
+                    Er = real(double((Ea/F)*100)); %Error relativo
                     e = x-i*h1;
-                    Rt = double(subs(diff(f,4),X,e));
+                    Rt = double(subs(diff(f,4),X,e)); %Error de truncamiento
+                    %Añade la tabla
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=Rt;T(i,7)=real(double(F));
                     i = i+1;
                     h = h*0.5;
                 end
                 pInflexion(f);
-            case 4
+            case 4 %Orden 4
                 while abs(dif-F) > tol 
+                    %F = (-subs(f,X,x+3*h)+12*subs(f,X,x+2*h) +39*subs(f,X,x+h) +56*subs(f,X,x) - 39*subs(f,X,x-h)+12*subs(f,X,x-2*h)+ subs(f,X,x-3*h))/(6*h^4);
                     F = (3*subs(f,X,x)-14*subs(f,X,x-h) + 26*subs(f,X,x-2*h)- 24*subs(f,X,x-3*h)+11*subs(f,X,x-4*h) -2*subs(f,X,x-5*h) )/(h^4);
-                    Ea = real(double(dif-double(F)));
-                    Er = real(double((Ea/F)*100));
+                    Ea = real(double(dif-double(F))); %Error absoluto
+                    Er = real(double((Ea/F)*100)); %Error relativo
                     e = x-i*h1;
-                    Rt = double(subs(diff(f,4),X,e));
+                    Rt = double(subs(diff(f,4),X,e)); %Error de truncamiento
+                    %Añade la tabla
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=Rt;T(i,7)=real(double(F));
                     i = i+1;
@@ -128,10 +134,13 @@ toc
                 help fdiff
                 error('Orden de derivada no valido')
         end
+        %Convierto los valores a numericos y no expresiones
         Ea = real(Ea);
         Er = real(Er);
         F = double(F);
+        %Convierto array en tabla
         T = array2table(T,'VariableNames',{'i','hi','f(hi)','Ea','Er','Rt','Derivada'});
+        %Muestro la tabla
         disp(T)
     end
     
