@@ -147,17 +147,19 @@ toc
     %Subproceso para diferenciacion hacia adelante
     function diff_adelante(f,x,h)
         fprintf('<strong>Diferenciacion hacia adelante\n</strong>')
-        dif = double(subs(diff(f,o),X,x));
+        dif = double(subs(diff(f,o),X,x));%Calculo valor teorico
         i = 1;
-        T(1,1) = 0;
+        T(1,1) = 0;%Inicializo array para crear la tabla
         switch o
             case 1 % Orden 1
-                while abs(dif-F) > tol 
+                while abs(dif-F) > tol
+                    %Ingreso formula
                     F = (-3*subs(f,X,x)+4*subs(f,X,x+h) - subs(f,X,x+2*h) )/(2*h);
-                    Ea = real(dif-double(F));
-                    Er = real(double((Ea/F)*100));
-                    e = x-i*h1;
-                    Rt = double(subs(diff(f,4),X,e));
+                    Ea = real(dif-double(F));%Error Absoluto
+                    Er = real(double((Ea/F)*100));%Error Relativo
+                    e = x-i*h1;% valor epsilon
+                    Rt = double(subs(diff(f,4),X,e));%Error de truncamiento
+                    %Añado valores a la tabla
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=Rt;T(i,7)=real(double(F));
                     i = i+1;
@@ -165,12 +167,14 @@ toc
                 end
                 pendiente(double(F))
             case 2 % Orden 2
-                while abs(dif-F) > tol 
+                while abs(dif-F) > tol
+                    %Ingreso formula
                     F = (2*subs(f,X,x)-5*subs(f,X,x+h) + 4*subs(f,X,x+2*h)- subs(f,X,x+3*h))/(h^2);
-                    Ea = real(dif-double(F));
-                    Er = real(double((Ea/F)*100));
-                    e = x-i*h1;
-                    Rt = double(subs(diff(f,4),X,e));
+                    Ea = real(dif-double(F));%Error Absoluto
+                    Er = real(double((Ea/F)*100));%Error Relativo
+                    e = x-i*h1;% valor epsilon
+                    Rt = double(subs(diff(f,4),X,e));%Error de truncamiento
+                    %Añado valores a la tabla
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=Rt;T(i,7)=real(double(F));
                     i = i+1;
@@ -179,11 +183,13 @@ toc
                 pCriticos(f);
             case 3 % Orden 3
                 while abs(dif-F) > tol 
+                    %Ingreso formula
                     F = (-5*subs(f,X,x)+18*subs(f,X,x+h) - 24*subs(f,X,x+2*h)+ 14*subs(f,X,x+3*h)-3*subs(f,X,x+4*h) )/(2*h^3);
-                    Ea = real(dif-double(F));
-                    Er = real(double((Ea/F)*100));
-                    e = x-i*h1;
-                    Rt = double(subs(diff(f,4),X,e));
+                    Ea = real(dif-double(F));%Error Absoluto
+                    Er = real(double((Ea/F)*100));%Error Relativo
+                    e = x-i*h1;% valor epsilon
+                    Rt = double(subs(diff(f,4),X,e));%Error de truncamiento
+                    %Añado valores a la tabla
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=Rt;T(i,7)=real(double(F));
                     i = i+1;
@@ -192,11 +198,13 @@ toc
                 pInflexion(f);
             case 4 % Orden 4
                 while abs(dif-F) > tol 
+                    %Ingreso formula
                     F = (3*subs(f,X,x)-14*subs(f,X,x+h) + 26*subs(f,X,x+2*h)- 24*subs(f,X,x+3*h)+11*subs(f,X,x+4*h) -2*subs(f,X,x+5*h) )/(h^4);
-                    Ea = real(dif-double(F));
-                    Er = real(double((Ea/F)*100));
-                    e = x-i*h1;
-                    Rt = double(subs(diff(f,4),X,e));
+                    Ea = real(dif-double(F));%Error Absoluto
+                    Er = real(double((Ea/F)*100));%Error Relativo
+                    e = x-i*h1;% valor epsilon
+                    Rt = double(subs(diff(f,4),X,e));%Error de truncamiento
+                    %Añado valores a la tabla
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=Rt;T(i,7)=real(double(F));
                     i = i+1;
@@ -206,13 +214,15 @@ toc
                 help fdiff
                 error('Orden de derivada no valido')
         end
+        %Convierto los valores a numericos y no expresiones
         T(i,1) = i; T(i,2) = x-i*h1; T(i,3)=subs(f,X,x-i*h1);
         T(i,4)=Ea;T(i,5)=Er;T(i,6)=double(F);
         F = double(F);
         Ea = real(Ea);
         Er = real(Er);
+        %Convierto array en tabla
         T = array2table(T,'VariableNames',{'i','hi','f(hi)','Ea','Er','Rt','Derivada'});
-        disp(T)
+        disp(T)%Muestro tabla
         
     end
 
@@ -306,17 +316,18 @@ toc
         end
     end
 
-    function pCriticos(f)
-        raiz=solve(diff(f,2));
-        p_crit=double(raiz);
-        plot(p_crit, subs(f,p_crit),'ro','DisplayName','Maximos y minimos')
-        title('Máximos y mínimos')
+    function pCriticos(f)%Criterio segunda deriva
+        raiz=solve(diff(f,2));%Despejamos x de la segunda derivada
+        p_crit=double(raiz);%se obtiene el valor en decimales
+        plot(p_crit, subs(f,p_crit),'ro','DisplayName','Maximos y minimos')%grficamos los puntos obtenidos
+        title('Máximos y mínimos')%colocamos titulo a la grafica
     end
 
-    function pInflexion(f)
-        raiz=solve(diff(f,3));
-        p_infl=double(raiz);
-        plot(p_infl, subs(f,p_infl),'ro','DisplayName','Puntos de Inflexion')
+    function pInflexion(f)%Criterio de la tercera deriva
+        raiz=solve(diff(f,3));%Despejamos x de la tercera derivada
+        p_infl=double(raiz);%se obtiene el valor en decimales
+        plot(p_infl, subs(f,p_infl),'ro','DisplayName','Puntos de Inflexion')%grficamos los puntos obtenidos
+        title('Puntos de Inflexion')%colocamos titulo a la grafica
     end
     
     function pendiente(m)
