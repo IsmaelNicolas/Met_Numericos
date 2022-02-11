@@ -63,10 +63,10 @@ toc
     %Subproceso para diferecniacion hacia atras
     function diff_atras(f,x,h)
         fprintf('<strong>Diferenciacion hacia atras\n</strong>')
-        dif = double(subs(diff(f,o),X,x));
-        i = 1;
-        T =0;
-        T(1,1) = 0;
+        dif = double(subs(diff(f,o),X,x)); %guardo en mi variable "dif" el valor teorico de la derivada de mi funcion
+        i = 1; %i=iterador
+        T = 0; 
+        T(1,1) = 0; %T=arreglo para crear una tabla
         switch o
             case 1
                 while abs(dif-F) > tol
