@@ -290,17 +290,18 @@ toc
         end
     end
 
-    function pCriticos(f)
-        raiz=solve(diff(f,2));
-        p_crit=double(raiz);
-        plot(p_crit, subs(f,p_crit),'ro','DisplayName','Maximos y minimos')
-        title('Máximos y mínimos')
+    function pCriticos(f)%Criterio segunda deriva
+        raiz=solve(diff(f,2));%Despejamos x de la segunda derivada
+        p_crit=double(raiz);%se obtiene el valor en decimales
+        plot(p_crit, subs(f,p_crit),'ro','DisplayName','Maximos y minimos')%grficamos los puntos obtenidos
+        title('Máximos y mínimos')%colocamos titulo a la grafica
     end
 
-    function pInflexion(f)
-        raiz=solve(diff(f,3));
-        p_infl=double(raiz);
-        plot(p_infl, subs(f,p_infl),'ro','DisplayName','Puntos de Inflexion')
+    function pInflexion(f)%Criterio de la tercera deriva
+        raiz=solve(diff(f,3));%Despejamos x de la tercera derivada
+        p_infl=double(raiz);%se obtiene el valor en decimales
+        plot(p_infl, subs(f,p_infl),'ro','DisplayName','Puntos de Inflexion')%grficamos los puntos obtenidos
+        title('Puntos de Inflexion')%colocamos titulo a la grafica
     end
     
     function pendiente(m)
