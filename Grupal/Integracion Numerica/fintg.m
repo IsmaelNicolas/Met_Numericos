@@ -134,4 +134,46 @@ end
        fprintf("I: %f\n",In);
        intg = In;
    end
+
+   function [I,Er,Ea]=trapsimple(a,b)
+   fa=subs(f,a); %fa es la funcion evaluada en el punto a
+   fb=subs(f,b); %fb es la funcion evaluada en el punto b
+   I=(b-a)*(fa+fb)/2; %Calculo el integral por el metodo de trapecio simple
+   Ea=abs((integral(f,a,b)-I)/integral(f,a,b)); %Error absoluto
+   Er=abs(((integral(f,a,b)-I)/integral(f,a,b))*100); %Error relativo
+   T(1,1) = 0; %T=arreglo para crear una tabla
+   T(1,1)=I;T(1,2)=Ea;T(1,3)=Er;
+   T=array2table(T,'VariableNames',{'Integral','Ea','Er'}); %Nombro las variables de mi tabla
+   disp(T) %Imprimo la tabla
+   end
+
+   function [I,Er,Ea]=trapmult(a,b,h)
+   %Datos:
+   %   f es el integrando, dado como una cadena de caracteres 'f'    %   a y b son los extremos interior y superior del intervalo de integracion
+   %   n es el numero de subintervalos
+   %   h es el paso entre subintervalos
+   %Calculos:
+   %   fa es la funcion evaluada en el punto a
+   %   fb es la funcion evaluada en el punto b
+   %   fs es sumatoria de funciones envaluados en distintos puntos    %   I es la aproximacion obtenida con la regla del trapecio multiple
+   %   Er es el error relativo
+   %   Ea es el error absoluto
+   fa=subs(f,a);
+   fb=subs(f,b);
+   fs=0;
+   T(1,1) = 0; %T=arreglo para crear una tabla
+   x=a:h:b;
+   [~,n]=size(x); %Dominio para x
+   h=(b-a)/n;
+   for i=1:(n-1)
+       x(i)=a+h*i;
+       fs=fs+subs(f,x(i));
+       I=double(h*(fa+fb)/2+h*fs); %Calculo la Integral por el metodo del trapecio multiple
+       Ea=abs((integral(f,a,b)-I)/integral(f,a,b)); %Error absoluto
+       Er=abs(((integral(f,a,b)-I)/integral(f,a,b))*100); %Error relativo
+       T(i,1)=i;T(i,2)=x(i);T(i,3)=I;T(i,4)=Ea;T(i,5)=Er; %Lleno la tabla con sus respectivos campos
+   end
+   T=array2table(T,'VariableNames',{'i','x(i)','Integral','Ea','Er'}); %Nombro las variables de tabla
+   disp(T) %Imprimo la tabla
+   end
 end
