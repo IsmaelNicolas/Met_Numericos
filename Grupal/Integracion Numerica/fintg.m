@@ -40,7 +40,12 @@ end
                 b1 = a1 + 4*h;
                	h1 = (b-a)/n;
                 fprintf("<strong>a: %f,b: %f, n: %d </strong> \n",a1,b1,n);
-                [in1,e1,e2] = boole(a1,b1)  ; 
+                [in1,e1,e2] = boole(a1,b1)  ;
+                figure;
+                hold on;
+                grid on;
+                fplot(f);
+                title('Boole simple');
                 in = in+in1;
                 n = n-4 ;
            elseif mod(n,3) == 0
@@ -49,20 +54,39 @@ end
 %                 b1 = a1 +3*h;
                  fprintf("a: %f,b: %f, n: %d\n",a1,b1,n);
 %                 n = n-3 ;
-                simpson38C(a,b,h);
+                 simpson38C(a,b,h);
+                 figure;
+                 hold on;
+                 grid on;
+                 fplot(f);
+                 title('Simpson 3/8 Compuesto');
                 n=0;
            elseif mod(n,2) == 0
                 disp('Simpson 1/3 Compuesto')
-                a1 = a + (naux-n)*h;
-                b1 = a1 +2*h;
-                fprintf("a: %f,b: %f, n: %d\n",a1,b1,n);
-                n = n-2;
+                %a1 = a + (naux-n)*h;
+                %b1 = a1 +2*h;
+                %disp(naux)
+                fprintf("a: %f,b: %f, n: %d\n",a,b,n);
+                %n = n-2;
+                [in1,e1,e2]=simpsonC13(a,b,h);
+                figure;
+                hold on;
+                grid on;
+                fplot(f);
+                title('Simpson 1/3 Compuesto');
+                n=0;
+                in=in+in1;
            else
                 disp('Trapecio simple')
                 a1 = a + (naux-n)*h;
                 b1 = a1 +1*h;
                 fprintf("a: %f,b: %f, n: %d\n",a1,b1,n);
                 n = n-1 ;
+                figure;
+                hold on;
+                grid on;
+                fplot(f);
+                title('Trapecio simple');
            end
        elseif n==4
             disp('Boole simple')
@@ -73,6 +97,11 @@ end
             [in1,e1,e2] = boole(a1,b1); 
             in = in+in1;
             n = n-4 ;
+            figure;
+            hold on;
+            grid on;
+            fplot(f);
+            title('Boole simple');
        elseif n==3
             disp('Simpson 3/8 Simple')
             a1 = a + (naux-n)*h;
@@ -80,18 +109,35 @@ end
             simpson38(a1,b1,h)
             fprintf("a: %f,b: %f, n: %d\n",a1,b1,n);
             n = n-3 ;
+            figure;
+            hold on;
+            grid on;
+            fplot(f);
+            title('Simpson 3/8 Simple');
        elseif n ==2
            disp('Simpson 1/3 Simple')
            a1 = a + (naux-n)*h;
            b1 = a1 +2*h;
            fprintf("a: %f,b: %f, n: %d\n",a1,b1,n);
            n = n-2 ;
+           [in1,e1,e2]=simpson13(a1,b1,h);
+           in=in+in1;
+           figure;
+           hold on;
+           grid on;
+           fplot(f);
+           title('Simpson 1/3 Simple');
        elseif n == 1
             disp('Trapecio Simple')
             a1 = a + (naux-n)*h;
             b1 = a1 +1*h;
             fprintf("a: %f,b: %f, n: %d\n",a1,b1,n);
             n = n-1 ;
+            figure;
+            hold on;
+            grid on;
+            fplot(f);
+            title('Grafica Trapecio Simple');
        end
    end
     
@@ -114,14 +160,41 @@ end
     function[I,Er,Ea] = boole(a,b)
         x = a:h:b;  
         I = (2/45)*h*(7*fx(a) + 32*fx(x(2)) + 12*fx(x(3)) + 32*fx(x(4)) +7*fx(b) );
-        Er=abs((integral(f,a,b)-I)/integral(f,a,b));
-        Ea=abs(((integral(f,a,b)-I)/integral(f,a,b))*100);
+        Ea=abs((integral(f,a,b)-I)/integral(f,a,b));
+        Er=abs(((integral(f,a,b)-I)/integral(f,a,b))*100);
         T = 0; 
         T(1,1) = 0; %T=arreglo para crear una tabla
         T(1,1)=I;T(1,2)=Er;T(1,3)=Ea;
         T = array2table(T,'VariableNames',{'Integral','Ea','Er'});
         disp(T)
-    end 
+    end
+
+    function [I,Er,Ea]=simpson13(a,b,h)
+        %h=(b-a)/2;
+        I=double(h*(subs(f,a)+4*subs(f,(a+b)/2)+subs(f,b))/3);
+        Ea=abs((integral(f,a,b)-I)/integral(f,a,b));
+        Er=abs(((integral(f,a,b)-I)/integral(f,a,b))*100);
+        T = 0; 
+        T(1,1) = 0; %T=arreglo para crear una tabla
+        T(1,1)=I;T(1,2)=Er;T(1,3)=Ea;
+        T = array2table(T,'VariableNames',{'Integral','Er','Ea'});
+        disp(T)
+
+    end
+
+    function [I,Er,Ea]=simpsonC13(a,b,h)
+        %h=(b-a)/n;
+        x=a+h*(0:n);
+        y=feval(f,x);
+        I=h*(2*sum(y)+2*sum(y(2:2:n))-y(1)-y(n+1))/3;
+        Ea=abs((integral(f,a,b)-I)/integral(f,a,b));
+        Er=abs(((integral(f,a,b)-I)/integral(f,a,b))*100);
+        T = 0; 
+        T(1,1) = 0; %T=arreglo para crear una tabla
+        T(1,1)=n;T(1,2)=I;T(1,3)=Er;T(1,4)=Ea;
+        T = array2table(T,'VariableNames',{'Itervalos','Integral','Er','Ea'});
+        disp(T)
+    end
 
    function intg = simpson38C(a,b,h)
        x = a:h:b;
@@ -134,4 +207,10 @@ end
        fprintf("I: %f\n",In);
        intg = In;
    end
+
+    function y=ecrecta(x1,y1,x2,y2)
+        x0=x1:h:x2;
+        m=(y2-y1)/(x2-x1);
+        y=m*(x0-x1)+y1;
+    end
 end
