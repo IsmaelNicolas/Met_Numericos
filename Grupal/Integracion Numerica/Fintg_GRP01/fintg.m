@@ -180,7 +180,7 @@ end
             Ea=abs(vt-I);
             Er=abs((vt-I)/vt);
         end
-        T = 0; 
+         
         T(1,1) = 0; %T=arreglo para crear una tabla
         T(1,1)=n;T(1,2)=I;T(1,3)=Er;T(1,4)=Ea;
         T = array2table(T,'VariableNames',{'Itervalos','Integral','Er','Ea'});
