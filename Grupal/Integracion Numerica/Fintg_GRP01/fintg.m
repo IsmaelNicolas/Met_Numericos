@@ -32,6 +32,11 @@ if nargin <4 || nargin >4
 end
    naux =n;
    h = (b-a)/n;
+   	figure;
+    hold on;
+    grid on;
+    %area(x,y0)
+    fplot(f);
    while n>0
        if n>4
            if mod(n,4) == 0
@@ -41,23 +46,18 @@ end
                	h1 = (b-a)/n;
                 fprintf("<strong>a: %f,b: %f, n: %d </strong> \n",a1,b1,n);
                 [in1,e1,e2] = boole(a1,b1)  ;
-                figure;
-                hold on;
-                grid on;
-                fplot(f);
+                
+                title('Boole simple');
                 in = in+in1;
                 n = n-4 ;
            elseif mod(n,3) == 0
                 disp('Simpson 3/8 Compuesto')
 %                 a1 = a + (naux-n)*h;
 %                 b1 = a1 +3*h;
-                 fprintf("a: %f,b: %f, n: %d\n",a1,b1,n);
+                 fprintf("a: %f,b: %f, n: %d\n",a,b,n);
 %                 n = n-3 ;
                  simpson38C(a,b,h);
-                 figure;
-                 hold on;
-                 grid on;
-                 fplot(f);
+                 title('Simpson 3/8 Compuesto');
                 n=0;
            elseif mod(n,2) == 0
                 disp('Simpson 1/3 Compuesto')
@@ -67,23 +67,18 @@ end
                 fprintf("a: %f,b: %f, n: %d\n",a,b,n);
                 %n = n-2;
                 [in1,e1,e2]=simpsonC13(a,b,h);
-                figure;
-                hold on;
-                grid on;
-                fplot(f);
+                title('Simpson 1/3 Compuesto');
                 n=0;
                 in=in+in1;
            else
                 disp('Trapecio simple')
                 a1 = a + (naux-n)*h;
                 b1 = a1 +1*h;
+                [in1,e1,e2]=simpson13(a1,b1,h);
+                in=in+in1;
                 fprintf("a: %f,b: %f, n: %d\n",a1,b1,n);
                 n = n-1 ;
-                figure;
-                hold on;
-                grid on;
-                fplot(f);
-                title('Boole simple');
+                title('Trapecio simple');
            end
        elseif n==4
             disp('Boole simple')
@@ -94,10 +89,6 @@ end
             [in1,e1,e2] = boole(a1,b1); 
             in = in+in1;
             n = n-4 ;
-            figure;
-            hold on;
-            grid on;
-            fplot(f);
             title('Boole simple');
        elseif n==3
             disp('Simpson 3/8 Simple')
@@ -106,10 +97,6 @@ end
             simpson38(a1,b1,h)
             fprintf("a: %f,b: %f, n: %d\n",a1,b1,n);
             n = n-3 ;
-            figure;
-            hold on;
-            grid on;
-            fplot(f);
             title('Simpson 3/8 Simple');
        elseif n ==2
            disp('Simpson 1/3 Simple')
@@ -119,10 +106,6 @@ end
            n = n-2 ;
            [in1,e1,e2]=simpson13(a1,b1,h);
            in=in+in1;
-           figure;
-           hold on;
-           grid on;
-           fplot(f);
            title('Simpson 1/3 Simple');
        elseif n == 1
             disp('Trapecio Simple')
@@ -130,10 +113,6 @@ end
             b1 = a1 +1*h;
             fprintf("a: %f,b: %f, n: %d\n",a1,b1,n);
             n = n-1 ;
-            figure;
-            hold on;
-            grid on;
-            fplot(f);
             title('Grafica Trapecio Simple');
        end
    end
@@ -147,7 +126,11 @@ end
    Rt = 0;
     function y = fx(x)
         X = sym('x');
-        y = double( subs( sym(f),X,x) );
+        try
+            y = double( subs( sym(f),X,x) );
+        catch
+            y = 1000;
+        end
     end
     function intg = simpson38(a,b,h)
         x = a:h:b;
@@ -181,11 +164,20 @@ end
 
     function [I,Er,Ea]=simpsonC13(a,b,h)
         %h=(b-a)/n;
-        x=a+h*(0:n);
-        y=feval(f,x);
-        I=h*(2*sum(y)+2*sum(y(2:2:n))-y(1)-y(n+1))/3;
-        Ea=abs((integral(f,a,b)-I)/integral(f,a,b));
-        Er=abs(((integral(f,a,b)-I)/integral(f,a,b))*100);
+        x = a:h:b;
+        y = f(x);
+        %Aproximamos la integral con la fórmula correspondiente
+        I =(h/3)*(f(a)+ 4*sum(y(1:2:n)) + 2*sum(y(2:2:n-1)) + f(b));
+        
+        try 
+            vt = integral(f,a,b);
+            Ea=abs(vt-I);
+            Er=abs((vt-I)/vt);
+        catch
+            vt = integral(f,a,b,'arrayvalued', true);
+            Ea=abs(vt-I);
+            Er=abs((vt-I)/vt);
+        end
         T = 0; 
         T(1,1) = 0; %T=arreglo para crear una tabla
         T(1,1)=n;T(1,2)=I;T(1,3)=Er;T(1,4)=Ea;
@@ -195,19 +187,62 @@ end
 
    function intg = simpson38C(a,b,h)
        x = a:h:b;
-       f1 = fx(x);
+       f1 = f(x);
        disp(x)
        disp(f1)
        [~,n1] = size(x);
        n1 = n1-1; 
-       In = (3*h/8)*( fx(a) + 3*sum(f1(2:3:n1-1)) + 3*sum(f1(3:3:n1)) +2*sum(f1(4:3:n1-2)) +fx(b) );
+       In = (3*h/8)*( f(a) + 3*sum(f1(2:3:n1)) + 3*sum(f1(3:3:n1)) +2*sum(f1(4:3:n1)) +f(b) );
        fprintf("I: %f\n",In);
        intg = In;
    end
+
 
     function y=ecrecta(x1,y1,x2,y2)
         x0=x1:h:x2;
         m=(y2-y1)/(x2-x1);
         y=m*(x0-x1)+y1;
     end
+
+   function [I,Er,Ea]=trapsimple(a,b)
+   fa=subs(f,a); %fa es la funcion evaluada en el punto a
+   fb=subs(f,b); %fb es la funcion evaluada en el punto b
+   I=(b-a)*(fa+fb)/2; %Calculo el integral por el metodo de trapecio simple
+   Ea=abs((integral(f,a,b)-I)/integral(f,a,b)); %Error absoluto
+   Er=abs(((integral(f,a,b)-I)/integral(f,a,b))*100); %Error relativo
+   T(1,1) = 0; %T=arreglo para crear una tabla
+   T(1,1)=I;T(1,2)=Ea;T(1,3)=Er;
+   T=array2table(T,'VariableNames',{'Integral','Ea','Er'}); %Nombro las variables de mi tabla
+   disp(T) %Imprimo la tabla
+   end
+
+   function [I,Er,Ea]=trapmult(a,b,h)
+   %Datos:
+   %   f es el integrando, dado como una cadena de caracteres 'f'    %   a y b son los extremos interior y superior del intervalo de integracion
+   %   n es el numero de subintervalos
+   %   h es el paso entre subintervalos
+   %Calculos:
+   %   fa es la funcion evaluada en el punto a
+   %   fb es la funcion evaluada en el punto b
+   %   fs es sumatoria de funciones envaluados en distintos puntos    %   I es la aproximacion obtenida con la regla del trapecio multiple
+   %   Er es el error relativo
+   %   Ea es el error absoluto
+   fa=subs(f,a);
+   fb=subs(f,b);
+   fs=0;
+   T(1,1) = 0; %T=arreglo para crear una tabla
+   x=a:h:b;
+   [~,n]=size(x); %Dominio para x
+   h=(b-a)/n;
+   for i=1:(n-1)
+       x(i)=a+h*i;
+       fs=fs+subs(f,x(i));
+       I=double(h*(fa+fb)/2+h*fs); %Calculo la Integral por el metodo del trapecio multiple
+       Ea=abs((integral(f,a,b)-I)/integral(f,a,b)); %Error absoluto
+       Er=abs(((integral(f,a,b)-I)/integral(f,a,b))*100); %Error relativo
+       T(i,1)=i;T(i,2)=x(i);T(i,3)=I;T(i,4)=Ea;T(i,5)=Er; %Lleno la tabla con sus respectivos campos
+   end
+   T=array2table(T,'VariableNames',{'i','x(i)','Integral','Ea','Er'}); %Nombro las variables de tabla
+   disp(T) %Imprimo la tabla
+   end
 end

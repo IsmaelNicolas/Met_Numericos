@@ -1,0 +1,219 @@
+disp('Grupo 1')
+Grupo 1
+disp('NRC: 7543')
+NRC: 7543
+date
+
+ans =
+
+    '15-Feb-2022'
+
+clock
+
+ans =
+
+   1.0e+03 *
+
+    2.0220    0.0020    0.0150    0.0230    0.0400    0.0284
+
+clc
+[I,F,Er,Ea,Rt] = fintg('(3*x.^3-x.^2+2*x-4)/((x.^2-3*x+2).^(1/2))',0,0.99,7);
+  Columns 1 through 6
+
+         0    0.1414    0.2829    0.4243    0.5657    0.7071
+
+  Columns 7 through 8
+
+    0.8486    0.9900
+
+[Warning: Function behaves unexpectedly on array inputs. To improve
+performance, properly vectorize your function to return an output
+with the same size and shape as the input arguments.] 
+[> In matlab.graphics.function.FunctionLine>getFunction
+  In matlab.graphics.function/FunctionLine/updateFunction
+  In matlab.graphics.function.FunctionLine.set.Function_I
+  In matlab.graphics.function.FunctionLine.set.Function
+  In matlab.graphics.function.FunctionLine
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot>singleFplot', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 245)" style="font-weight:bold">fplot>singleFplot</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',245,0)">line 245</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot>@(f)singleFplot(cax,{f},limits,extraOpts,args)', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 200)" style="font-weight:bold">fplot>@(f)singleFplot(cax,{f},limits,extraOpts,args)</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',200,0)">line 200</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot>vectorizeFplot', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 200)" style="font-weight:bold">fplot>vectorizeFplot</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',200,0)">line 200</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 166)" style="font-weight:bold">fplot</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',166,0)">line 166</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fintg', 'C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Integracion Numerica\fintg.m', 43)" style="font-weight:bold">fintg</a> (<a href="matlab: opentoline('C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Integracion Numerica\fintg.m',43,0)">line 43</a>)] 
+Trapecio simple
+a: 0.000000,b: 0.141429, n: 7
+Simpson 3/8 Compuesto
+a: 0.000000,b: 0.990000, n: 6
+  Columns 1 through 6
+
+         0    0.1414    0.2829    0.4243    0.5657    0.7071
+
+  Columns 7 through 8
+
+    0.8486    0.9900
+
+  Columns 1 through 6
+
+   -2.8284   -2.9517   -3.1057   -3.2572   -3.3519   -3.2909
+
+  Columns 7 through 8
+
+   -2.8495   -0.8876
+
+Integral-2.563273
+disp('Aqui va la fig 1')
+Aqui va la fig 1
+
+ [I,F,Er,Ea,Rt] = fintg('(3*x.^3-x.^2+2*x-4)/((x.^2-3*x+2).^(1/2))',0,0.99,18);
+  Columns 1 through 6
+
+         0    0.0550    0.1100    0.1650    0.2200    0.2750
+
+  Columns 7 through 12
+
+    0.3300    0.3850    0.4400    0.4950    0.5500    0.6050
+
+  Columns 13 through 18
+
+    0.6600    0.7150    0.7700    0.8250    0.8800    0.9350
+
+  Column 19
+
+    0.9900
+
+[Warning: Function behaves unexpectedly on array inputs. To improve
+performance, properly vectorize your function to return an output
+with the same size and shape as the input arguments.] 
+[> In matlab.graphics.function.FunctionLine>getFunction
+  In matlab.graphics.function/FunctionLine/updateFunction
+  In matlab.graphics.function.FunctionLine.set.Function_I
+  In matlab.graphics.function.FunctionLine.set.Function
+  In matlab.graphics.function.FunctionLine
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot>singleFplot', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 245)" style="font-weight:bold">fplot>singleFplot</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',245,0)">line 245</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot>@(f)singleFplot(cax,{f},limits,extraOpts,args)', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 200)" style="font-weight:bold">fplot>@(f)singleFplot(cax,{f},limits,extraOpts,args)</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',200,0)">line 200</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot>vectorizeFplot', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 200)" style="font-weight:bold">fplot>vectorizeFplot</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',200,0)">line 200</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 166)" style="font-weight:bold">fplot</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',166,0)">line 166</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fintg', 'C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Integracion Numerica\fintg.m', 43)" style="font-weight:bold">fintg</a> (<a href="matlab: opentoline('C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Integracion Numerica\fintg.m',43,0)">line 43</a>)] 
+Simpson 3/8 Compuesto
+a: 0.000000,b: 0.990000, n: 18
+  Columns 1 through 6
+
+         0    0.0550    0.1100    0.1650    0.2200    0.2750
+
+  Columns 7 through 12
+
+    0.3300    0.3850    0.4400    0.4950    0.5500    0.6050
+
+  Columns 13 through 18
+
+    0.6600    0.7150    0.7700    0.8250    0.8800    0.9350
+
+  Column 19
+
+    0.9900
+
+  Columns 1 through 6
+
+   -2.8284   -2.8711   -2.9208   -2.9760   -3.0353   -3.0968
+
+  Columns 7 through 12
+
+   -3.1586   -3.2179   -3.2718   -3.3163   -3.3467   -3.3567
+
+  Columns 13 through 18
+
+   -3.3380   -3.2795   -3.1648   -2.9685   -2.6458   -2.0981
+
+  Column 19
+
+   -0.8876
+
+I: -2.973031
+Integral: 0.000000
+[I,F,Er,Ea,Rt] = fintg('(3*x.^3-x.^2+2*x-4)/((x.^2-3*x+2).^(1/2))',0,0.99,18);
+  Columns 1 through 6
+
+         0    0.0550    0.1100    0.1650    0.2200    0.2750
+
+  Columns 7 through 12
+
+    0.3300    0.3850    0.4400    0.4950    0.5500    0.6050
+
+  Columns 13 through 18
+
+    0.6600    0.7150    0.7700    0.8250    0.8800    0.9350
+
+  Column 19
+
+    0.9900
+
+[Warning: Function behaves unexpectedly on array inputs. To improve
+performance, properly vectorize your function to return an output
+with the same size and shape as the input arguments.] 
+[> In matlab.graphics.function.FunctionLine>getFunction
+  In matlab.graphics.function/FunctionLine/updateFunction
+  In matlab.graphics.function.FunctionLine.set.Function_I
+  In matlab.graphics.function.FunctionLine.set.Function
+  In matlab.graphics.function.FunctionLine
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot>singleFplot', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 245)" style="font-weight:bold">fplot>singleFplot</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',245,0)">line 245</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot>@(f)singleFplot(cax,{f},limits,extraOpts,args)', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 200)" style="font-weight:bold">fplot>@(f)singleFplot(cax,{f},limits,extraOpts,args)</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',200,0)">line 200</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot>vectorizeFplot', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 200)" style="font-weight:bold">fplot>vectorizeFplot</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',200,0)">line 200</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 166)" style="font-weight:bold">fplot</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',166,0)">line 166</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fintg', 'C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Integracion Numerica\fintg.m', 43)" style="font-weight:bold">fintg</a> (<a href="matlab: opentoline('C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Integracion Numerica\fintg.m',43,0)">line 43</a>)] 
+Simpson 3/8 Compuesto
+a: 0.000000,b: 0.990000, n: 18
+  Columns 1 through 6
+
+         0    0.0550    0.1100    0.1650    0.2200    0.2750
+
+  Columns 7 through 12
+
+    0.3300    0.3850    0.4400    0.4950    0.5500    0.6050
+
+  Columns 13 through 18
+
+    0.6600    0.7150    0.7700    0.8250    0.8800    0.9350
+
+  Column 19
+
+    0.9900
+
+  Columns 1 through 6
+
+   -2.8284   -2.8711   -2.9208   -2.9760   -3.0353   -3.0968
+
+  Columns 7 through 12
+
+   -3.1586   -3.2179   -3.2718   -3.3163   -3.3467   -3.3567
+
+  Columns 13 through 18
+
+   -3.3380   -3.2795   -3.1648   -2.9685   -2.6458   -2.0981
+
+  Column 19
+
+   -0.8876
+
+Integral: -2.973031
+
+[I,F,Er,Ea,Rt] = fintg('(3*x.^3-x.^2+2*x-4)/((x.^2-3*x+2).^(1/2))',0,0.99,1);
+         0    0.9900
+
+[Warning: Function behaves unexpectedly on array inputs. To improve
+performance, properly vectorize your function to return an output
+with the same size and shape as the input arguments.] 
+[> In matlab.graphics.function.FunctionLine>getFunction
+  In matlab.graphics.function/FunctionLine/updateFunction
+  In matlab.graphics.function.FunctionLine.set.Function_I
+  In matlab.graphics.function.FunctionLine.set.Function
+  In matlab.graphics.function.FunctionLine
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot>singleFplot', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 245)" style="font-weight:bold">fplot>singleFplot</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',245,0)">line 245</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot>@(f)singleFplot(cax,{f},limits,extraOpts,args)', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 200)" style="font-weight:bold">fplot>@(f)singleFplot(cax,{f},limits,extraOpts,args)</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',200,0)">line 200</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot>vectorizeFplot', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 200)" style="font-weight:bold">fplot>vectorizeFplot</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',200,0)">line 200</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fplot', 'C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m', 166)" style="font-weight:bold">fplot</a> (<a href="matlab: opentoline('C:\Program Files\Polyspace\R2020a\toolbox\matlab\graphics\function\fplot.m',166,0)">line 166</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fintg', 'C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Integracion Numerica\fintg.m', 43)" style="font-weight:bold">fintg</a> (<a href="matlab: opentoline('C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Integracion Numerica\fintg.m',43,0)">line 43</a>)] 
+Trapecio Simple
+a: 0.000000,b: 0.990000, n: 1
+Integral: 0.000000
+
+diary off
+
