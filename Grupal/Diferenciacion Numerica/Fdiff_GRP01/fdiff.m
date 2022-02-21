@@ -231,6 +231,7 @@ toc
         fprintf('<strong>Diferenciacion centrada\n</strong>')
         dif = double(subs(diff(f,o),X,x));%Calculo valor teorico
         i = 1;
+        j = 0;
         T(1,1) = 0; %Inicializo array para crear la tabla
         switch o
             case 1 % Orden 1
@@ -242,9 +243,10 @@ toc
                     e = x-i*h1; % valor epsilon
                     Rt = double(subs(diff(f,4),X,e)); %Error de truncamiento
                     %Añado valores a la tabla
-                    T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
+                    T(i,1) = i; T(i,2) = h; T(i,3)=x+j*h1;
                     T(i,4)=Ea;T(i,5)=Er;T(i,6)=Rt;T(i,7)=real(double(F));
                     i = i+1;
+                    j = j+1;
                     h = h*0.5;
                 end
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
