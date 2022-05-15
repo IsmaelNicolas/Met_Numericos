@@ -1,0 +1,383 @@
+disp('Cedillo Ismael')
+Cedillo Ismael
+disp('NRC: 4140')
+NRC: 4140
+date
+
+ans =
+
+    '05-May-2022'
+
+clock
+
+ans =
+
+   1.0e+03 *
+
+    2.0220    0.0050    0.0050    0.0120    0.0250    0.0003
+
+a = 18
+
+a =
+
+    18
+
+b = 11;
+a+b
+
+ans =
+
+    29
+
+a*b
+
+ans =
+
+   198
+
+a/b
+
+ans =
+
+    1.6364
+
+a^b
+
+ans =
+
+   6.4268e+13
+
+pi
+
+ans =
+
+    3.1416
+
+format long
+pi
+
+ans =
+
+   3.141592653589793
+
+format bank
+pi
+
+ans =
+
+          3.14
+
+format long
+format long eng
+pi
+
+ans =
+
+    3.14159265358979e+000
+
+format short eng
+pi
+
+ans =
+
+     3.1416e+000
+
+format rat
+pi
+
+ans =
+
+     355/113   
+
+format short
+pi
+
+ans =
+
+    3.1416
+
+18/0
+
+ans =
+
+   Inf
+
+nan
+
+ans =
+
+   NaN
+
+realmin
+
+ans =
+
+  2.2251e-308
+
+realmax
+
+ans =
+
+  1.7977e+308
+
+k = pi
+
+k =
+
+    3.1416
+
+ceil(k)
+
+ans =
+
+     4
+
+fix(k)
+
+ans =
+
+     3
+
+round(k)
+
+ans =
+
+     3
+
+abs(-pi)
+
+ans =
+
+    3.1416
+
+exp(1)
+
+ans =
+
+    2.7183
+
+exp(4)
+
+ans =
+
+   54.5982
+
+sign(ans)
+
+ans =
+
+     1
+
+sign(-pi)
+
+ans =
+
+    -1
+
+sign(0)
+
+ans =
+
+     0
+
+gcd(9,12)
+
+ans =
+
+     3
+
+lcm(9,12)
+
+ans =
+
+    36
+
+log(10)
+
+ans =
+
+    2.3026
+
+log2(10)
+
+ans =
+
+    3.3219
+
+log10(10)
+
+ans =
+
+     1
+
+sqrt(1000)
+
+ans =
+
+   31.6228
+
+nhtroot(1000,5)
+{Unrecognized function or variable 'nhtroot'.
+} 
+nthroot(1000,5)
+
+ans =
+
+    3.9811
+
+nthroot(1000,7)
+
+ans =
+
+    2.6827
+
+rem(12,5)
+
+ans =
+
+     2
+
+x = 7 + 21i
+
+x =
+
+   7.0000 +21.0000i
+
+y = -9-15j
+
+y =
+
+  -9.0000 -15.0000i
+
+who
+
+Your variables are:
+
+a    ans  b    k    x    y    
+
+whos
+  Name      Size            Bytes  Class     Attributes
+
+  a         1x1                 8  double              
+  ans       1x1                 8  double              
+  b         1x1                 8  double              
+  k         1x1                 8  double              
+  x         1x1                16  double    complex   
+  y         1x1                16  double    complex   
+
+clc
+x+y
+
+ans =
+
+  -2.0000 + 6.0000i
+
+x - y
+
+ans =
+
+  16.0000 +36.0000i
+
+x * y
+
+ans =
+
+   2.5200e+02 - 2.9400e+02i
+
+x/y
+
+ans =
+
+  -1.2353 - 0.2745i
+
+x^y
+
+ans =
+
+   4.3786e-05 - 9.8047e-05i
+
+x 
+
+x =
+
+   7.0000 +21.0000i
+
+abs(x)
+
+ans =
+
+   22.1359
+
+angle(x)
+
+ans =
+
+    1.2490
+
+complex(a,b)
+
+ans =
+
+  18.0000 +11.0000i
+
+imag(ans)
+
+ans =
+
+    11
+
+real(x)
+
+ans =
+
+     7
+
+x
+
+x =
+
+   7.0000 +21.0000i
+
+abs(x)
+
+ans =
+
+   22.1359
+
+x/ans
+
+ans =
+
+   0.3162 + 0.9487i
+
+sign(x)
+
+ans =
+
+   0.3162 + 0.9487i
+
+abs(ans)
+
+ans =
+
+     1
+
+isreal(x)
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   0
+
+clock
+
+ans =
+
+   1.0e+03 *
+
+    2.0220    0.0050    0.0050    0.0120    0.0580    0.0150
+
+clc
+clear
+diary off

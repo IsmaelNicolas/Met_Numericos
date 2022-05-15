@@ -1,0 +1,79 @@
+f = @(x)- 0.000010417*x^5 + 0.010677423*x^4 - 4.377430106*x^3 + 897.245502032*x^2 - 91948.149759552*x + 3768814.6686304
+
+f =
+
+  <a href="matlab:helpPopup function_handle" style="font-weight:bold">function_handle</a> with value:
+
+    @(x)-0.000010417*x^5+0.010677423*x^4-4.377430106*x^3+897.245502032*x^2-91948.149759552*x+3768814.6686304
+
+I = int(sym(f),sym('x'));
+double(2464274074277749/2251799813685248)
+
+ans =
+
+    1.0944
+
+I
+ 
+I =
+ 
+- (6149111456506637*x^6)/3541774862152233910272 + (6155115295241877*x^5)/2882303761517117440 - (2464274074277749*x^4)/2251799813685248 + (7892254899631189*x^3)/26388279066624 - (3159314369159889*x^2)/68719476736 + (8093467873226323*x)/2147483648
+ 
+double(2464274074277749/2251799813685248)
+
+ans =
+
+    1.0944
+
+double(8093467873226323/2147483648)
+
+ans =
+
+   3.7688e+06
+
+double(3159314369159889/68719476736)
+
+ans =
+
+   4.5974e+04
+
+double(7892254899631189/4398046511104)
+
+ans =
+
+   1.7945e+03
+
+double(3159314369159889/68719476736)
+
+ans =
+
+   4.5974e+04
+
+double(7892254899631189/26388279066624)
+
+ans =
+
+  299.0818
+
+double(6149111456506637/3541774862152233910272)
+
+ans =
+
+   1.7362e-06
+
+[Ea,Er,Rt,F] = fdiff(I,2,2,205,1);
+<strong>Diferenciacion centrada
+</strong>[Warning: Imaginary parts of complex X and/or Y arguments ignored.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fdiff/pCriticos', 'C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Diferenciacion Numerica\Fdiff_GRP01\fdiff.m', 325)" style="font-weight:bold">fdiff/pCriticos</a> (<a href="matlab: opentoline('C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Diferenciacion Numerica\Fdiff_GRP01\fdiff.m',325,0)">line 325</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fdiff/diff_centrada', 'C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Diferenciacion Numerica\Fdiff_GRP01\fdiff.m', 270)" style="font-weight:bold">fdiff/diff_centrada</a> (<a href="matlab: opentoline('C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Diferenciacion Numerica\Fdiff_GRP01\fdiff.m',270,0)">line 270</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('fdiff', 'C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Diferenciacion Numerica\Fdiff_GRP01\fdiff.m', 48)" style="font-weight:bold">fdiff</a> (<a href="matlab: opentoline('C:\Users\ismae\OneDrive\Documentos\MATLAB\Met. Numericos\Grupal\Diferenciacion Numerica\Fdiff_GRP01\fdiff.m',48,0)">line 48</a>)] 
+    <strong>i</strong>     <strong>hi</strong>      <strong>f(hi)</strong>        <strong>Ea</strong>             <strong>Er</strong>            <strong>Rt</strong>         <strong>Derivada</strong> 
+    <strong>_</strong>    <strong>_____</strong>    <strong>_____</strong>    <strong>___________</strong>    <strong>__________</strong>    <strong>___________</strong>    <strong>_________</strong>
+
+    1        1     206     -1.3889e-05         0.135      0.0012501    -0.010288
+    2      0.5     207     -8.6808e-07     0.0084271    -0.00062496    -0.010301
+    3     0.25     208     -5.4255e-08    0.00052665       -0.00375    -0.010302
+    4    0.125     209      -3.391e-09    3.2915e-05     -0.0081251    -0.010302
+
+Elapsed time is 1.242872 seconds.
+diary off

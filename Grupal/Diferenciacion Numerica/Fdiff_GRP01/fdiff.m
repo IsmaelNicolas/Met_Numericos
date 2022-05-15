@@ -256,13 +256,14 @@ toc
                 while abs(dif-F) > tol 
                     %Ingreso formula
                     F = (-subs(f,X,x+2*h) +16*subs(f,X,x+h)-30*subs(f,X,x) +16*subs(f,X,x-h) - subs(f,X,x-2*h))/(12*h^2);
+                    %F = (subs(f,X,x+1*h)-2*subs(f,X,x)+subs(f,X,x-h))/(h.^2);
                     Ea = real(dif-double(F));%Error Absoluto
                     Er = real(double((Ea/F)*100));%Error relativo
                     e = x-i*h1;
                     Rt = double(subs(diff(f,4),X,e)); %Error de truncamiento
                     %Agrego a las tablas
                     T(i,1) = i; T(i,2) = h; T(i,3)=x+i*h1;
-                    T(i,4)=Ea;T(i,5)=Er;T(i,6)=Rt;T(i,7)=real(double(F));
+                    T(i,4)=Ea;T(i,5)=Er;T(i,6)=Rt;T(i,7)=double(F);
                     i = i+1;
                     h = h*0.5;
                 end
